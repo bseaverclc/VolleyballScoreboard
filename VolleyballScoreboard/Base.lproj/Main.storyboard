@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -14,14 +14,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VolleyballScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Otd-71-qJp">
-                                <rect key="frame" x="44" y="0.0" width="808" height="393"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Otd-71-qJp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7E-dd-Q0T">
-                                        <rect key="frame" x="0.0" y="0.0" width="808" height="39.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                         <color key="backgroundColor" red="0.45690524580000003" green="0.98142719270000001" blue="0.31922805310000002" alpha="0.9990234375" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Clear">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,11 +30,55 @@
                                             <action selector="clearAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bte-83-h0K"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0jL-qM-Zsp">
-                                        <rect key="frame" x="0.0" y="39.5" width="808" height="273"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0jL-qM-Zsp">
+                                        <rect key="frame" x="0.0" y="62" width="320" height="284"/>
                                         <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="BZE-FV-Cw0">
+                                                <rect key="frame" x="0.0" y="0.0" width="54.5" height="284"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VIu-vh-HOe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="54.5" height="88.5"/>
+                                                        <color key="backgroundColor" red="1" green="0.18899828767123289" blue="0.20962649828767124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="Ace: 0">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="redStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N3V-37-iP4"/>
+                                                            <outletCollection property="gestureRecognizers" destination="bQZ-I2-5o4" appends="YES" id="ikq-5e-bAc"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3Ps-km-YvP">
+                                                        <rect key="frame" x="0.0" y="97.5" width="54.5" height="88.5"/>
+                                                        <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="Kill: 0">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="redStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="52W-x4-BU6"/>
+                                                            <outletCollection property="gestureRecognizers" destination="3gu-h7-7o3" appends="YES" id="FOs-p3-HzE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yJs-pV-J7r">
+                                                        <rect key="frame" x="0.0" y="195" width="54.5" height="89"/>
+                                                        <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="BLK: 09">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="redStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Itf-Jr-IPg"/>
+                                                            <outletCollection property="gestureRecognizers" destination="RpH-Ca-gaJ" appends="YES" id="w7w-Os-Lya"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVq-6N-7UR">
-                                                <rect key="frame" x="0.0" y="0.0" width="399" height="273"/>
+                                                <rect key="frame" x="64.5" y="0.0" width="96" height="284"/>
                                                 <color key="backgroundColor" red="0.8403320312" green="0.192199707" blue="0.3156738281" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="80"/>
@@ -47,7 +91,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-Hx-Wwq">
-                                                <rect key="frame" x="409" y="0.0" width="399" height="273"/>
+                                                <rect key="frame" x="170.5" y="0.0" width="96" height="284"/>
                                                 <color key="backgroundColor" systemColor="linkColor"/>
                                                 <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="80"/>
@@ -59,73 +103,139 @@
                                                     <outletCollection property="gestureRecognizers" destination="ewi-5X-6kd" appends="YES" id="nHB-jG-6dj"/>
                                                 </connections>
                                             </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="RKJ-N2-n9c">
+                                                <rect key="frame" x="276.5" y="0.0" width="43.5" height="284"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-5f-cnS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="43.5" height="88.5"/>
+                                                        <color key="backgroundColor" red="0.35193905861233726" green="0.55542320518355293" blue="0.98393301552385781" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="Ace: 0">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="blueStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7XV-EJ-epm"/>
+                                                            <outletCollection property="gestureRecognizers" destination="vcD-EL-gj2" appends="YES" id="Exi-pg-B3N"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Qls-yn-MBM">
+                                                        <rect key="frame" x="0.0" y="97.5" width="43.5" height="88.5"/>
+                                                        <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="Kill: 0">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="blueStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c4d-Cz-2ou"/>
+                                                            <outletCollection property="gestureRecognizers" destination="tGm-Nt-ejd" appends="YES" id="tzp-P4-9sV"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RF4-hd-n3x">
+                                                        <rect key="frame" x="0.0" y="195" width="43.5" height="89"/>
+                                                        <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="BLK: 0">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="blueStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Epi-IE-epG"/>
+                                                            <outletCollection property="gestureRecognizers" destination="K6p-zh-0xZ" appends="YES" id="TGh-ar-uij"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="mVq-6N-7UR" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.3" id="5fi-34-r2C"/>
+                                            <constraint firstItem="Tb1-Hx-Wwq" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.3" id="eKX-Km-8NR"/>
+                                            <constraint firstItem="BZE-FV-Cw0" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.17" id="vqk-k7-xWd"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vrd-U4-i59">
-                                        <rect key="frame" x="0.0" y="312.5" width="808" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vrd-U4-i59">
+                                        <rect key="frame" x="0.0" y="351" width="320" height="217"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCZ-zj-Ijz">
-                                                <rect key="frame" x="0.0" y="0.0" width="399" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                                <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                <state key="normal" title="0">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="redErrorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="os5-g3-RSq"/>
-                                                    <outletCollection property="gestureRecognizers" destination="mIj-Jl-OO3" appends="YES" id="Zla-u5-9xJ"/>
-                                                    <outletCollection property="gestureRecognizers" destination="eNS-Gs-jbT" appends="YES" id="LU9-Gn-pAH"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8m-OC-az1">
-                                                <rect key="frame" x="409" y="0.0" width="399" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                                <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                <state key="normal" title="0">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="blueErrorAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GGH-5h-dCk"/>
-                                                    <outletCollection property="gestureRecognizers" destination="O5w-wN-bbM" appends="YES" id="ul3-lA-sBc"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ll4-VF-tZ3">
+                                                <rect key="frame" x="0.0" y="0.0" width="154.5" height="217"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="FCZ-zj-Ijz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="106"/>
+                                                        <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="Opponent Err: 0">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="redStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tjI-Bt-keg"/>
+                                                            <outletCollection property="gestureRecognizers" destination="ceb-00-co1" appends="YES" id="Mux-vo-b4v"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nIi-Xc-3yV">
+                                                        <rect key="frame" x="0.0" y="111" width="154.5" height="106"/>
+                                                        <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="Opponent Serv Err: 09">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="redStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7r6-Et-EhH"/>
+                                                            <outletCollection property="gestureRecognizers" destination="3bO-f8-Nba" appends="YES" id="Huu-Z1-MM8"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-1L-zP0">
+                                                <rect key="frame" x="164.5" y="0.0" width="155.5" height="217"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Jan-6R-fZi">
+                                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="106"/>
+                                                        <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="Opponent Err: 09">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="blueStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2BK-gc-Gzl"/>
+                                                            <outletCollection property="gestureRecognizers" destination="noF-Rs-ahi" appends="YES" id="EJv-ST-Hjc"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-z8-1XT">
+                                                        <rect key="frame" x="0.0" y="111" width="155.5" height="106"/>
+                                                        <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <state key="normal" title="Opponent Serv Err: 09">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="blueStatAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iRu-e6-idv"/>
+                                                            <outletCollection property="gestureRecognizers" destination="3v4-bE-neu" appends="YES" id="irU-3Y-s8o"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="F7E-OW-iHa">
-                                        <rect key="frame" x="0.0" y="372.5" width="808" height="20.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Errors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiF-Ym-Mw0">
-                                                <rect key="frame" x="0.0" y="0.0" width="399" height="20.5"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Errors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KbK-a3-GGO">
-                                                <rect key="frame" x="409" y="0.0" width="399" height="20.5"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ll4-VF-tZ3" firstAttribute="width" secondItem="Vrd-U4-i59" secondAttribute="width" multiplier="0.483" id="2Hg-Ly-Xd6"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.4949951172" green="0.1373901367" blue="0.1607666016" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="0jL-qM-Zsp" firstAttribute="height" secondItem="Otd-71-qJp" secondAttribute="height" multiplier="0.694656" id="TQC-AX-xm7"/>
+                                    <constraint firstItem="0jL-qM-Zsp" firstAttribute="height" secondItem="Otd-71-qJp" secondAttribute="height" multiplier="0.5" id="TQC-AX-xm7"/>
                                     <constraint firstItem="F7E-dd-Q0T" firstAttribute="height" secondItem="Otd-71-qJp" secondAttribute="height" multiplier="0.1" id="z2q-N6-TaQ"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Otd-71-qJp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IJC-ED-qKE"/>
                             <constraint firstItem="Otd-71-qJp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Qkf-oq-dXP"/>
@@ -134,10 +244,31 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blueErrorOutlet" destination="Z8m-OC-az1" id="q9c-b6-i1x"/>
                         <outlet property="blueOutlet" destination="Tb1-Hx-Wwq" id="VCX-rE-ss5"/>
-                        <outlet property="redErrorOutlet" destination="FCZ-zj-Ijz" id="tXF-rs-ou4"/>
+                        <outlet property="redKillOutlet" destination="3Ps-km-YvP" id="oXe-UM-mie"/>
                         <outlet property="redOutlet" destination="mVq-6N-7UR" id="7Sr-Gt-ysU"/>
+                        <outletCollection property="redStatsOutlet" destination="VIu-vh-HOe" collectionClass="NSMutableArray" id="bvD-PQ-MRB"/>
+                        <outletCollection property="redStatsOutlet" destination="3Ps-km-YvP" collectionClass="NSMutableArray" id="6To-aW-RAS"/>
+                        <outletCollection property="redStatsOutlet" destination="yJs-pV-J7r" collectionClass="NSMutableArray" id="Duz-7e-HRW"/>
+                        <outletCollection property="redStatsOutlet" destination="FCZ-zj-Ijz" collectionClass="NSMutableArray" id="9BY-S3-G7A"/>
+                        <outletCollection property="redStatsOutlet" destination="nIi-Xc-3yV" collectionClass="NSMutableArray" id="CB9-aV-MFn"/>
+                        <outletCollection property="blueStatsOutlet" destination="x7X-5f-cnS" collectionClass="NSMutableArray" id="D6O-iO-luN"/>
+                        <outletCollection property="blueStatsOutlet" destination="Qls-yn-MBM" collectionClass="NSMutableArray" id="y0z-2e-HQE"/>
+                        <outletCollection property="blueStatsOutlet" destination="RF4-hd-n3x" collectionClass="NSMutableArray" id="Fe3-aB-Pnc"/>
+                        <outletCollection property="blueStatsOutlet" destination="Jan-6R-fZi" collectionClass="NSMutableArray" id="LK9-Kk-ksK"/>
+                        <outletCollection property="blueStatsOutlet" destination="qTn-z8-1XT" collectionClass="NSMutableArray" id="lxl-De-2s3"/>
+                        <outletCollection property="swipeOutlets" destination="KjT-Ne-A6k" collectionClass="NSMutableArray" id="thA-Le-Epj"/>
+                        <outletCollection property="swipeOutlets" destination="ewi-5X-6kd" collectionClass="NSMutableArray" id="9C4-Zd-bqE"/>
+                        <outletCollection property="swipeOutlets" destination="bQZ-I2-5o4" collectionClass="NSMutableArray" id="gju-dU-8XJ"/>
+                        <outletCollection property="swipeOutlets" destination="3gu-h7-7o3" collectionClass="NSMutableArray" id="TbO-TV-iLP"/>
+                        <outletCollection property="swipeOutlets" destination="RpH-Ca-gaJ" collectionClass="NSMutableArray" id="GKr-0R-dHS"/>
+                        <outletCollection property="swipeOutlets" destination="ceb-00-co1" collectionClass="NSMutableArray" id="LpB-oD-ad7"/>
+                        <outletCollection property="swipeOutlets" destination="3bO-f8-Nba" collectionClass="NSMutableArray" id="YCa-Kv-BDA"/>
+                        <outletCollection property="swipeOutlets" destination="vcD-EL-gj2" collectionClass="NSMutableArray" id="3xy-ue-eUu"/>
+                        <outletCollection property="swipeOutlets" destination="tGm-Nt-ejd" collectionClass="NSMutableArray" id="2Ix-lF-AYk"/>
+                        <outletCollection property="swipeOutlets" destination="K6p-zh-0xZ" collectionClass="NSMutableArray" id="24b-RQ-9c1"/>
+                        <outletCollection property="swipeOutlets" destination="noF-Rs-ahi" collectionClass="NSMutableArray" id="LWd-V1-AoL"/>
+                        <outletCollection property="swipeOutlets" destination="3v4-bE-neu" collectionClass="NSMutableArray" id="ttb-FY-M1d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -151,21 +282,56 @@
                         <action selector="blueSubtractAction:" destination="BYZ-38-t0r" id="2LZ-wn-RbY"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="mIj-Jl-OO3">
+                <swipeGestureRecognizer direction="left" id="bQZ-I2-5o4">
                     <connections>
-                        <action selector="redErrorSubtractAction:" destination="BYZ-38-t0r" id="nCD-ee-PMt"/>
+                        <action selector="redAceSubtractAction:" destination="BYZ-38-t0r" id="eJL-MZ-alP"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="O5w-wN-bbM">
+                <swipeGestureRecognizer direction="left" id="3gu-h7-7o3">
                     <connections>
-                        <action selector="blueErrorSubtractAction:" destination="BYZ-38-t0r" id="dyc-Rt-Cuf"/>
+                        <action selector="redKillSubtractAction:" destination="BYZ-38-t0r" id="dtr-ee-0YO"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="1" numberOfTapsRequired="1" id="eNS-Gs-jbT">
+                <swipeGestureRecognizer direction="left" id="RpH-Ca-gaJ">
                     <connections>
-                        <action selector="longPressRedError:" destination="BYZ-38-t0r" id="tLk-1V-ZiP"/>
+                        <action selector="redBKLSubtractAction:" destination="BYZ-38-t0r" id="HDt-kB-ZbX"/>
                     </connections>
-                </pongPressGestureRecognizer>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="ceb-00-co1">
+                    <connections>
+                        <action selector="redOppErrorSubtractAction:" destination="BYZ-38-t0r" id="lyA-ae-G35"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="3bO-f8-Nba">
+                    <connections>
+                        <action selector="redOppServErrorSubtractAction:" destination="BYZ-38-t0r" id="ppL-H1-GAc"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="vcD-EL-gj2">
+                    <connections>
+                        <action selector="blueAceSubtractAction:" destination="BYZ-38-t0r" id="J8N-JH-9P0"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="tGm-Nt-ejd">
+                    <connections>
+                        <action selector="blueKillSubtractAction:" destination="BYZ-38-t0r" id="qcp-kb-JdL"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="K6p-zh-0xZ">
+                    <connections>
+                        <action selector="blueBKLSubtractAction:" destination="BYZ-38-t0r" id="xTB-wo-VMN"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="noF-Rs-ahi">
+                    <connections>
+                        <action selector="blueOppErrorSubtractAction:" destination="BYZ-38-t0r" id="gKU-6a-K5g"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="3v4-bE-neu">
+                    <connections>
+                        <action selector="blueOppServErrorSubtractAction:" destination="BYZ-38-t0r" id="PgV-n0-1aA"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="138.61607142857142" y="62.318840579710148"/>
         </scene>
@@ -173,12 +339,6 @@
     <resources>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

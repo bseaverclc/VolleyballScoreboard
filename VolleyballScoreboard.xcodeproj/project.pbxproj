@@ -14,6 +14,7 @@
 		D3244E1D27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3244E1B27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld */; };
 		D3244E1F27296F0B000D7D26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3244E1E27296F0B000D7D26 /* Assets.xcassets */; };
 		D3244E2227296F0B000D7D26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3244E2027296F0B000D7D26 /* LaunchScreen.storyboard */; };
+		D3583E1E272E133F0067DE97 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E1D272E133F0067DE97 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D3244E1E27296F0B000D7D26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3244E2127296F0B000D7D26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3244E2327296F0B000D7D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3583E1D272E133F0067DE97 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				D3244E1427296F07000D7D26 /* SceneDelegate.swift */,
 				D3244E1627296F07000D7D26 /* ViewController.swift */,
 				D3244E1827296F07000D7D26 /* Main.storyboard */,
+				D3583E1D272E133F0067DE97 /* Game.swift */,
 				D3244E1E27296F0B000D7D26 /* Assets.xcassets */,
 				D3244E2027296F0B000D7D26 /* LaunchScreen.storyboard */,
 				D3244E2327296F0B000D7D26 /* Info.plist */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3244E1727296F07000D7D26 /* ViewController.swift in Sources */,
+				D3583E1E272E133F0067DE97 /* Game.swift in Sources */,
 				D3244E1D27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld in Sources */,
 				D3244E1327296F07000D7D26 /* AppDelegate.swift in Sources */,
 				D3244E1527296F07000D7D26 /* SceneDelegate.swift in Sources */,
