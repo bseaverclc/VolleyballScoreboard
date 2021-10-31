@@ -22,7 +22,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7E-dd-Q0T">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
-                                        <color key="backgroundColor" red="0.45690524580000003" green="0.98142719270000001" blue="0.31922805310000002" alpha="0.9990234375" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Clear">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -34,14 +34,16 @@
                                         <rect key="frame" x="0.0" y="62" width="320" height="284"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="BZE-FV-Cw0">
-                                                <rect key="frame" x="0.0" y="0.0" width="54.5" height="284"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="67" height="284"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VIu-vh-HOe">
-                                                        <rect key="frame" x="0.0" y="0.0" width="54.5" height="88.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="67" height="88.5"/>
                                                         <color key="backgroundColor" red="1" green="0.18899828767123289" blue="0.20962649828767124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="Ace: 0">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Ace
+  0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -50,11 +52,13 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3Ps-km-YvP">
-                                                        <rect key="frame" x="0.0" y="97.5" width="54.5" height="88.5"/>
+                                                        <rect key="frame" x="0.0" y="97.5" width="67" height="88.5"/>
                                                         <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="Kill: 0">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Kill
+  0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -63,11 +67,13 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yJs-pV-J7r">
-                                                        <rect key="frame" x="0.0" y="195" width="54.5" height="89"/>
+                                                        <rect key="frame" x="0.0" y="195" width="67" height="89"/>
                                                         <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="BLK: 09">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Block
+    0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -78,10 +84,10 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVq-6N-7UR">
-                                                <rect key="frame" x="64.5" y="0.0" width="96" height="284"/>
+                                                <rect key="frame" x="77" y="0.0" width="80" height="284"/>
                                                 <color key="backgroundColor" red="0.8403320312" green="0.192199707" blue="0.3156738281" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="75"/>
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -91,10 +97,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-Hx-Wwq">
-                                                <rect key="frame" x="170.5" y="0.0" width="96" height="284"/>
+                                                <rect key="frame" x="167" y="0.0" width="80" height="284"/>
                                                 <color key="backgroundColor" systemColor="linkColor"/>
                                                 <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="75"/>
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -104,14 +110,16 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="RKJ-N2-n9c">
-                                                <rect key="frame" x="276.5" y="0.0" width="43.5" height="284"/>
+                                                <rect key="frame" x="257" y="0.0" width="63" height="284"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-5f-cnS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="43.5" height="88.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="88.5"/>
                                                         <color key="backgroundColor" red="0.35193905861233726" green="0.55542320518355293" blue="0.98393301552385781" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="Ace: 0">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Ace
+  0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -120,11 +128,13 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Qls-yn-MBM">
-                                                        <rect key="frame" x="0.0" y="97.5" width="43.5" height="88.5"/>
+                                                        <rect key="frame" x="0.0" y="97.5" width="63" height="88.5"/>
                                                         <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="Kill: 0">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Kill
+  0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -133,11 +143,13 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RF4-hd-n3x">
-                                                        <rect key="frame" x="0.0" y="195" width="43.5" height="89"/>
+                                                        <rect key="frame" x="0.0" y="195" width="63" height="89"/>
                                                         <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="BLK: 0">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Block
+    0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -150,23 +162,25 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="mVq-6N-7UR" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.3" id="5fi-34-r2C"/>
-                                            <constraint firstItem="Tb1-Hx-Wwq" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.3" id="eKX-Km-8NR"/>
-                                            <constraint firstItem="BZE-FV-Cw0" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.17" id="vqk-k7-xWd"/>
+                                            <constraint firstItem="mVq-6N-7UR" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.25" id="5fi-34-r2C"/>
+                                            <constraint firstItem="Tb1-Hx-Wwq" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.25" id="eKX-Km-8NR"/>
+                                            <constraint firstItem="BZE-FV-Cw0" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.21" id="vqk-k7-xWd"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vrd-U4-i59">
                                         <rect key="frame" x="0.0" y="351" width="320" height="217"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ll4-VF-tZ3">
-                                                <rect key="frame" x="0.0" y="0.0" width="154.5" height="217"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="157" height="217"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="FCZ-zj-Ijz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="106"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="106"/>
                                                         <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="Opponent Err: 0">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Blue Err
+     0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -175,11 +189,13 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nIi-Xc-3yV">
-                                                        <rect key="frame" x="0.0" y="111" width="154.5" height="106"/>
+                                                        <rect key="frame" x="0.0" y="111" width="157" height="106"/>
                                                         <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="Opponent Serv Err: 09">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Blue Serve Err
+          0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -190,14 +206,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-1L-zP0">
-                                                <rect key="frame" x="164.5" y="0.0" width="155.5" height="217"/>
+                                                <rect key="frame" x="167" y="0.0" width="153" height="217"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Jan-6R-fZi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="106"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="153" height="106"/>
                                                         <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="Opponent Err: 09">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Red Err
+     0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -206,11 +224,13 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-z8-1XT">
-                                                        <rect key="frame" x="0.0" y="111" width="155.5" height="106"/>
+                                                        <rect key="frame" x="0.0" y="111" width="153" height="106"/>
                                                         <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <gestureRecognizers/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <state key="normal" title="Opponent Serv Err: 09">
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <state key="normal">
+                                                            <string key="title">Red Serve Err
+          0</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -223,7 +243,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="ll4-VF-tZ3" firstAttribute="width" secondItem="Vrd-U4-i59" secondAttribute="width" multiplier="0.483" id="2Hg-Ly-Xd6"/>
+                                            <constraint firstItem="ll4-VF-tZ3" firstAttribute="width" secondItem="Vrd-U4-i59" secondAttribute="width" multiplier="0.49" id="2Hg-Ly-Xd6"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>

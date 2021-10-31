@@ -53,7 +53,15 @@ class ViewController: UIViewController {
             }
             
         }
-        game = Game(redName: "Red Team", blueName: "Blue Team", currentDate: Date())
+        
+        for outlet in redStatsOutlet{
+            outlet.titleLabel!.textAlignment = NSTextAlignment.center;
+        }
+        
+        for outlet in blueStatsOutlet{
+            outlet.titleLabel!.textAlignment = NSTextAlignment.center;
+        }
+        reset()
     }
     
     
@@ -83,7 +91,7 @@ class ViewController: UIViewController {
             var title = outlet.title(for: .normal)!
             for (key,value) in game.redStats{
                 if title.contains(key){
-                    outlet.setTitle("\(key): \(game.redStats[key]!)", for: .normal)
+                    outlet.setTitle("\(key)\n\(game.redStats[key]!)", for: .normal)
                 }
             }
             
@@ -93,7 +101,7 @@ class ViewController: UIViewController {
             var title = outlet.title(for: .normal)!
             for (key,value) in game.blueStats{
                 if title.contains(key){
-                    outlet.setTitle("\(key): \(game.blueStats[key]!)", for: .normal)
+                    outlet.setTitle("\(key)\n\(game.blueStats[key]!)", for: .normal)
                 }
             }
             
@@ -137,7 +145,7 @@ class ViewController: UIViewController {
                 if title.contains(key)
                 {
                     game.redStats[key]!+=1
-                    sender.setTitle("\(key): \(game.redStats[key]!)", for: .normal)
+                    sender.setTitle("\(key)\n\(game.redStats[key]!)", for: .normal)
                     increaseRedScore()
                 }
             }
@@ -153,7 +161,7 @@ class ViewController: UIViewController {
                   if title.contains(key)
                   {
                       game.blueStats[key]!+=1
-                      sender.setTitle("\(key): \(game.blueStats[key]!)", for: .normal)
+                      sender.setTitle("\(key)\n\(game.blueStats[key]!)", for: .normal)
                     increaseBlueScore()
                     
                   }
@@ -166,33 +174,33 @@ class ViewController: UIViewController {
     @IBAction func redAceSubtractAction(_ sender: UISwipeGestureRecognizer) {
         print("red Ace subtract")
         game.redStats["Ace"]! -= 1
-        (sender.view as! UIButton).setTitle("Ace: \(game.redStats["Ace"]!)", for: .normal)
+        (sender.view as! UIButton).setTitle("Ace\n\(game.redStats["Ace"]!)", for: .normal)
         decreaseRedScore()
     }
     
     @IBAction func redKillSubtractAction(_ sender: UISwipeGestureRecognizer) {
         game.redStats["Kill"]! -= 1
-        (sender.view as! UIButton).setTitle("Kill: \(game.redStats["Kill"]!)", for: .normal)
+        (sender.view as! UIButton).setTitle("Kill\n\(game.redStats["Kill"]!)", for: .normal)
         decreaseRedScore()
     }
     
     @IBAction func redBKLSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.redStats["BLK"]! -= 1
-        (sender.view as! UIButton).setTitle("BLK: \(game.redStats["BLK"]!)", for: .normal)
+        game.redStats["Block"]! -= 1
+        (sender.view as! UIButton).setTitle("Block\n\(game.redStats["Block"]!)", for: .normal)
         decreaseRedScore()
     }
     
     
     @IBAction func redOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.redStats["Opponent Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Opponent Err: \(game.redStats["Opponent Err"]!)", for: .normal)
+        game.redStats["Blue Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Blue Err\n\(game.redStats["Blue Err"]!)", for: .normal)
        decreaseRedScore()
     }
     
     
     @IBAction func redOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.redStats["Opponent Serv Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Opponent Serv Err: \(game.redStats["Opponent Serv Err"]!)", for: .normal)
+        game.redStats["Blue Serve Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Blue Serve Err\n\(game.redStats["Blue Serve Err"]!)", for: .normal)
         decreaseRedScore()
     }
     
@@ -200,33 +208,33 @@ class ViewController: UIViewController {
     @IBAction func blueAceSubtractAction(_ sender: UISwipeGestureRecognizer) {
         print("blue Ace subtract")
         game.blueStats["Ace"]! -= 1
-        (sender.view as! UIButton).setTitle("Ace: \(game.blueStats["Ace"]!)", for: .normal)
+        (sender.view as! UIButton).setTitle("Ace\n\(game.blueStats["Ace"]!)", for: .normal)
         decreaseBlueScore()
     }
     
     @IBAction func blueKillSubtractAction(_ sender: UISwipeGestureRecognizer) {
         game.blueStats["Kill"]! -= 1
-        (sender.view as! UIButton).setTitle("Kill: \(game.blueStats["Kill"]!)", for: .normal)
+        (sender.view as! UIButton).setTitle("Kill\n\(game.blueStats["Kill"]!)", for: .normal)
         decreaseBlueScore()
         
     }
     
     
     @IBAction func blueBKLSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.blueStats["BLK"]! -= 1
-        (sender.view as! UIButton).setTitle("BLK: \(game.blueStats["BLK"]!)", for: .normal)
+        game.blueStats["Block"]! -= 1
+        (sender.view as! UIButton).setTitle("Block\n\(game.blueStats["Block"]!)", for: .normal)
         decreaseBlueScore()
     }
     
     @IBAction func blueOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.blueStats["Opponent Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Opponent Err: \(game.blueStats["Opponent Err"]!)", for: .normal)
+        game.blueStats["Red Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Red Err\n\(game.blueStats["Red Err"]!)", for: .normal)
         decreaseBlueScore()
     }
     
     @IBAction func blueOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.blueStats["Opponent Serv Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Opponent Serv Err: \(game.blueStats["Opponent Serv Err"]!)", for: .normal)
+        game.blueStats["Red Serve Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Red Serve Err\n\(game.blueStats["Red Serve Err"]!)", for: .normal)
         decreaseBlueScore()
     }
     
