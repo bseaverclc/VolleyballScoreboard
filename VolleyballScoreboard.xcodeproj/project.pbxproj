@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB7BB2C0070CB27BCBF0B089 /* Pods_VolleyballScoreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5925231BCFBEABDC59BE2D73 /* Pods_VolleyballScoreboard.framework */; };
 		D3244E1327296F07000D7D26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3244E1227296F07000D7D26 /* AppDelegate.swift */; };
 		D3244E1527296F07000D7D26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3244E1427296F07000D7D26 /* SceneDelegate.swift */; };
 		D3244E1727296F07000D7D26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3244E1627296F07000D7D26 /* ViewController.swift */; };
@@ -14,10 +15,15 @@
 		D3244E1D27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3244E1B27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld */; };
 		D3244E1F27296F0B000D7D26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3244E1E27296F0B000D7D26 /* Assets.xcassets */; };
 		D3244E2227296F0B000D7D26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3244E2027296F0B000D7D26 /* LaunchScreen.storyboard */; };
+		D32B6BC22733586200150EB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D32B6BC12733586200150EB2 /* GoogleService-Info.plist */; };
 		D3583E1E272E133F0067DE97 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E1D272E133F0067DE97 /* Game.swift */; };
+		D3583E21272F7FCE0067DE97 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E20272F7FCE0067DE97 /* GamesViewController.swift */; };
+		D3583E2B2730D2A60067DE97 /* CrazyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E2A2730D2A60067DE97 /* CrazyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5925231BCFBEABDC59BE2D73 /* Pods_VolleyballScoreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VolleyballScoreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6C03977311BD8599C4559FD /* Pods-VolleyballScoreboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolleyballScoreboard.debug.xcconfig"; path = "Target Support Files/Pods-VolleyballScoreboard/Pods-VolleyballScoreboard.debug.xcconfig"; sourceTree = "<group>"; };
 		D3244E0F27296F07000D7D26 /* VolleyballScoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VolleyballScoreboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3244E1227296F07000D7D26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3244E1427296F07000D7D26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,7 +33,11 @@
 		D3244E1E27296F0B000D7D26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3244E2127296F0B000D7D26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3244E2327296F0B000D7D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D32B6BC12733586200150EB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3583E1D272E133F0067DE97 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		D3583E20272F7FCE0067DE97 /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
+		D3583E2A2730D2A60067DE97 /* CrazyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrazyCell.swift; sourceTree = "<group>"; };
+		ECF54B632198C2B95F2ED8EC /* Pods-VolleyballScoreboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolleyballScoreboard.release.xcconfig"; path = "Target Support Files/Pods-VolleyballScoreboard/Pods-VolleyballScoreboard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +45,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB7BB2C0070CB27BCBF0B089 /* Pods_VolleyballScoreboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		625E37AA67E70B0BB733C5CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5925231BCFBEABDC59BE2D73 /* Pods_VolleyballScoreboard.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D3244E0627296F07000D7D26 = {
 			isa = PBXGroup;
 			children = (
 				D3244E1127296F07000D7D26 /* VolleyballScoreboard */,
 				D3244E1027296F07000D7D26 /* Products */,
+				DC64DC616132544FE7BC890C /* Pods */,
+				625E37AA67E70B0BB733C5CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,13 +85,26 @@
 				D3244E1427296F07000D7D26 /* SceneDelegate.swift */,
 				D3244E1627296F07000D7D26 /* ViewController.swift */,
 				D3244E1827296F07000D7D26 /* Main.storyboard */,
+				D3583E2A2730D2A60067DE97 /* CrazyCell.swift */,
+				D3583E20272F7FCE0067DE97 /* GamesViewController.swift */,
 				D3583E1D272E133F0067DE97 /* Game.swift */,
 				D3244E1E27296F0B000D7D26 /* Assets.xcassets */,
 				D3244E2027296F0B000D7D26 /* LaunchScreen.storyboard */,
 				D3244E2327296F0B000D7D26 /* Info.plist */,
 				D3244E1B27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld */,
+				D32B6BC12733586200150EB2 /* GoogleService-Info.plist */,
 			);
 			path = VolleyballScoreboard;
+			sourceTree = "<group>";
+		};
+		DC64DC616132544FE7BC890C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6C03977311BD8599C4559FD /* Pods-VolleyballScoreboard.debug.xcconfig */,
+				ECF54B632198C2B95F2ED8EC /* Pods-VolleyballScoreboard.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,9 +114,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3244E2627296F0B000D7D26 /* Build configuration list for PBXNativeTarget "VolleyballScoreboard" */;
 			buildPhases = (
+				4167F194EABAD6BBC7917FC4 /* [CP] Check Pods Manifest.lock */,
 				D3244E0B27296F07000D7D26 /* Sources */,
 				D3244E0C27296F07000D7D26 /* Frameworks */,
 				D3244E0D27296F07000D7D26 /* Resources */,
+				89A47D732A912F496510B7E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,12 +167,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3244E2227296F0B000D7D26 /* LaunchScreen.storyboard in Resources */,
+				D32B6BC22733586200150EB2 /* GoogleService-Info.plist in Resources */,
 				D3244E1F27296F0B000D7D26 /* Assets.xcassets in Resources */,
 				D3244E1A27296F07000D7D26 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4167F194EABAD6BBC7917FC4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VolleyballScoreboard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89A47D732A912F496510B7E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VolleyballScoreboard/Pods-VolleyballScoreboard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VolleyballScoreboard/Pods-VolleyballScoreboard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VolleyballScoreboard/Pods-VolleyballScoreboard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D3244E0B27296F07000D7D26 /* Sources */ = {
@@ -146,7 +225,9 @@
 				D3244E1727296F07000D7D26 /* ViewController.swift in Sources */,
 				D3583E1E272E133F0067DE97 /* Game.swift in Sources */,
 				D3244E1D27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld in Sources */,
+				D3583E2B2730D2A60067DE97 /* CrazyCell.swift in Sources */,
 				D3244E1327296F07000D7D26 /* AppDelegate.swift in Sources */,
+				D3583E21272F7FCE0067DE97 /* GamesViewController.swift in Sources */,
 				D3244E1527296F07000D7D26 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +372,7 @@
 		};
 		D3244E2727296F0B000D7D26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6C03977311BD8599C4559FD /* Pods-VolleyballScoreboard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -311,6 +393,7 @@
 		};
 		D3244E2827296F0B000D7D26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECF54B632198C2B95F2ED8EC /* Pods-VolleyballScoreboard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -7,23 +7,40 @@
 
 import UIKit
 import AudioToolbox
+import Firebase
 
-class ViewController: UIViewController {
+
+class AppData{
+    static var allGames : [Game] = []
+}
+
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    var ref: DatabaseReference!
 
     @IBOutlet var swipeOutlets: [UISwipeGestureRecognizer]!
     @IBOutlet var redStatsOutlet: [UIButton]!
     
     @IBOutlet var blueStatsOutlet: [UIButton]!
     
+    @IBOutlet weak var setSegmentedControlOutlet: UISegmentedControl!
     
+    @IBOutlet weak var redSetOutlet: UIButton!
+    @IBOutlet weak var blueSetOutlet: UIButton!
+    
+    @IBOutlet weak var redTextFieldOutlet: UITextField!
+    
+    @IBOutlet weak var blueTextFieldOutlet: UITextField!
     @IBOutlet weak var redOutlet: UIButton!
-    
     @IBOutlet weak var blueOutlet: UIButton!
     @IBOutlet weak var redKillOutlet: UIButton!
     
     var redScore = 0
     var blueScore = 0
+    var set : ASet!
     var game : Game!
+    
+    
  
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         print("rotating phone")
@@ -40,8 +57,44 @@ class ViewController: UIViewController {
         }
         
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        
+        redTextFieldOutlet.delegate = self
+        blueTextFieldOutlet.delegate = self
+        setSwipeDirection()
+        newGame()
+        updateScreen()
+        //reset()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        redTextFieldOutlet.resignFirstResponder()
+        blueTextFieldOutlet.resignFirstResponder()
+        game.teams[0] = redTextFieldOutlet.text!
+        game.teams[1] = blueTextFieldOutlet.text!
+        game.updateFirebase()
+        print("text field should return")
+        return true
+    }
+    
+    func newGame(){
+        print("new Game being created")
+        game = Game(teams: ["Red Team", "Blue Team"], date: Date())
+        game.sets.append(ASet())
+        game.sets.append(ASet())
+        game.sets.append(ASet())
+        set = game.sets[0]
+        self.setSegmentedControlOutlet.selectedSegmentIndex = 0
+        reset()
+        
+        AppData.allGames.append(game)
+        game.saveToFirebase()
+    }
+    
+    func setSwipeDirection(){
         for outlet in swipeOutlets{
             if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight{
                 
@@ -61,15 +114,28 @@ class ViewController: UIViewController {
         for outlet in blueStatsOutlet{
             outlet.titleLabel!.textAlignment = NSTextAlignment.center;
         }
-        reset()
+    }
+    
+    @IBAction func redSetAddAction(_ sender: UIButton) {
+        game.setWins[0] += 1
+        sender.setTitle("\(game.setWins[0])", for: .normal)
+        game.updateFirebase()
+        
     }
     
     
+    @IBAction func blueSetAddAction(_ sender: UIButton) {
+        game.setWins[1] += 1
+        sender.setTitle("\(game.setWins[1])", for: .normal)
+        game.updateFirebase()
+    }
+    
 
-    @IBAction func clearAction(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Warning!", message: "Are you sure you want to clear all data?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Clear", style: .destructive, handler: { (alert) in
-            self.reset()
+    @IBAction func newGameAction(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Warning!", message: "Are you sure you want to start a new game?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "New", style: .destructive, handler: { (alert) in
+            self.newGame()
+            
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         
@@ -82,16 +148,21 @@ class ViewController: UIViewController {
     }
     
     func reset(){
-        game = Game(redName: "Red Team", blueName: "Blue Team", currentDate: Date())
+       // set = ASet()
         
-        redOutlet.setTitle("\(game.redScore)", for: .normal)
-        blueOutlet.setTitle("\(game.blueScore)", for: .normal)
+        redOutlet.setTitle("\(set.redScore)", for: .normal)
+        blueOutlet.setTitle("\(set.blueScore)", for: .normal)
+        
+        redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
+        blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
+        
+        
         
         for outlet in redStatsOutlet{
             var title = outlet.title(for: .normal)!
-            for (key,value) in game.redStats{
+            for (key,value) in set.redStats{
                 if title.contains(key){
-                    outlet.setTitle("\(key)\n\(game.redStats[key]!)", for: .normal)
+                    outlet.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
                 }
             }
             
@@ -99,24 +170,78 @@ class ViewController: UIViewController {
         
         for outlet in blueStatsOutlet{
             var title = outlet.title(for: .normal)!
-            for (key,value) in game.blueStats{
+            for (key,value) in set.blueStats{
                 if title.contains(key){
-                    outlet.setTitle("\(key)\n\(game.blueStats[key]!)", for: .normal)
+                    outlet.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
                 }
             }
             
         }
     }
     
+    func updateScreen(){
+        print("update Screen being")
+        redOutlet.setTitle("\(set.redScore)", for: .normal)
+        blueOutlet.setTitle("\(set.blueScore)", for: .normal)
+        
+        redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
+        blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
+        
+        redTextFieldOutlet.text = game.teams[0]
+        blueTextFieldOutlet.text = game.teams[1]
+        
+        
+        
+        
+        
+        for outlet in redStatsOutlet{
+            var title = outlet.title(for: .normal)!
+            for (key,value) in set.redStats{
+                if title.contains(key){
+                    outlet.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
+                }
+            }
+            
+        }
+        
+        for outlet in blueStatsOutlet{
+            var title = outlet.title(for: .normal)!
+            for (key,value) in set.blueStats{
+                if title.contains(key){
+                    outlet.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
+                }
+            }
+            
+        }
+        
+        game.updateFirebase()
+    }
+    
+    
+    @IBAction func saveAction(_ sender: UIButton) {
+        if redTextFieldOutlet.text != ""{
+            game.teams[0] = redTextFieldOutlet.text!
+            
+        }
+        if blueTextFieldOutlet.text != ""{
+            game.teams[1] = blueTextFieldOutlet.text!
+            
+        }
+        game.updateFirebase()
+        
+        
+    }
     
     @IBAction func redAction(_ sender: UIButton) {
-        game.redScore += 1
-        sender.setTitle("\(game.redScore)", for: .normal)
+        set.redScore += 1
+        sender.setTitle("\(set.redScore)", for: .normal)
+        game.updateFirebase()
     }
     
     @IBAction func blueAction(_ sender: UIButton) {
-        game.blueScore += 1
-        sender.setTitle("\(game.blueScore)", for: .normal)
+        set.blueScore += 1
+        sender.setTitle("\(set.blueScore)", for: .normal)
+        game.updateFirebase()
     }
     
 
@@ -126,11 +251,13 @@ class ViewController: UIViewController {
         print("swiping")
         decreaseRedScore()
         
+        
     }
     
     @IBAction func blueSubtractAction(_ sender: UISwipeGestureRecognizer) {
         
        decreaseBlueScore()
+        
     }
     
     
@@ -138,124 +265,138 @@ class ViewController: UIViewController {
     
     @IBAction func redStatAction(_ sender: UIButton) {
       print("red stat happening")
-        for (key,value) in game.redStats
+        for (key,value) in set.redStats
         {
             if let title = sender.title(for: .normal)
             {
                 if title.contains(key)
                 {
-                    game.redStats[key]!+=1
-                    sender.setTitle("\(key)\n\(game.redStats[key]!)", for: .normal)
+                    set.redStats[key]!+=1
+                    sender.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
                     increaseRedScore()
                 }
             }
         }
+        
     }
     
     @IBAction func blueStatAction(_ sender: UIButton) {
         print("blue stat happening")
-          for (key,value) in game.blueStats
+          for (key,value) in set.blueStats
           {
               if let title = sender.title(for: .normal)
               {
                   if title.contains(key)
                   {
-                      game.blueStats[key]!+=1
-                      sender.setTitle("\(key)\n\(game.blueStats[key]!)", for: .normal)
+                      set.blueStats[key]!+=1
+                      sender.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
                     increaseBlueScore()
                     
                   }
               }
           }
+       
     }
     
     
    
     @IBAction func redAceSubtractAction(_ sender: UISwipeGestureRecognizer) {
         print("red Ace subtract")
-        game.redStats["Ace"]! -= 1
-        (sender.view as! UIButton).setTitle("Ace\n\(game.redStats["Ace"]!)", for: .normal)
+        set.redStats["Ace"]! -= 1
+        (sender.view as! UIButton).setTitle("Ace\n\(set.redStats["Ace"]!)", for: .normal)
         decreaseRedScore()
     }
     
     @IBAction func redKillSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.redStats["Kill"]! -= 1
-        (sender.view as! UIButton).setTitle("Kill\n\(game.redStats["Kill"]!)", for: .normal)
+        set.redStats["Kill"]! -= 1
+        (sender.view as! UIButton).setTitle("Kill\n\(set.redStats["Kill"]!)", for: .normal)
         decreaseRedScore()
     }
     
     @IBAction func redBKLSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.redStats["Block"]! -= 1
-        (sender.view as! UIButton).setTitle("Block\n\(game.redStats["Block"]!)", for: .normal)
+        set.redStats["Block"]! -= 1
+        (sender.view as! UIButton).setTitle("Block\n\(set.redStats["Block"]!)", for: .normal)
         decreaseRedScore()
     }
     
     
     @IBAction func redOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.redStats["Blue Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Blue Err\n\(game.redStats["Blue Err"]!)", for: .normal)
+        set.redStats["Blue Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Blue Err\n\(set.redStats["Blue Err"]!)", for: .normal)
        decreaseRedScore()
     }
     
     
     @IBAction func redOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.redStats["Blue Serve Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Blue Serve Err\n\(game.redStats["Blue Serve Err"]!)", for: .normal)
+        set.redStats["Blue Serve Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Blue Serve Err\n\(set.redStats["Blue Serve Err"]!)", for: .normal)
         decreaseRedScore()
     }
     
     
     @IBAction func blueAceSubtractAction(_ sender: UISwipeGestureRecognizer) {
         print("blue Ace subtract")
-        game.blueStats["Ace"]! -= 1
-        (sender.view as! UIButton).setTitle("Ace\n\(game.blueStats["Ace"]!)", for: .normal)
+        set.blueStats["Ace"]! -= 1
+        (sender.view as! UIButton).setTitle("Ace\n\(set.blueStats["Ace"]!)", for: .normal)
         decreaseBlueScore()
     }
     
     @IBAction func blueKillSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.blueStats["Kill"]! -= 1
-        (sender.view as! UIButton).setTitle("Kill\n\(game.blueStats["Kill"]!)", for: .normal)
+        set.blueStats["Kill"]! -= 1
+        (sender.view as! UIButton).setTitle("Kill\n\(set.blueStats["Kill"]!)", for: .normal)
         decreaseBlueScore()
         
     }
     
     
     @IBAction func blueBKLSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.blueStats["Block"]! -= 1
-        (sender.view as! UIButton).setTitle("Block\n\(game.blueStats["Block"]!)", for: .normal)
+        set.blueStats["Block"]! -= 1
+        (sender.view as! UIButton).setTitle("Block\n\(set.blueStats["Block"]!)", for: .normal)
         decreaseBlueScore()
     }
     
     @IBAction func blueOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.blueStats["Red Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Red Err\n\(game.blueStats["Red Err"]!)", for: .normal)
+        set.blueStats["Red Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Red Err\n\(set.blueStats["Red Err"]!)", for: .normal)
         decreaseBlueScore()
     }
     
     @IBAction func blueOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        game.blueStats["Red Serve Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Red Serve Err\n\(game.blueStats["Red Serve Err"]!)", for: .normal)
+        set.blueStats["Red Serve Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Red Serve Err\n\(set.blueStats["Red Serve Err"]!)", for: .normal)
         decreaseBlueScore()
     }
     
     func increaseRedScore(){
-        game.redScore += 1
-        redOutlet.setTitle("\(game.redScore)", for: .normal)
+        set.redScore += 1
+        redOutlet.setTitle("\(set.redScore)", for: .normal)
+        game.updateFirebase()
     }
     
     func increaseBlueScore(){
-        game.blueScore += 1
-        blueOutlet.setTitle("\(game.blueScore)", for: .normal)
+        set.blueScore += 1
+        blueOutlet.setTitle("\(set.blueScore)", for: .normal)
+        game.updateFirebase()
     }
     
     func decreaseRedScore(){
-        game.redScore -= 1
-        redOutlet.setTitle("\(game.redScore)", for: .normal)
+        set.redScore -= 1
+        redOutlet.setTitle("\(set.redScore)", for: .normal)
+        game.updateFirebase()
     }
     
     func decreaseBlueScore(){
-        game.blueScore -= 1
-        blueOutlet.setTitle("\(game.blueScore)", for: .normal)
+        set.blueScore -= 1
+        blueOutlet.setTitle("\(set.blueScore)", for: .normal)
+        game.updateFirebase()
+    }
+    
+    
+    @IBAction func setChooserAction(_ sender: UISegmentedControl) {
+        
+        set = game.sets[sender.selectedSegmentIndex]
+        print(set.redStats)
+        updateScreen()
     }
     
 }
