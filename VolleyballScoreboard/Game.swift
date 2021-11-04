@@ -24,6 +24,26 @@ public class Game: Codable{
         
     }
     
+    init(key: String, dict: [String:Any] ) {
+        teams = dict["teams"] as! [String]
+        setWins = dict["setWins"] as! [Int]
+        
+        let formatter1 = DateFormatter()
+        formatter1.dateFormat = "MM/dd/yy"
+        if let d = formatter1.date(from: dict["date"] as! String){
+        date = d
+        }
+        else{ date = Date()}
+        
+        sets = [ASet]()
+        uid = key
+        
+    }
+    
+    func addSet(key: String, dict: [String:Any] ){
+        sets.append(ASet(key: key, dict: dict))
+    }
+    
     func saveToFirebase()
     {
         let formatter1 = DateFormatter()
@@ -81,6 +101,21 @@ public class ASet: Codable
     var redScore = 0
     var blueScore = 0
     var uid : String?
+    
+    init()
+    {
+        
+    }
+    
+    init(key: String, dict: [String:Any] ) {
+        uid = key
+        redStats = dict["redStats"] as! [String:Int]
+        blueStats = dict["blueStats"] as! [String:Int]
+        redScore = dict["redScore"] as! Int
+        blueScore = dict["blueScore"] as! Int
+     
+      
+    }
     
     
 }

@@ -61,6 +61,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        getGamesFromFirebase()
+        gameChangedInFirebase()
         
         redTextFieldOutlet.delegate = self
         blueTextFieldOutlet.delegate = self
@@ -90,7 +92,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.setSegmentedControlOutlet.selectedSegmentIndex = 0
         reset()
         
-        AppData.allGames.append(game)
+        //AppData.allGames.append(game)
         game.saveToFirebase()
     }
     
@@ -397,6 +399,143 @@ class ViewController: UIViewController, UITextFieldDelegate {
         set = game.sets[sender.selectedSegmentIndex]
         print(set.redStats)
         updateScreen()
+    }
+    
+    
+    func getGamesFromFirebase(){
+        var ref: DatabaseReference!
+        var handle1 : UInt! // These did not work!
+        var handle2 : UInt!  // These did not work!
+
+        ref = Database.database().reference()
+        
+        handle1 = ref.child("games").observe(.childAdded) { (snapshot) in
+            //print("athlete observed")
+            let uid = snapshot.key
+            //print(uid)
+           
+            guard let dict = snapshot.value as? [String:Any]
+            else{ print("Error")
+                return
+            }
+            
+            var addAth = true
+            let g = Game(key: uid, dict: dict)
+            for ga in AppData.allGames{
+                if ga.uid == g.uid{
+                    addAth = false
+                }
+            }
+            if addAth{
+            AppData.allGames.append(g)
+            //print("Added Athlete to allAthletes \(AppData.allAthletes[Data.allAthletes.count-1].first) ")
+            }
+            for s in g.sets{
+                //print(e.name)
+            }
+            handle2 = ref.child("games").child(uid).child("sets").observe(.childAdded) { (snapshot2) in
+                guard let dict2 = snapshot2.value as? [String:Any]
+                else{ print("Error")
+                    return
+                }
+//                print("printing events")
+//                print(dict2)
+                var add = true
+//                for s in g.sets{
+//                    if dict2["name"] as! String == e.name && dict2["meetName"] as! String == e.meetName{
+//                        add = false
+//                    }
+//                }
+                if add{
+                g.addSet(key: snapshot2.key, dict: dict2)
+                //print("Added Event")
+                //print("\(a.first) \(a.events[a.events.count-1].name)")
+                }
+                
+            }
+            ref.removeObserver(withHandle: handle2)
+            //print("removing handle2")
+               }
+        
+        ref.removeObserver(withHandle: handle1)
+        //print("removing handle1")
+        
+        ref.removeAllObservers()
+    }
+    
+    func gameChangedInFirebase(){
+        var ref: DatabaseReference!
+
+        ref = Database.database().reference()
+        
+        ref.child("games").observe(.childChanged) { (snapshot) in
+            //print("athlete observed2")
+            let uid = snapshot.key
+            //print(uid)
+           
+            guard let dict = snapshot.value as? [String:Any]
+            else{ print("Error in observe child Changed")
+                return
+            }
+            
+            
+            let g = Game(key: uid, dict: dict)
+            print("\(g.teams) game just changed")
+            
+//           // Data.allAthletes.append(a)
+//           // ref.child("athletes").child(uid).child("events").
+//            ref.child("athletes").child(uid).child("events").observe(.childRemoved, with: { (snapshot2) in
+//                print("observe event removed from launchvc")
+//            })
+//
+//
+            ref.child("games").child(uid).child("sets").observe(.childAdded, with: { (snapshot2) in
+                //print("snapshot2 \(snapshot2)")
+
+
+
+                guard let dict2 = snapshot2.value as? [String:Any]
+                else{ print("Error")
+                    return
+                }
+                
+                g.addSet(key: snapshot2.key, dict: dict2)
+
+//                var add = true
+//                for s in a.events{
+//                    if dict2["name"] as! String == e.name && dict2["meetName"] as! String == e.meetName{
+//                        add = false
+//                    }
+//                }
+//                if add{
+//                a.addEvent(key: snapshot2.key, dict: dict2)
+//                print("in changed event added")
+//
+//                }
+
+
+
+            })
+        
+               
+        
+        for i in 0..<AppData.allGames.count{
+            if(AppData.allGames[i].uid == uid){
+                AppData.allGames[i] = g
+                self.updateScreen()
+                print("Game \(i)Changed \(AppData.allGames[i].teams)")
+                
+            }
+        
+                
+            }
+            
+        }
+          
+                
+//                print("printing events")
+//                print(dict2)
+                
     }
     
 }

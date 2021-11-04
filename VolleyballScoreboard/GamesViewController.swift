@@ -10,11 +10,18 @@ import UIKit
 class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableviewOutlet: UITableView!
+    var myTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableviewOutlet.dataSource = self
         tableviewOutlet.delegate = self
+        
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+            self.tableviewOutlet.reloadData()
+        }
+
+        
 
         // Do any additional setup after loading the view.
     }
@@ -22,6 +29,8 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         tableviewOutlet.reloadData()
     }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         AppData.allGames.count
     }
