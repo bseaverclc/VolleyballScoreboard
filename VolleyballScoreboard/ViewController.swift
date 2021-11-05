@@ -12,10 +12,15 @@ import Firebase
 
 class AppData{
     static var allGames : [Game] = []
+    static var myGames : [Game] = []
+    static var canEdit = false
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var statsHorizontalStackView: UIStackView!
+    @IBOutlet weak var redStackView: UIStackView!
+    @IBOutlet weak var blueStackView: UIStackView!
     var ref: DatabaseReference!
 
     @IBOutlet var swipeOutlets: [UISwipeGestureRecognizer]!
@@ -35,10 +40,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var blueOutlet: UIButton!
     @IBOutlet weak var redKillOutlet: UIButton!
     
-    var redScore = 0
-    var blueScore = 0
+//    var redScore = 0
+//    var blueScore = 0
     var set : ASet!
     var game : Game!
+    var first = true
+    
     
     
  
@@ -67,9 +74,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         redTextFieldOutlet.delegate = self
         blueTextFieldOutlet.delegate = self
         setSwipeDirection()
-        newGame()
-        updateScreen()
+        //newGame()
+        //updateScreen()
         //reset()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if first{
+            newGame()
+            first = false
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -82,18 +95,46 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    
+    @IBAction func switchAction(_ sender: UIButton) {
+        if let first = statsHorizontalStackView.subviews.first, let last = statsHorizontalStackView.subviews.last {
+            statsHorizontalStackView.subviews.forEach { $0.removeFromSuperview() }
+            statsHorizontalStackView.insertArrangedSubview(last, at: 0)
+            statsHorizontalStackView.insertArrangedSubview(first, at: 1)
+            statsHorizontalStackView.setNeedsLayout()
+            statsHorizontalStackView.layoutIfNeeded()
+          }
+    }
+    
     func newGame(){
         print("new Game being created")
-        game = Game(teams: ["Red Team", "Blue Team"], date: Date())
+        game = Game(teams: ["Red Team", "Blue Team"], date: Date(), publicGame: false)
         game.sets.append(ASet())
         game.sets.append(ASet())
         game.sets.append(ASet())
         set = game.sets[0]
         self.setSegmentedControlOutlet.selectedSegmentIndex = 0
-        reset()
+        AppData.canEdit = true
+        
+        let alert = UIAlertController(title: "Public or Private Game?", message: "Public Game everyone can view.  Private Game only you can view.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Public", style: .default, handler: { a in
+            self.game.publicGame = true
+            self.game.saveToFirebase()
+        }))
+        alert.addAction(UIAlertAction(title: "Private", style: .default, handler: {a in
+            AppData.myGames.append(self.game)
+        }))
+        present(alert, animated: true) {
+            self.updateScreen()
+        }
+        
+        
+        
+        //reset()
         
         //AppData.allGames.append(game)
-        game.saveToFirebase()
+        
+        
     }
     
     func setSwipeDirection(){
@@ -119,17 +160,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func redSetAddAction(_ sender: UIButton) {
-        game.setWins[0] += 1
-        sender.setTitle("\(game.setWins[0])", for: .normal)
+        if AppData.canEdit{
+            game.setWins[0] += 1
+            sender.setTitle("\(game.setWins[0])", for: .normal)
+        if game.publicGame{
         game.updateFirebase()
+        }
+        }
+        
         
     }
     
     
     @IBAction func blueSetAddAction(_ sender: UIButton) {
-        game.setWins[1] += 1
-        sender.setTitle("\(game.setWins[1])", for: .normal)
+        if AppData.canEdit{
+            game.setWins[1] += 1
+            sender.setTitle("\(game.setWins[1])", for: .normal)
+        if game.publicGame{
         game.updateFirebase()
+        }
+        }
     }
     
 
@@ -152,8 +202,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func reset(){
        // set = ASet()
         
-        redOutlet.setTitle("\(set.redScore)", for: .normal)
-        blueOutlet.setTitle("\(set.blueScore)", for: .normal)
+        redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+        blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
         
         redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
         blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
@@ -183,14 +233,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func updateScreen(){
         print("update Screen being")
-        redOutlet.setTitle("\(set.redScore)", for: .normal)
-        blueOutlet.setTitle("\(set.blueScore)", for: .normal)
+        redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+        blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
         
         redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
         blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
         
-        redTextFieldOutlet.text = game.teams[0]
-        blueTextFieldOutlet.text = game.teams[1]
+        redTextFieldOutlet.text = String(game.teams[0])
+        blueTextFieldOutlet.text = String(game.teams[1])
         
         
         
@@ -215,12 +265,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
-        
+        if game.publicGame{
         game.updateFirebase()
+        }
     }
     
     
     @IBAction func saveAction(_ sender: UIButton) {
+        if AppData.canEdit{
         if redTextFieldOutlet.text != ""{
             game.teams[0] = redTextFieldOutlet.text!
             
@@ -229,21 +281,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
             game.teams[1] = blueTextFieldOutlet.text!
             
         }
+            if game.publicGame{
         game.updateFirebase()
+            }
+        }
         
         
     }
     
     @IBAction func redAction(_ sender: UIButton) {
-        set.redScore += 1
-        sender.setTitle("\(set.redScore)", for: .normal)
+        if AppData.canEdit{
+        set.redStats["redScore"]! += 1
+        sender.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+        if game.publicGame{
         game.updateFirebase()
+        }
+        }
     }
     
     @IBAction func blueAction(_ sender: UIButton) {
-        set.blueScore += 1
-        sender.setTitle("\(set.blueScore)", for: .normal)
+        if AppData.canEdit{
+        set.blueStats["blueScore"]! += 1
+            sender.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+        if game.publicGame{
         game.updateFirebase()
+        }
+        }
     }
     
 
@@ -251,14 +314,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func redSubtractAction(_ sender: UISwipeGestureRecognizer) {
         print("swiping")
+        if AppData.canEdit{
         decreaseRedScore()
+        }
         
         
     }
     
     @IBAction func blueSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        
+        if AppData.canEdit{
        decreaseBlueScore()
+        }
         
     }
     
@@ -266,7 +332,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   
     
     @IBAction func redStatAction(_ sender: UIButton) {
-      print("red stat happening")
+        if AppData.canEdit{
         for (key,value) in set.redStats
         {
             if let title = sender.title(for: .normal)
@@ -279,11 +345,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        }
         
     }
     
     @IBAction func blueStatAction(_ sender: UIButton) {
-        print("blue stat happening")
+        if AppData.canEdit{
           for (key,value) in set.blueStats
           {
               if let title = sender.title(for: .normal)
@@ -297,100 +364,126 @@ class ViewController: UIViewController, UITextFieldDelegate {
                   }
               }
           }
-       
+        }
     }
     
     
    
     @IBAction func redAceSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        print("red Ace subtract")
+        if AppData.canEdit{
         set.redStats["Ace"]! -= 1
         (sender.view as! UIButton).setTitle("Ace\n\(set.redStats["Ace"]!)", for: .normal)
         decreaseRedScore()
+        }
     }
     
     @IBAction func redKillSubtractAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.redStats["Kill"]! -= 1
         (sender.view as! UIButton).setTitle("Kill\n\(set.redStats["Kill"]!)", for: .normal)
         decreaseRedScore()
+        }
     }
     
     @IBAction func redBKLSubtractAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.redStats["Block"]! -= 1
         (sender.view as! UIButton).setTitle("Block\n\(set.redStats["Block"]!)", for: .normal)
         decreaseRedScore()
+        }
     }
     
     
     @IBAction func redOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.redStats["Blue Err"]! -= 1
         (sender.view as! UIButton).setTitle("Blue Err\n\(set.redStats["Blue Err"]!)", for: .normal)
        decreaseRedScore()
+        }
     }
     
     
     @IBAction func redOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.redStats["Blue Serve Err"]! -= 1
         (sender.view as! UIButton).setTitle("Blue Serve Err\n\(set.redStats["Blue Serve Err"]!)", for: .normal)
         decreaseRedScore()
+        }
     }
     
     
     @IBAction func blueAceSubtractAction(_ sender: UISwipeGestureRecognizer) {
-        print("blue Ace subtract")
+        if AppData.canEdit{
         set.blueStats["Ace"]! -= 1
         (sender.view as! UIButton).setTitle("Ace\n\(set.blueStats["Ace"]!)", for: .normal)
         decreaseBlueScore()
+        }
     }
     
     @IBAction func blueKillSubtractAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.blueStats["Kill"]! -= 1
         (sender.view as! UIButton).setTitle("Kill\n\(set.blueStats["Kill"]!)", for: .normal)
         decreaseBlueScore()
+        }
         
     }
     
     
     @IBAction func blueBKLSubtractAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.blueStats["Block"]! -= 1
         (sender.view as! UIButton).setTitle("Block\n\(set.blueStats["Block"]!)", for: .normal)
         decreaseBlueScore()
+        }
     }
     
     @IBAction func blueOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.blueStats["Red Err"]! -= 1
         (sender.view as! UIButton).setTitle("Red Err\n\(set.blueStats["Red Err"]!)", for: .normal)
         decreaseBlueScore()
+        }
     }
     
     @IBAction func blueOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.blueStats["Red Serve Err"]! -= 1
         (sender.view as! UIButton).setTitle("Red Serve Err\n\(set.blueStats["Red Serve Err"]!)", for: .normal)
         decreaseBlueScore()
+        }
     }
     
     func increaseRedScore(){
-        set.redScore += 1
-        redOutlet.setTitle("\(set.redScore)", for: .normal)
+        set.redStats["redScore"]! += 1
+        redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+        if game.publicGame{
         game.updateFirebase()
+        }
     }
     
     func increaseBlueScore(){
-        set.blueScore += 1
-        blueOutlet.setTitle("\(set.blueScore)", for: .normal)
+        set.blueStats["blueScore"]! += 1
+        blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+        if game.publicGame{
         game.updateFirebase()
+        }
     }
     
     func decreaseRedScore(){
-        set.redScore -= 1
-        redOutlet.setTitle("\(set.redScore)", for: .normal)
+        set.redStats["redScore"]! -= 1
+        redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+        if game.publicGame{
         game.updateFirebase()
+        }
     }
     
     func decreaseBlueScore(){
-        set.blueScore -= 1
-        blueOutlet.setTitle("\(set.blueScore)", for: .normal)
+        set.blueStats["blueScore"]! -= 1
+        blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+        if game.publicGame{
         game.updateFirebase()
+        }
     }
     
     
@@ -399,6 +492,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         set = game.sets[sender.selectedSegmentIndex]
         print(set.redStats)
         updateScreen()
+        
     }
     
     
@@ -480,7 +574,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             
             let g = Game(key: uid, dict: dict)
-            print("\(g.teams) game just changed")
+            
             
 //           // Data.allAthletes.append(a)
 //           // ref.child("athletes").child(uid).child("events").
@@ -523,7 +617,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if(AppData.allGames[i].uid == uid){
                 AppData.allGames[i] = g
                 self.updateScreen()
-                print("Game \(i)Changed \(AppData.allGames[i].teams)")
+                //print("Game \(i)Changed \(AppData.allGames[i].teams)")
                 
             }
         

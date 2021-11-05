@@ -34,13 +34,13 @@ class CrazyCell: UITableViewCell
         redTeamOutlet.text = game.teams[0]
         blueTeamOutlet.text = game.teams[1]
         
-        redS1Outlet.text = "\(game.sets[0].redScore)"
-        redS2Outlet.text = "\(game.sets[1].redScore)"
-        redS3Outlet.text = "\(game.sets[2].redScore)"
+        redS1Outlet.text = "\(game.sets[0].redStats["redScore"]!)"
+        redS2Outlet.text = "\(game.sets[1].redStats["redScore"]!)"
+        redS3Outlet.text = "\(game.sets[2].redStats["redScore"]!)"
         
-        blueS1Outlet.text = "\(game.sets[0].blueScore)"
-        blueS2Outlet.text = "\(game.sets[1].blueScore)"
-        blueS3Outlet.text = "\(game.sets[2].blueScore)"
+        blueS1Outlet.text = "\(game.sets[0].blueStats["blueScore"]!)"
+        blueS2Outlet.text = "\(game.sets[1].blueStats["blueScore"]!)"
+        blueS3Outlet.text = "\(game.sets[2].blueStats["blueScore"]!)"
         
         let dateFormatter = DateFormatter()
         //dateFormatter.dateFormat = "MM/D/YY"

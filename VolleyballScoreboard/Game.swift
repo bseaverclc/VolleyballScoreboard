@@ -14,13 +14,15 @@ public class Game: Codable{
     var date : Date
     var sets : [ASet]
     var uid : String?
+    var publicGame : Bool = true
     
     
     
-    init(teams: [String], date: Date) {
+    init(teams: [String], date: Date, publicGame : Bool) {
         self.teams = teams
         self.date = date
         sets = [ASet]()
+        self.publicGame = publicGame
         
     }
     
@@ -38,6 +40,7 @@ public class Game: Codable{
         sets = [ASet]()
         uid = key
         
+        
     }
     
     func addSet(key: String, dict: [String:Any] ){
@@ -51,7 +54,7 @@ public class Game: Codable{
         let dateString = formatter1.string(from: date)
         
         let ref = Database.database().reference()
-        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString] as [String : Any]
+        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "publicGame": publicGame] as [String : Any]
        
         
         let gameRef = ref.child("games").childByAutoId()
@@ -59,7 +62,7 @@ public class Game: Codable{
         gameRef.setValue(dict)
         
         for set in sets{
-            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "redScore":set.redScore, "blueScore": set.blueScore] as [String : Any]
+            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats] as [String : Any]
             let setsID = gameRef.child("sets").childByAutoId()
             set.uid = setsID.key
             setsID.setValue(setDict)
@@ -81,7 +84,7 @@ public class Game: Codable{
         ref = ref.child("sets")
         
         for set in sets{
-            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "redScore":set.redScore, "blueScore": set.blueScore] as [String : Any]
+            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats] as [String : Any]
             ref.child(set.uid!).updateChildValues(setDict)
         
         }
@@ -96,10 +99,10 @@ public class Game: Codable{
 public class ASet: Codable
 {
    
-    var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Blue Err": 0, "Blue Serve Err":0]
-    var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Red Err": 0, "Red Serve Err":0]
-    var redScore = 0
-    var blueScore = 0
+    var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Blue Err": 0, "Blue Serve Err":0, "redScore": 0]
+    var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Red Err": 0, "Red Serve Err":0, "blueScore": 0]
+//    var redScore = 0
+//    var blueScore = 0
     var uid : String?
     
     init()
@@ -111,8 +114,9 @@ public class ASet: Codable
         uid = key
         redStats = dict["redStats"] as! [String:Int]
         blueStats = dict["blueStats"] as! [String:Int]
-        redScore = dict["redScore"] as! Int
-        blueScore = dict["blueScore"] as! Int
+//        redScore = dict["redScore"] as! Int
+//        blueScore = dict["blueScore"] as! Int
+        
      
       
     }

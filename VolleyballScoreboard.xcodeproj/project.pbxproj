@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		D3244E1F27296F0B000D7D26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3244E1E27296F0B000D7D26 /* Assets.xcassets */; };
 		D3244E2227296F0B000D7D26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3244E2027296F0B000D7D26 /* LaunchScreen.storyboard */; };
 		D32B6BC22733586200150EB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D32B6BC12733586200150EB2 /* GoogleService-Info.plist */; };
+		D346CD792734D22A00A6F91C /* MyGamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346CD782734D22A00A6F91C /* MyGamesController.swift */; };
 		D3583E1E272E133F0067DE97 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E1D272E133F0067DE97 /* Game.swift */; };
 		D3583E21272F7FCE0067DE97 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E20272F7FCE0067DE97 /* GamesViewController.swift */; };
 		D3583E2B2730D2A60067DE97 /* CrazyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E2A2730D2A60067DE97 /* CrazyCell.swift */; };
@@ -34,6 +35,7 @@
 		D3244E2127296F0B000D7D26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3244E2327296F0B000D7D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D32B6BC12733586200150EB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D346CD782734D22A00A6F91C /* MyGamesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGamesController.swift; sourceTree = "<group>"; };
 		D3583E1D272E133F0067DE97 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D3583E20272F7FCE0067DE97 /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		D3583E2A2730D2A60067DE97 /* CrazyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrazyCell.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				D3583E2A2730D2A60067DE97 /* CrazyCell.swift */,
 				D3583E20272F7FCE0067DE97 /* GamesViewController.swift */,
 				D3583E1D272E133F0067DE97 /* Game.swift */,
+				D346CD782734D22A00A6F91C /* MyGamesController.swift */,
 				D3244E1E27296F0B000D7D26 /* Assets.xcassets */,
 				D3244E2027296F0B000D7D26 /* LaunchScreen.storyboard */,
 				D3244E2327296F0B000D7D26 /* Info.plist */,
@@ -103,7 +106,6 @@
 				B6C03977311BD8599C4559FD /* Pods-VolleyballScoreboard.debug.xcconfig */,
 				ECF54B632198C2B95F2ED8EC /* Pods-VolleyballScoreboard.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -223,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3244E1727296F07000D7D26 /* ViewController.swift in Sources */,
+				D346CD792734D22A00A6F91C /* MyGamesController.swift in Sources */,
 				D3583E1E272E133F0067DE97 /* Game.swift in Sources */,
 				D3244E1D27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld in Sources */,
 				D3583E2B2730D2A60067DE97 /* CrazyCell.swift in Sources */,
