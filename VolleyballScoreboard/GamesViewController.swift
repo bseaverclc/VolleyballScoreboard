@@ -46,15 +46,13 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedGame = AppData.allGames[indexPath.row]
-        performSegue(withIdentifier: "allToGame", sender: nil)
+        let vc = self.tabBarController!
+            vc.selectedIndex = 0
+        AppData.selectedGame = AppData.allGames[indexPath.row]
+        AppData.canEdit = false
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nvc = segue.destination as! ViewController
-        nvc.game = selectedGame!
-        
-    }
+    
     
     
 

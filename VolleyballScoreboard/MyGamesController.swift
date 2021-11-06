@@ -42,9 +42,29 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.tabBarController!
+            vc.selectedIndex = 0
+        AppData.selectedGame = AppData.myGames[indexPath.row]
+        AppData.canEdit = true
+    }
     
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete{
+            let alert = UIAlertController(title: "Alert!", message: "Are you sure you want to delete this game?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { a in
+                AppData.myGames.remove(at: indexPath.row)
+                tableView.reloadData()
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(AppData.myGames) {
+                                   UserDefaults.standard.set(encoded, forKey: "myGames")
+                               }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
 
   
 

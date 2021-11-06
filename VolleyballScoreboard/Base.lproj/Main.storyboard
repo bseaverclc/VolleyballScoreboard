@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VolleyballScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Otd-71-qJp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rch-jg-bjl">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
@@ -324,10 +324,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FA-te-xdR">
-                                        <rect key="frame" x="0.0" y="480" width="320" height="68"/>
+                                        <rect key="frame" x="0.0" y="480" width="320" height="39"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsy-PF-wwk">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Switch"/>
                                                 <connections>
@@ -814,7 +814,6 @@
                     <tabBarItem key="tabBarItem" title="All Games" image="table" catalog="system" id="A9f-4t-37K"/>
                     <connections>
                         <outlet property="tableviewOutlet" destination="FbD-i6-VeA" id="Iy4-ux-gjo"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="allToGame" id="Mew-Ex-zIx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK4-sO-aXk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -824,7 +823,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="fYv-UY-Vro">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gZw-Hs-Thp" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="gZw-Hs-Thp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="f78-fj-bsB">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -842,9 +841,6 @@
             <point key="canvasLocation" x="136.875" y="61.267605633802816"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Mew-Ex-zIx"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="table" catalog="system" width="128" height="93"/>

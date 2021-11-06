@@ -14,6 +14,8 @@ class AppData{
     static var allGames : [Game] = []
     static var myGames : [Game] = []
     static var canEdit = false
+    static var selectedGame : Game?
+    static var myUIDs: [String] = []
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {
@@ -71,6 +73,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         getGamesFromFirebase()
         gameChangedInFirebase()
         
+        if let items = UserDefaults.standard.data(forKey: "myGames") {
+                        let decoder = JSONDecoder()
+                        if let decoded = try? decoder.decode([Game].self, from: items) {
+                            AppData.myGames = decoded
+                        }
+           
+                }
+        
+        if let items = UserDefaults.standard.data(forKey: "myUIDs") {
+                        let decoder = JSONDecoder()
+                        if let decoded = try? decoder.decode([String].self, from: items) {
+                            AppData.myUIDs = decoded
+                        }
+           
+                }
+        
         redTextFieldOutlet.delegate = self
         blueTextFieldOutlet.delegate = self
         setSwipeDirection()
@@ -79,10 +97,37 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //reset()
     }
     override func viewDidAppear(_ animated: Bool) {
-        if first{
-            newGame()
-            first = false
+        print("Game Did Appear")
+        if let g = AppData.selectedGame{
+            game = g
+            set = game.sets[0]
+            setSegmentedControlOutlet.selectedSegmentIndex = 0
+            DispatchQueue.main.async {
+                self.updateScreen()
+            }
+           
+            
         }
+        else{
+            newGame()
+        }
+        
+        if AppData.canEdit{
+            redTextFieldOutlet.isEnabled = true
+            blueTextFieldOutlet.isEnabled = true
+        }
+        else{
+            redTextFieldOutlet.isEnabled = false
+            blueTextFieldOutlet.isEnabled = false
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(AppData.myGames) {
+                           UserDefaults.standard.set(encoded, forKey: "myGames")
+                       }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -90,7 +135,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         blueTextFieldOutlet.resignFirstResponder()
         game.teams[0] = redTextFieldOutlet.text!
         game.teams[1] = blueTextFieldOutlet.text!
+        if game.publicGame{
         game.updateFirebase()
+        }
         print("text field should return")
         return true
     }
@@ -115,11 +162,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         set = game.sets[0]
         self.setSegmentedControlOutlet.selectedSegmentIndex = 0
         AppData.canEdit = true
+        AppData.selectedGame = game
         
         let alert = UIAlertController(title: "Public or Private Game?", message: "Public Game everyone can view.  Private Game only you can view.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Public", style: .default, handler: { a in
             self.game.publicGame = true
             self.game.saveToFirebase()
+            print("UId after saving to firebase: \(self.game.uid)")
+            if let u = self.game.uid{
+            AppData.myUIDs.append(u)
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(AppData.myUIDs) {
+                                   UserDefaults.standard.set(encoded, forKey: "myUIDs")
+                               }
+            }
+            else{
+                print("Did not save uid to myUIDs")
+            }
+            AppData.myGames.append(self.game)
+            
         }))
         alert.addAction(UIAlertAction(title: "Private", style: .default, handler: {a in
             AppData.myGames.append(self.game)
@@ -232,7 +293,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateScreen(){
-        print("update Screen being")
+        print("update Screen being called")
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
         
@@ -555,6 +616,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //print("removing handle1")
         
         ref.removeAllObservers()
+        
+        for u in AppData.myUIDs{
+            for g in AppData.allGames{
+                if u == g.uid{
+                    AppData.myGames.append(g)
+                }
+            }
+        }
     }
     
     func gameChangedInFirebase(){

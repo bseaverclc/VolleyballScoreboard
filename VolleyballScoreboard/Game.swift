@@ -31,9 +31,13 @@ public class Game: Codable{
         setWins = dict["setWins"] as! [Int]
         
         let formatter1 = DateFormatter()
-        formatter1.dateFormat = "MM/dd/yy"
-        if let d = formatter1.date(from: dict["date"] as! String){
+        formatter1.dateFormat = "MM/dd/yy HH:MM"
+        let dateString = dict["date"] as! String
+        let timeString = dict["time"] as! String
+        let fullDate = "\(dateString) \(timeString)"
+        if let d = formatter1.date(from: fullDate){
         date = d
+
         }
         else{ date = Date()}
         
@@ -53,8 +57,12 @@ public class Game: Codable{
         formatter1.dateStyle = .short
         let dateString = formatter1.string(from: date)
         
+        formatter1.timeStyle = .short
+        formatter1.dateStyle = .none
+        let timeString = formatter1.string(from: date)
+        
         let ref = Database.database().reference()
-        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "publicGame": publicGame] as [String : Any]
+        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "publicGame": publicGame] as [String : Any]
        
         
         let gameRef = ref.child("games").childByAutoId()
@@ -77,8 +85,12 @@ public class Game: Codable{
         formatter1.dateStyle = .short
         let dateString = formatter1.string(from: date)
         
+        formatter1.timeStyle = .short
+        formatter1.dateStyle = .none
+        let timeString = formatter1.string(from: date)
+        
         var ref = Database.database().reference().child("games").child(uid!)
-        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString] as [String : Any]
+        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString] as [String : Any]
         
         ref.updateChildValues(dict)
         ref = ref.child("sets")
