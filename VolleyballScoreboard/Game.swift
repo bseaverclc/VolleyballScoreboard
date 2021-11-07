@@ -51,6 +51,17 @@ public class Game: Codable{
         sets.append(ASet(key: key, dict: dict))
     }
     
+    func deleteFromFirebase(){
+        if let ui = uid{
+        Database.database().reference().child("games").child(ui).removeValue()
+            
+        print("Game has been removed from Firebase")
+        }
+        else{
+            print("Error Deleting Game! Game not in Firebase")
+        }
+    }
+    
     func saveToFirebase()
     {
         let formatter1 = DateFormatter()

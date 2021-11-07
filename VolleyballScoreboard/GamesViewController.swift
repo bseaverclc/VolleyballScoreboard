@@ -28,8 +28,8 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        AppData.myGames = AppData.myGames.sorted(by: {
-            $0.date.compare($1.date) == .orderedAscending})
+        AppData.allGames = AppData.allGames.sorted(by: {
+            $0.date.compare($1.date) == .orderedDescending})
         tableviewOutlet.reloadData()
     }
     

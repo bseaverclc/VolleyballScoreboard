@@ -53,9 +53,15 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         if editingStyle == .delete{
             let alert = UIAlertController(title: "Alert!", message: "Are you sure you want to delete this game?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { a in
+                //reset scoreboard screen
+                if let sg = AppData.selectedGame{
+                    if sg.uid == AppData.myGames[indexPath.row].uid{
+                        AppData.selectedGame = nil
+                    }
+                }
+                AppData.myGames[indexPath.row].deleteFromFirebase()
                 AppData.myGames.remove(at: indexPath.row)
-//                AppData.allGames[indexPath.row].delete!
-//                AppData.allGames.remove(at: indexPath.row)
+
                 
                 tableView.reloadData()
                 let encoder = JSONEncoder()

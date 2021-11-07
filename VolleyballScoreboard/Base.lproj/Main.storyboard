@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!-- Game-->
+        <!--Scoreboard-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VolleyballScoreboard" customModuleProvider="target" sceneMemberID="viewController">
@@ -353,7 +353,7 @@
                             <constraint firstItem="0FA-te-xdR" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.068662" id="nuR-Jo-aDa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title=" Game" image="tablecells" catalog="system" id="2oO-4C-BJL"/>
+                    <tabBarItem key="tabBarItem" title="Scoreboard" image="tablecells" catalog="system" id="2oO-4C-BJL"/>
                     <navigationItem key="navigationItem" id="89B-AP-JtF"/>
                     <connections>
                         <outlet property="blueOutlet" destination="Tb1-Hx-Wwq" id="VCX-rE-ss5"/>
@@ -453,7 +453,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1097" y="979"/>
+            <point key="canvasLocation" x="-795" y="976"/>
         </scene>
         <!--My Games-->
         <scene sceneID="A0j-qW-qPR">
@@ -646,9 +646,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQC-Hz-JQE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.875" y="979.22535211267609"/>
+            <point key="canvasLocation" x="934" y="978"/>
         </scene>
-        <!--All Games-->
+        <!--Public Games-->
         <scene sceneID="o4J-a5-RCb">
             <objects>
                 <viewController id="p0k-cU-Sbq" customClass="GamesViewController" customModule="VolleyballScoreboard" customModuleProvider="target" sceneMemberID="viewController">
@@ -830,14 +830,14 @@
                             <constraint firstItem="FbD-i6-VeA" firstAttribute="bottom" secondItem="7ef-0P-Fak" secondAttribute="bottom" id="yaB-TN-Nnh"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="All Games" image="folder.fill" catalog="system" id="A9f-4t-37K"/>
+                    <tabBarItem key="tabBarItem" title="Public Games" image="folder.fill" catalog="system" id="A9f-4t-37K"/>
                     <connections>
                         <outlet property="tableviewOutlet" destination="FbD-i6-VeA" id="Iy4-ux-gjo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK4-sO-aXk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-748.125" y="978.16901408450701"/>
+            <point key="canvasLocation" x="38" y="977"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fYv-UY-Vro">

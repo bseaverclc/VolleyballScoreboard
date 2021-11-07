@@ -4,6 +4,7 @@
 //
 //  Created by Brian Seaver on 10/27/21.
 //
+// ****New Download from xcode to go back to last working copy *******
 
 import UIKit
 import AudioToolbox
@@ -72,6 +73,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         ref = Database.database().reference()
         getGamesFromFirebase()
         gameChangedInFirebase()
+        gameDeletedInFirebase()
         
         if let items = UserDefaults.standard.data(forKey: "myGames") {
                         let decoder = JSONDecoder()
@@ -98,7 +100,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         print("Game Did Appear")
-        if let g = AppData.selectedGame{
+        if let g = AppData.selectedGame {
             if g.publicGame{
                 for appGame in AppData.allGames{
                     if appGame.uid == g.uid{
@@ -127,6 +129,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
         else{
+            game = nil
+            set = nil
             newGame()
         }
         
@@ -196,7 +200,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func newGame(){
-        
+        if let theGame = game{
+        for i in 0 ..< AppData.myGames.count{
+            if AppData.myGames[i].uid == theGame.uid{
+                AppData.myGames[i] = theGame
+            }
+        }
+            AppData.selectedGame = theGame
+        }
+        // save myGames to userdefaults when you exit
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(AppData.myGames) {
+                           UserDefaults.standard.set(encoded, forKey: "myGames")
+                       }
         
         let alert = UIAlertController(title: "Public or Private Game?", message: "Public Game everyone can view.  Private Game only you can view.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Public", style: .default, handler: { a in
@@ -241,6 +257,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         
     }
+    
+    
     
     func setSwipeDirection(){
         for outlet in swipeOutlets{
@@ -813,6 +831,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //                print("printing events")
 //                print(dict2)
                 
+    }
+    
+    func gameDeletedInFirebase(){
+        var ref: DatabaseReference!
+        print("Removing game observed")
+        ref = Database.database().reference()
+        ref.child("games").observe(.childRemoved, with: { (snapshot) in
+            print("Removing game observed from Array")
+            for i in 0..<AppData.allGames.count{
+                
+                if AppData.allGames[i].uid == snapshot.key{
+                    print("\(AppData.allGames[i].teams) has been removed")
+                    AppData.allGames.remove(at: i)
+                    break
+                }
+            }
+            
+        })
     }
     
 }

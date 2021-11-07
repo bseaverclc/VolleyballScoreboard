@@ -51,7 +51,7 @@ class CrazyCell: UITableViewCell
         dateFormatter.dateStyle = .none
         
         let convertedTime = dateFormatter.string(from: game.date)
-        timeOutlet.text = "\(convertedTime)"
+        timeOutlet.text = ""
         
     }
 }
