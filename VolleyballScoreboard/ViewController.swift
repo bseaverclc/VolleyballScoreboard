@@ -99,12 +99,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         print("Game Did Appear")
         if let g = AppData.selectedGame{
-            game = g
-            set = game.sets[0]
-            setSegmentedControlOutlet.selectedSegmentIndex = 0
-            DispatchQueue.main.async {
-                self.updateScreen()
+            if g.publicGame{
+                for appGame in AppData.allGames{
+                    if appGame.uid == g.uid{
+                        game = appGame
+                        AppData.selectedGame = game
+                        set = game.sets[0]
+                        setSegmentedControlOutlet.selectedSegmentIndex = 0
+                        DispatchQueue.main.async {
+                            self.updateScreen()
+                        }
+                    }
+                }
             }
+            else{
+                game = g
+                set = game.sets[0]
+                setSegmentedControlOutlet.selectedSegmentIndex = 0
+                DispatchQueue.main.async {
+                    self.updateScreen()
+                }
+                
+                
+            }
+            
            
             
         }
@@ -123,6 +141,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        if let theGame = game{
+        for i in 0 ..< AppData.myGames.count{
+            if AppData.myGames[i].uid == theGame.uid{
+                AppData.myGames[i] = theGame
+            }
+        }
+            AppData.selectedGame = theGame
+        }
+        // save myGames to userdefaults when you exit
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(AppData.myGames) {
                            UserDefaults.standard.set(encoded, forKey: "myGames")
@@ -153,7 +180,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
           }
     }
     
-    func newGame(){
+    func createGame(){
         print("new Game being created")
         game = Game(teams: ["Red Team", "Blue Team"], date: Date(), publicGame: false)
         game.sets.append(ASet())
@@ -163,10 +190,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.setSegmentedControlOutlet.selectedSegmentIndex = 0
         AppData.canEdit = true
         AppData.selectedGame = game
+        redTextFieldOutlet.isEnabled = true
+        blueTextFieldOutlet.isEnabled = true
+        self.updateScreen()
+    }
+    
+    func newGame(){
+        
         
         let alert = UIAlertController(title: "Public or Private Game?", message: "Public Game everyone can view.  Private Game only you can view.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Public", style: .default, handler: { a in
+            self.createGame()
             self.game.publicGame = true
+            AppData.canEdit = true
             self.game.saveToFirebase()
             print("UId after saving to firebase: \(self.game.uid)")
             if let u = self.game.uid{
@@ -183,10 +219,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }))
         alert.addAction(UIAlertAction(title: "Private", style: .default, handler: {a in
+            
+            self.createGame()
+            self.game.publicGame = false
+            AppData.canEdit = true
             AppData.myGames.append(self.game)
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { a in
+            let vc = self.tabBarController!
+                vc.selectedIndex = 1
+        }))
         present(alert, animated: true) {
-            self.updateScreen()
+            
         }
         
         
@@ -292,21 +336,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func updateScreen(){
-        print("update Screen being called")
-        redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
-        blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
-        
-        redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
-        blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
-        
-        redTextFieldOutlet.text = String(game.teams[0])
-        blueTextFieldOutlet.text = String(game.teams[1])
-        
-        
-        
-        
-        
+    func updateScreenFromFirebase(){
+        print("update Screen from firebase being called")
+        if let s = set{
+            if let g = game{
+                print("update Screen from FB there is a set and game")
+                redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+                blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+                
+                redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
+                blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
+                
+                redTextFieldOutlet.text = String(game.teams[0])
+                blueTextFieldOutlet.text = String(game.teams[1])
+
         for outlet in redStatsOutlet{
             var title = outlet.title(for: .normal)!
             for (key,value) in set.redStats{
@@ -314,6 +357,49 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     outlet.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
                 }
             }
+            
+     
+            
+        }
+        
+        for outlet in blueStatsOutlet{
+            var title = outlet.title(for: .normal)!
+            for (key,value) in set.blueStats{
+                if title.contains(key){
+                    outlet.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
+                }
+            }
+            
+        }
+     
+                
+            }
+        }
+    
+    }
+    
+    func updateScreen(){
+        print("update Screen being called")
+        if let s = set{
+            if let g = game{
+                redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+                blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+                
+                redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
+                blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
+                
+                redTextFieldOutlet.text = String(game.teams[0])
+                blueTextFieldOutlet.text = String(game.teams[1])
+
+        for outlet in redStatsOutlet{
+            var title = outlet.title(for: .normal)!
+            for (key,value) in set.redStats{
+                if title.contains(key){
+                    outlet.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
+                }
+            }
+            
+     
             
         }
         
@@ -329,24 +415,39 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
         game.updateFirebase()
         }
+                
+            }
+        }
     }
     
     
     @IBAction func saveAction(_ sender: UIButton) {
+        var errorMessage = "You don't have edit/save rights"
+        var errorTitle = "Fail!"
         if AppData.canEdit{
-        if redTextFieldOutlet.text != ""{
-            game.teams[0] = redTextFieldOutlet.text!
-            
-        }
-        if blueTextFieldOutlet.text != ""{
-            game.teams[1] = blueTextFieldOutlet.text!
-            
-        }
             if game.publicGame{
         game.updateFirebase()
+                errorTitle = "Success!"
+                errorMessage = "Game has been saved"
+                let alert = UIAlertController(title: "Success!", message: "Game has been saved", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                
             }
+            else{
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(AppData.myGames) {
+                                   UserDefaults.standard.set(encoded, forKey: "myGames")
+                    errorTitle = "Success!"
+                    errorMessage = "Game has been saved"
+                               }
+                
+            }
+            
         }
-        
+        let alert = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -378,6 +479,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if AppData.canEdit{
         decreaseRedScore()
         }
+        if game.publicGame{
+        game.updateFirebase()
+        }
         
         
     }
@@ -385,6 +489,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func blueSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
        decreaseBlueScore()
+        }
+        if game.publicGame{
+        game.updateFirebase()
         }
         
     }
@@ -406,6 +513,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+            if game.publicGame{
+            game.updateFirebase()
+            }
         }
         
     }
@@ -565,7 +675,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         ref = Database.database().reference()
         
         handle1 = ref.child("games").observe(.childAdded) { (snapshot) in
-            //print("athlete observed")
+            print("childAdded")
             let uid = snapshot.key
             //print(uid)
            
@@ -621,18 +731,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
             for g in AppData.allGames{
                 if u == g.uid{
                     AppData.myGames.append(g)
+                    print("Added a public game to my games")
                 }
             }
         }
     }
     
     func gameChangedInFirebase(){
+        
+        
         var ref: DatabaseReference!
 
         ref = Database.database().reference()
         
         ref.child("games").observe(.childChanged) { (snapshot) in
-            //print("athlete observed2")
+            print("childchanged game changed on firebase")
             let uid = snapshot.key
             //print(uid)
            
@@ -653,48 +766,49 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //
 //
             ref.child("games").child(uid).child("sets").observe(.childAdded, with: { (snapshot2) in
-                //print("snapshot2 \(snapshot2)")
-
-
-
+  
                 guard let dict2 = snapshot2.value as? [String:Any]
                 else{ print("Error")
                     return
                 }
                 
                 g.addSet(key: snapshot2.key, dict: dict2)
-
-//                var add = true
-//                for s in a.events{
-//                    if dict2["name"] as! String == e.name && dict2["meetName"] as! String == e.meetName{
-//                        add = false
-//                    }
-//                }
-//                if add{
-//                a.addEvent(key: snapshot2.key, dict: dict2)
-//                print("in changed event added")
-//
-//                }
-
-
-
+                print("added a set from firebase change")
             })
         
-               
-        
-        for i in 0..<AppData.allGames.count{
-            if(AppData.allGames[i].uid == uid){
-                AppData.allGames[i] = g
-                self.updateScreen()
-                //print("Game \(i)Changed \(AppData.allGames[i].teams)")
+            
+              // waits to happen when all things are read
+            ref.child("games").child(uid).child("sets").observeSingleEvent(of: .value, with: { snapshot in
+                   print("--load has completed and the last set was read--")
+                for i in 0..<AppData.allGames.count{
+                    if(AppData.allGames[i].uid == uid){
+                        AppData.allGames[i] = g
+                        
+                        
+                        
+                        print("addd changed game to AppData")
+                        break;
+                       
+                       // print("Game \(i)Changed \(AppData.allGames[i].sets[0].redStats)")
+                       
+                    }
                 
-            }
-        
+                        
+                    }
+                if(g.uid == self.game.uid){
+                    self.game = g
+                    self.set = self.game.sets[self.setSegmentedControlOutlet.selectedSegmentIndex]
+                    self.updateScreenFromFirebase()
+                }
                 
-            }
+               })
+
+            
+        
+       
             
         }
-          
+        
                 
 //                print("printing events")
 //                print(dict2)

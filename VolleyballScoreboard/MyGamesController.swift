@@ -17,14 +17,13 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         tableviewOutlet.dataSource = self
         tableviewOutlet.delegate = self
         
-       
 
-        
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        AppData.myGames = AppData.myGames.sorted(by: {
+            $0.date.compare($1.date) == .orderedDescending})
         tableviewOutlet.reloadData()
     }
     
@@ -55,6 +54,9 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
             let alert = UIAlertController(title: "Alert!", message: "Are you sure you want to delete this game?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { a in
                 AppData.myGames.remove(at: indexPath.row)
+//                AppData.allGames[indexPath.row].delete!
+//                AppData.allGames.remove(at: indexPath.row)
+                
                 tableView.reloadData()
                 let encoder = JSONEncoder()
                 if let encoded = try? encoder.encode(AppData.myGames) {
