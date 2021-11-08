@@ -10,6 +10,40 @@ import UIKit
 import AudioToolbox
 import Firebase
 
+@available(iOS 14.0, *)
+extension ViewController: UIColorPickerViewControllerDelegate {
+    
+    //  Called once you have finished picking the color.
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        if AppData.selectedColorButton == "red"{
+        for button in redStatsOutlet{
+            button.backgroundColor = viewController.selectedColor
+        }
+        
+        redSetOutlet.backgroundColor = viewController.selectedColor
+        
+        redOutlet.backgroundColor = viewController.selectedColor
+        }
+        else{
+            for button in blueStatsOutlet{
+                button.backgroundColor = viewController.selectedColor
+            }
+            
+            blueSetOutlet.backgroundColor = viewController.selectedColor
+            
+            blueOutlet.backgroundColor = viewController.selectedColor
+        }
+        
+            
+        
+    }
+    
+    //  Called on every color selection done in the picker.
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+            //self.view.backgroundColor = viewController.selectedColor
+    }
+}
+
 
 class AppData{
     static var allGames : [Game] = []
@@ -17,9 +51,12 @@ class AppData{
     static var canEdit = false
     static var selectedGame : Game?
     static var myUIDs: [String] = []
+    static var selectedColorButton = "red"
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {
+    
+    
     
     @IBOutlet weak var statsHorizontalStackView: UIStackView!
     @IBOutlet weak var redStackView: UIStackView!
@@ -282,26 +319,64 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+   
+    
     @IBAction func redSetAddAction(_ sender: UIButton) {
-        if AppData.canEdit{
-            game.setWins[0] += 1
-            sender.setTitle("\(game.setWins[0])", for: .normal)
-        if game.publicGame{
-        game.updateFirebase()
+//        if AppData.canEdit{
+//            game.setWins[0] += 1
+//            sender.setTitle("\(game.setWins[0])", for: .normal)
+//        if game.publicGame{
+//        game.updateFirebase()
+//        }
+//        }
+        
+        AppData.selectedColorButton = "red"
+        if #available(iOS 14.0, *) {
+            showColorPicker()
+        } else {
+            let alert = UIAlertController(title: "Sorry", message: "Color Picker only available on ios 14.0 or later", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
-        }
+        
+        
         
         
     }
     
+    @available(iOS 14.0, *)
+    func showColorPicker(){
+        let picker = UIColorPickerViewController()
+        
+
+        // Setting the Initial Color of the Picker
+        picker.selectedColor = UIColor.white
+
+        // Setting Delegate
+        picker.delegate = self
+
+        // Presenting the Color Picker
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    
     
     @IBAction func blueSetAddAction(_ sender: UIButton) {
-        if AppData.canEdit{
-            game.setWins[1] += 1
-            sender.setTitle("\(game.setWins[1])", for: .normal)
-        if game.publicGame{
-        game.updateFirebase()
-        }
+//        if AppData.canEdit{
+//            game.setWins[1] += 1
+//            sender.setTitle("\(game.setWins[1])", for: .normal)
+//        if game.publicGame{
+//        game.updateFirebase()
+//        }
+//        }
+        
+        AppData.selectedColorButton = "blue"
+        if #available(iOS 14.0, *) {
+            showColorPicker()
+        } else {
+            let alert = UIAlertController(title: "Sorry", message: "Color Picker only available on ios 14.0 or later", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -403,8 +478,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
                 blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
                 
-                redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
-                blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
+//                redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
+//                blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
                 
                 redTextFieldOutlet.text = String(game.teams[0])
                 blueTextFieldOutlet.text = String(game.teams[1])
