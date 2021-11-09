@@ -664,8 +664,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func redOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
-        set.redStats["Blue Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Blue Err\n\(set.redStats["Blue Err"]!)", for: .normal)
+        set.redStats["Other Team Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Other Team Err\n\(set.redStats["Other Team Err"]!)", for: .normal)
        decreaseRedScore()
         }
     }
@@ -673,8 +673,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func redOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
-        set.redStats["Blue Serve Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Blue Serve Err\n\(set.redStats["Blue Serve Err"]!)", for: .normal)
+        set.redStats["Oth Tm Serve Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Oth Tm Serve Err\n\(set.redStats["Oth Tm Serve Err"]!)", for: .normal)
         decreaseRedScore()
         }
     }
@@ -708,16 +708,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func blueOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
-        set.blueStats["Red Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Red Err\n\(set.blueStats["Red Err"]!)", for: .normal)
+        set.blueStats["Other Team Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Other Team Err\n\(set.blueStats["Other Team Err"]!)", for: .normal)
         decreaseBlueScore()
         }
     }
     
     @IBAction func blueOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
-        set.blueStats["Red Serve Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Red Serve Err\n\(set.blueStats["Red Serve Err"]!)", for: .normal)
+        set.blueStats["Oth Tm Serve Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Oth Tm Serve Err\n\(set.blueStats["Oth Tm Serve Err"]!)", for: .normal)
         decreaseBlueScore()
         }
     }

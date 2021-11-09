@@ -122,8 +122,8 @@ public class Game: Codable{
 public class ASet: Codable
 {
    
-    var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Blue Err": 0, "Blue Serve Err":0, "redScore": 0]
-    var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Red Err": 0, "Red Serve Err":0, "blueScore": 0]
+    var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Other Team Err": 0, "Oth Tm Serve Err":0, "redScore": 0]
+    var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Other Team Err": 0, "Oth Tm Serve Err":0, "blueScore": 0]
 //    var redScore = 0
 //    var blueScore = 0
     var uid : String?
