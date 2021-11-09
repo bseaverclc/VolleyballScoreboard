@@ -183,12 +183,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         if let theGame = game{
+            if theGame.publicGame{
         for i in 0 ..< AppData.myGames.count{
             if AppData.myGames[i].uid == theGame.uid{
                 AppData.myGames[i] = theGame
             }
         }
             AppData.selectedGame = theGame
+        }
         }
         // save myGames to userdefaults when you exit
         let encoder = JSONEncoder()
@@ -238,6 +240,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func newGame(){
         if let theGame = game{
+            if theGame.publicGame{
         for i in 0 ..< AppData.myGames.count{
             if AppData.myGames[i].uid == theGame.uid{
                 AppData.myGames[i] = theGame
@@ -245,14 +248,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
             AppData.selectedGame = theGame
         }
+        }
         // save myGames to userdefaults when you exit
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(AppData.myGames) {
                            UserDefaults.standard.set(encoded, forKey: "myGames")
                        }
         
-        let alert = UIAlertController(title: "Public or Private Game?", message: "Public Game everyone can view.  Private Game only you can view.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Public", style: .default, handler: { a in
+        let alert = UIAlertController(title: "Creating a New Game", message: "Public Game: Everyone can view\n  Private Game: Only you can view", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Public Game", style: .default, handler: { a in
             self.createGame()
             self.game.publicGame = true
             AppData.canEdit = true
@@ -271,7 +275,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             AppData.myGames.append(self.game)
             
         }))
-        alert.addAction(UIAlertAction(title: "Private", style: .default, handler: {a in
+        alert.addAction(UIAlertAction(title: "Private Game", style: .default, handler: {a in
             
             self.createGame()
             self.game.publicGame = false
@@ -383,11 +387,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func newGameAction(_ sender: UIButton) {
         let alert = UIAlertController(title: "Warning!", message: "Are you sure you want to start a new game?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "New", style: .destructive, handler: { (alert) in
+        alert.addAction(UIAlertAction(title: "New", style: .default, handler: { (alert) in
             self.newGame()
             
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
         
         present(alert, animated: true, completion: nil)
         
@@ -403,8 +407,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
         
-        redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
-        blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
+       // redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
+       // blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
         
         
         
@@ -437,8 +441,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
                 blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
                 
-                redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
-                blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
+                //redSetOutlet.setTitle("\(game.setWins[0])", for: .normal)
+              //  blueSetOutlet.setTitle("\(game.setWins[1])", for: .normal)
                 
                 redTextFieldOutlet.text = String(game.teams[0])
                 blueTextFieldOutlet.text = String(game.teams[1])
@@ -820,6 +824,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         ref.removeAllObservers()
         
+       
         for u in AppData.myUIDs{
             for g in AppData.allGames{
                 if u == g.uid{
