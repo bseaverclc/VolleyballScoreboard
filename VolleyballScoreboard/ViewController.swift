@@ -255,8 +255,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                            UserDefaults.standard.set(encoded, forKey: "myGames")
                        }
         
-        let alert = UIAlertController(title: "Creating a New Game", message: "Public Game: Everyone can view\n  Private Game: Only you can view", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Public Game", style: .default, handler: { a in
+        let alert = UIAlertController(title: "Create a New Game?", message: "Public Game: Everyone can view but only you can edit\n  Private Game: Only you can view and edit", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Create Public Game", style: .default, handler: { a in
             self.createGame()
             self.game.publicGame = true
             AppData.canEdit = true
@@ -275,14 +275,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             AppData.myGames.append(self.game)
             
         }))
-        alert.addAction(UIAlertAction(title: "Private Game", style: .default, handler: {a in
+        alert.addAction(UIAlertAction(title: "Create Private Game", style: .default, handler: {a in
             
             self.createGame()
             self.game.publicGame = false
             AppData.canEdit = true
             AppData.myGames.append(self.game)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { a in
+        alert.addAction(UIAlertAction(title: "View Public Games", style: .destructive, handler: { a in
             let vc = self.tabBarController!
                 vc.selectedIndex = 1
         }))
@@ -639,60 +639,75 @@ class ViewController: UIViewController, UITextFieldDelegate {
    
     @IBAction func redAceSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
+            if set.redStats["Ace"]! > 0{
         set.redStats["Ace"]! -= 1
         (sender.view as! UIButton).setTitle("Ace\n\(set.redStats["Ace"]!)", for: .normal)
         decreaseRedScore()
+        }
         }
     }
     
     @IBAction func redKillSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
+            if set.redStats["Kill"]! > 0{
         set.redStats["Kill"]! -= 1
         (sender.view as! UIButton).setTitle("Kill\n\(set.redStats["Kill"]!)", for: .normal)
         decreaseRedScore()
         }
+        }
+            
     }
     
     @IBAction func redBKLSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
+            if set.redStats["Block"]! > 0{
         set.redStats["Block"]! -= 1
         (sender.view as! UIButton).setTitle("Block\n\(set.redStats["Block"]!)", for: .normal)
         decreaseRedScore()
+        }
         }
     }
     
     
     @IBAction func redOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
-        set.redStats["Other Team Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Other Team Err\n\(set.redStats["Other Team Err"]!)", for: .normal)
+            if set.redStats["Opponent Err"]! > 0{
+        set.redStats["Opponent Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Opponent Err\n\(set.redStats["Opponent Err"]!)", for: .normal)
        decreaseRedScore()
+        }
         }
     }
     
     
     @IBAction func redOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
-        set.redStats["Oth Tm Serve Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Oth Tm Serve Err\n\(set.redStats["Oth Tm Serve Err"]!)", for: .normal)
+            if  set.redStats["Opponent Serve Err"]! > 0{
+        set.redStats["Opponent Serve Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Opponent Serve Err\n\(set.redStats["Opponent Serve Err"]!)", for: .normal)
         decreaseRedScore()
+        }
         }
     }
     
     
     @IBAction func blueAceSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
+            if set.blueStats["Ace"]! > 0{
         set.blueStats["Ace"]! -= 1
         (sender.view as! UIButton).setTitle("Ace\n\(set.blueStats["Ace"]!)", for: .normal)
         decreaseBlueScore()
+        }
         }
     }
     
     @IBAction func blueKillSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
+            if set.blueStats["Kill"]! > 0{
         set.blueStats["Kill"]! -= 1
         (sender.view as! UIButton).setTitle("Kill\n\(set.blueStats["Kill"]!)", for: .normal)
         decreaseBlueScore()
+        }
         }
         
     }
@@ -700,25 +715,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func blueBKLSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
+            if set.blueStats["Block"]! > 0{
         set.blueStats["Block"]! -= 1
         (sender.view as! UIButton).setTitle("Block\n\(set.blueStats["Block"]!)", for: .normal)
         decreaseBlueScore()
+        }
         }
     }
     
     @IBAction func blueOppErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
-        set.blueStats["Other Team Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Other Team Err\n\(set.blueStats["Other Team Err"]!)", for: .normal)
+            if set.blueStats["Opponent Err"]! > 0{
+        set.blueStats["Opponent Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Opponent Err\n\(set.blueStats["Opponent Err"]!)", for: .normal)
         decreaseBlueScore()
+        }
         }
     }
     
     @IBAction func blueOppServErrorSubtractAction(_ sender: UISwipeGestureRecognizer) {
         if AppData.canEdit{
-        set.blueStats["Oth Tm Serve Err"]! -= 1
-        (sender.view as! UIButton).setTitle("Oth Tm Serve Err\n\(set.blueStats["Oth Tm Serve Err"]!)", for: .normal)
+            if set.blueStats["Opponent Serve Err"]! > 0{
+        set.blueStats["Opponent Serve Err"]! -= 1
+        (sender.view as! UIButton).setTitle("Opponent Serve Err\n\(set.blueStats["Opponent Serve Err"]!)", for: .normal)
         decreaseBlueScore()
+        }
         }
     }
     
@@ -739,18 +760,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func decreaseRedScore(){
+        if set.redStats["redScore"]! > 0{
         set.redStats["redScore"]! -= 1
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
         if game.publicGame{
         game.updateFirebase()
         }
+        }
     }
     
     func decreaseBlueScore(){
+        if set.blueStats["blueScore"]! > 0{
         set.blueStats["blueScore"]! -= 1
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
         if game.publicGame{
         game.updateFirebase()
+        }
         }
     }
     
@@ -893,10 +918,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                         
                     }
+                if let ga = self.game{
                 if(g.uid == self.game.uid){
                     self.game = g
                     self.set = self.game.sets[self.setSegmentedControlOutlet.selectedSegmentIndex]
                     self.updateScreenFromFirebase()
+                }
                 }
                 
                })
