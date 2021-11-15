@@ -31,6 +31,8 @@ class CrazyCell: UITableViewCell
     
     func configure(game: Game)
     {
+        
+        
         redTeamOutlet.text = game.teams[0]
         blueTeamOutlet.text = game.teams[1]
         
@@ -46,12 +48,54 @@ class CrazyCell: UITableViewCell
         //dateFormatter.dateFormat = "MM/D/YY"
         dateFormatter.dateStyle = .short
         let convertedDate = dateFormatter.string(from: game.date)
-        dateOutlet.text = "\(convertedDate)"
+        // switched time and date outlet to show date in middle temporarily until time works
+        timeOutlet.text = "\(convertedDate)"
+        //dateFormatter.timeZone = .autoupdatingCurrent
+        let TimeFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
-        dateFormatter.dateStyle = .none
+        //dateFormatter.dateStyle = .none
+        
         
         let convertedTime = dateFormatter.string(from: game.date)
-        timeOutlet.text = ""
+        // switched time and date outlet to show date in middle temporarily until time works
+        dateOutlet.text = ""
+        highlightWinner(game: game)
         
+    }
+    
+    func highlightWinner(game: Game){
+        redTeamOutlet.backgroundColor = UIColor.clear
+        blueTeamOutlet.backgroundColor = UIColor.clear
+        var redWins = 0
+        var blueWins = 0
+        
+        for i in 0...1{
+        var redScore = Int(exactly: game.sets[i].redStats["redScore"]!)!
+        var blueScore = Int(exactly: game.sets[i].blueStats["blueScore"]!)!
+        print("redScore: \(redScore)")
+            print("blueScore: \(blueScore)")
+        if redScore - blueScore >= 2 && redScore >= 25{
+            redWins += 1
+        }
+        if blueScore - redScore >= 2 && blueScore >= 25{
+            blueWins += 1
+        }
+        }
+        
+        var redScore3 = Int(exactly: game.sets[2].redStats["redScore"]!)!
+        var blueScore3 = Int(exactly: game.sets[2].blueStats["blueScore"]!)!
+        if redScore3 - blueScore3 >= 2 && redScore3 >= 15{
+            redWins += 1
+        }
+        if blueScore3 - redScore3 >= 2 && blueScore3 >= 15{
+            blueWins += 1
+        }
+        
+        if redWins >= 2{
+            redTeamOutlet.backgroundColor = UIColor.green
+        }
+        if blueWins >= 2{
+            blueTeamOutlet.backgroundColor = UIColor.green
+        }
     }
 }

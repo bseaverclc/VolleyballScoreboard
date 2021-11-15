@@ -32,15 +32,30 @@ public class Game: Codable{
         setWins = dict["setWins"] as! [Int]
         
         let formatter1 = DateFormatter()
-        formatter1.dateFormat = "MM/dd/yy HH:MM"
+        formatter1.dateFormat
+        //formatter1.locale = Locale(identifier: "en_US_POSIX")
+        //formatter1.timeZone = .autoupdatingCurrent
+        formatter1.dateFormat = "MM/dd/yy HH:mm aa"
         let dateString = dict["date"] as! String
         let timeString = dict["time"] as! String
+        print("\(dateString) \(timeString)")
         let fullDate = "\(dateString) \(timeString)"
         if let d = formatter1.date(from: fullDate){
         date = d
+            
+            
+            let dateFormatter = DateFormatter()
+            //dateFormatter.dateFormat = "MM/D/YY"
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .short
+            
+            let convertedDate = dateFormatter.string(from: date)
+            print(convertedDate)
 
         }
-        else{ date = Date()}
+        else{
+            print("Error Reading date")
+            date = Date()}
         
         sets = [ASet]()
         uid = key

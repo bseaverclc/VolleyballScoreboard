@@ -9,8 +9,11 @@ import UIKit
 
 class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    @IBOutlet weak var searchOutlet: UITextField!
     @IBOutlet weak var tableviewOutlet: UITableView!
     var myTimer: Timer!
+    var filteredGames : [Game] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +32,28 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        AppData.myGames.count
+        if filteredGames.count == 0{
+        return AppData.myGames.count
+        }
+        else{
+            return filteredGames.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! CrazyCell
+        cell.backgroundColor = UIColor.clear
+        if indexPath.row % 2 == 0{
+            cell.backgroundColor = UIColor.lightGray
+        }
+        if filteredGames.count == 0{
+            cell.configure(game: AppData.myGames[indexPath.row])
+        }
+        else{
+            cell.configure(game: filteredGames[indexPath.row])
+        }
         
-        cell.configure(game: AppData.myGames[indexPath.row])
-//        var g = AppData.allGames[indexPath.row]
-//        cell.textLabel?.text = "\(g.teams[0]): \(g.setWins[0])  vs \(g.teams[1]): \(g.setWins[1])"
+
         return cell
     }
     
@@ -74,6 +90,38 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-  
+    @IBAction func searchButtonAction(_ sender: Any) {
+        filteredGames = []
+        if let team = searchOutlet.text{
+        for game in AppData.myGames{
+            if game.teams[0].lowercased().starts(with: team.lowercased()) || game.teams[1].lowercased().starts(with: team.lowercased()){
+                filteredGames.append(game)
+            }
+        }
+        }
+        tableviewOutlet.reloadData()
+        searchOutlet.resignFirstResponder()
+    }
+    
+    @IBAction func containsAction(_ sender: UIButton) {
+        filteredGames = []
+        if let team = searchOutlet.text{
+        for game in AppData.myGames{
+            if game.teams[0].localizedStandardContains(team) || game.teams[1].localizedStandardContains(team){
+                filteredGames.append(game)
+            }
+        }
+        }
+        tableviewOutlet.reloadData()
+        searchOutlet.resignFirstResponder()
+        
+    }
+    
+    @IBAction func clearButtonAction(_ sender: Any) {
+        filteredGames = []
+        searchOutlet.text = ""
+        tableviewOutlet.reloadData()
+        searchOutlet.resignFirstResponder()
+    }
 
 }

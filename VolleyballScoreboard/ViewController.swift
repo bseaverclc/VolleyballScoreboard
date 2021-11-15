@@ -112,6 +112,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         gameChangedInFirebase()
         gameDeletedInFirebase()
         
+        
+        
         if let items = UserDefaults.standard.data(forKey: "myGames") {
                         let decoder = JSONDecoder()
                         if let decoded = try? decoder.decode([Game].self, from: items) {
@@ -213,6 +215,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
+    @IBAction func tapAction(_ sender: UITapGestureRecognizer) {
+        print("tapped")
+        if redTextFieldOutlet.isFirstResponder || blueTextFieldOutlet.isFirstResponder{
+            redTextFieldOutlet.resignFirstResponder()
+            blueTextFieldOutlet.resignFirstResponder()
+            game.teams[0] = redTextFieldOutlet.text!
+            game.teams[1] = blueTextFieldOutlet.text!
+            if game.publicGame{
+            game.updateFirebase()
+            }
+                print("got out of textfield")
+            }
+    }
+    
     @IBAction func switchAction(_ sender: UIButton) {
         if let first = statsHorizontalStackView.subviews.first, let last = statsHorizontalStackView.subviews.last {
             statsHorizontalStackView.subviews.forEach { $0.removeFromSuperview() }
@@ -225,7 +242,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func createGame(){
         print("new Game being created")
-        game = Game(teams: ["Red Team", "Blue Team"], date: Date(), publicGame: false)
+        game = Game(teams: ["", ""], date: Date(), publicGame: false)
         game.sets.append(ASet())
         game.sets.append(ASet())
         game.sets.append(ASet())
