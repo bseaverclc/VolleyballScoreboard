@@ -923,18 +923,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 for i in 0..<AppData.allGames.count{
                     if(AppData.allGames[i].uid == uid){
                         AppData.allGames[i] = g
-                        
-                        
-                        
                         print("addd changed game to AppData")
                         break;
-                       
-                       // print("Game \(i)Changed \(AppData.allGames[i].sets[0].redStats)")
-                       
+                    }
+                }
+                    
+                    for i in 0..<GamesViewController.filteredGames.count{
+                        if(GamesViewController.filteredGames[i].uid == uid){
+                            GamesViewController.filteredGames[i] = g
+                            print("addd changed game to gamesVC filteredGames")
+                            break;
+                        }
                     }
                 
-                        
-                    }
                 if let ga = self.game{
                 if(g.uid == self.game.uid){
                     self.game = g
