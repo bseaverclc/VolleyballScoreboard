@@ -52,6 +52,7 @@ class AppData{
     static var selectedGame : Game?
     static var myUIDs: [String] = []
     static var selectedColorButton = "red"
+    static var canDelete = false
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {

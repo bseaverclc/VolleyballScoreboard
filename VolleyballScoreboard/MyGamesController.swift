@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     
     @IBOutlet weak var searchOutlet: UITextField!
@@ -19,7 +19,7 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         tableviewOutlet.dataSource = self
         tableviewOutlet.delegate = self
-        
+        searchOutlet.delegate = self
 
     }
     
@@ -30,6 +30,19 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         tableviewOutlet.reloadData()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        filteredGames = []
+        if let team = searchOutlet.text{
+        for game in AppData.myGames{
+            if game.teams[0].localizedStandardContains(team) || game.teams[1].localizedStandardContains(team){
+                filteredGames.append(game)
+            }
+        }
+        }
+        tableviewOutlet.reloadData()
+        searchOutlet.resignFirstResponder()
+        return true
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if filteredGames.count == 0{

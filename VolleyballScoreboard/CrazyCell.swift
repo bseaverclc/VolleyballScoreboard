@@ -44,21 +44,23 @@ class CrazyCell: UITableViewCell
         blueS2Outlet.text = "\(game.sets[1].blueStats["blueScore"]!)"
         blueS3Outlet.text = "\(game.sets[2].blueStats["blueScore"]!)"
         
+        
         let dateFormatter = DateFormatter()
         //dateFormatter.dateFormat = "MM/D/YY"
         dateFormatter.dateStyle = .short
         let convertedDate = dateFormatter.string(from: game.date)
         // switched time and date outlet to show date in middle temporarily until time works
-        timeOutlet.text = "\(convertedDate)"
+        dateOutlet.text = "\(convertedDate)"
         //dateFormatter.timeZone = .autoupdatingCurrent
         let TimeFormatter = DateFormatter()
-        dateFormatter.timeStyle = .short
-        //dateFormatter.dateStyle = .none
+       // TimeFormatter.timeZone = .autoupdatingCurrent
+       TimeFormatter.timeStyle = .short
+        TimeFormatter.dateStyle = .none
         
         
-        let convertedTime = dateFormatter.string(from: game.date)
-        // switched time and date outlet to show date in middle temporarily until time works
-        dateOutlet.text = ""
+        let convertedTime = TimeFormatter.string(from: game.date)
+        
+        timeOutlet.text = convertedTime
         highlightWinner(game: game)
         
     }
@@ -72,8 +74,8 @@ class CrazyCell: UITableViewCell
         for i in 0...1{
         var redScore = Int(exactly: game.sets[i].redStats["redScore"]!)!
         var blueScore = Int(exactly: game.sets[i].blueStats["blueScore"]!)!
-        print("redScore: \(redScore)")
-            print("blueScore: \(blueScore)")
+//        print("redScore: \(redScore)")
+//            print("blueScore: \(blueScore)")
         if redScore - blueScore >= 2 && redScore >= 25{
             redWins += 1
         }

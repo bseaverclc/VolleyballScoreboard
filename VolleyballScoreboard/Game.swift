@@ -15,6 +15,7 @@ public class Game: Codable{
     var sets : [ASet]
     var uid : String?
     var publicGame : Bool = true
+    var intDate: Int
     
     
     
@@ -23,6 +24,13 @@ public class Game: Codable{
         self.date = date
         sets = [ASet]()
         self.publicGame = publicGame
+    
+
+        // convert Date to TimeInterval (typealias for Double)
+        let timeInterval = self.date.timeIntervalSince1970
+
+        // convert to Integer
+        intDate = Int(self.date.timeIntervalSince1970)
         //uid = ""
         
     }
@@ -31,8 +39,16 @@ public class Game: Codable{
         teams = dict["teams"] as! [String]
         setWins = dict["setWins"] as! [Int]
         
+        if let inD = dict["intDate"] as? Int
+        {
+        intDate = inD
+        date = Date(timeIntervalSince1970: TimeInterval(intDate))
+        }
+        else
+        {
+        
         let formatter1 = DateFormatter()
-        formatter1.dateFormat
+        
         //formatter1.locale = Locale(identifier: "en_US_POSIX")
         //formatter1.timeZone = .autoupdatingCurrent
         formatter1.dateFormat = "MM/dd/yy HH:mm aa"
@@ -40,22 +56,29 @@ public class Game: Codable{
         let timeString = dict["time"] as! String
         print("\(dateString) \(timeString)")
         let fullDate = "\(dateString) \(timeString)"
-        if let d = formatter1.date(from: fullDate){
+            
+        if let d = formatter1.date(from: fullDate)
+        {
         date = d
-            
-            
+            intDate = Int(self.date.timeIntervalSince1970)
+
+
             let dateFormatter = DateFormatter()
             //dateFormatter.dateFormat = "MM/D/YY"
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .short
-            
+
             let convertedDate = dateFormatter.string(from: date)
             print(convertedDate)
 
         }
         else{
             print("Error Reading date")
-            date = Date()}
+            date = Date()
+            intDate = Int(self.date.timeIntervalSince1970)
+
+        }
+        }
         
         sets = [ASet]()
         uid = key
@@ -89,7 +112,7 @@ public class Game: Codable{
         let timeString = formatter1.string(from: date)
         
         let ref = Database.database().reference()
-        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "publicGame": publicGame] as [String : Any]
+        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "publicGame": publicGame, "intDate": intDate] as [String : Any]
        
         
         let gameRef = ref.child("games").childByAutoId()
@@ -117,7 +140,7 @@ public class Game: Codable{
         let timeString = formatter1.string(from: date)
         
         var ref = Database.database().reference().child("games").child(uid!)
-        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString] as [String : Any]
+        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "intDate": intDate] as [String : Any]
         
         ref.updateChildValues(dict)
         ref = ref.child("sets")
