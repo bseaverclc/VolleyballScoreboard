@@ -69,6 +69,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var blueErrorPct: UILabel!
     @IBOutlet weak var blueSvErrorPct: UILabel!
     
+    
+    @IBOutlet weak var redEarnedPct: UILabel!
+    @IBOutlet weak var redUnearnedPct: UILabel!
+    @IBOutlet weak var blueUnearnedPct: UILabel!
+    @IBOutlet weak var blueEarnedPct: UILabel!
+    
     @IBOutlet weak var statsHorizontalStackView: UIStackView!
     @IBOutlet weak var redStackView: UIStackView!
     @IBOutlet weak var blueStackView: UIStackView!
@@ -836,7 +842,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             redBlockPct.text = "\(Int(round(Double(set.redStats["Block"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
             redErrorPct.text = "\(Int(round(Double(set.redStats["Opponent Err"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
             redSvErrorPct.text = "\(Int(round(Double(set.redStats["Opponent Serve Err"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
-            
+            redEarnedPct.text = "\(Int(round(Double(set.redStats["Ace"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Kill"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Block"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
+            redUnearnedPct.text = "\(Int(round(Double(set.redStats["Opponent Err"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Opponent Serve Err"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
         }
         else{
             redAcePct.text = "0%"
@@ -844,6 +851,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             redBlockPct.text = "0%"
             redErrorPct.text = "0%"
             redSvErrorPct.text = "0%"
+            redEarnedPct.text = "0%"
+            redUnearnedPct.text = "0%"
         }
         
         
@@ -853,6 +862,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             blueBlockPct.text = "\(Int(round(Double(set.blueStats["Block"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
             blueErrorPct.text = "\(Int(round(Double(set.blueStats["Opponent Err"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
             blueSvErrorPct.text = "\(Int(round(Double(set.blueStats["Opponent Serve Err"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
+            blueEarnedPct.text = "\(Int(round(Double(set.blueStats["Ace"]!)/Double(set.blueStats["blueScore"]!)*100.0 + Double(set.blueStats["Kill"]!)/Double(set.blueStats["blueScore"]!)*100.0 + Double(set.blueStats["Block"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
+            blueUnearnedPct.text = "\(Int(round(Double(set.blueStats["Opponent Err"]!)/Double(set.blueStats["blueScore"]!)*100.0 + Double(set.blueStats["Opponent Serve Err"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
             
         }
         else{
@@ -861,6 +872,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             blueBlockPct.text = "0%"
             blueErrorPct.text = "0%"
             blueSvErrorPct.text = "0%"
+            blueEarnedPct.text = "0%"
+            blueUnearnedPct.text = "0%"
         }
         
         
