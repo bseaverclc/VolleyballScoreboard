@@ -51,9 +51,9 @@ class CrazyCell: UITableViewCell
         let convertedDate = dateFormatter.string(from: game.date)
         // switched time and date outlet to show date in middle temporarily until time works
         dateOutlet.text = "\(convertedDate)"
-        //dateFormatter.timeZone = .autoupdatingCurrent
+        dateFormatter.timeZone = .autoupdatingCurrent
         let TimeFormatter = DateFormatter()
-       // TimeFormatter.timeZone = .autoupdatingCurrent
+        TimeFormatter.timeZone = .autoupdatingCurrent
        TimeFormatter.timeStyle = .short
         TimeFormatter.dateStyle = .none
         
