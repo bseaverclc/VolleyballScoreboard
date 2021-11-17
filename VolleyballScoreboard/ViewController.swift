@@ -57,7 +57,17 @@ class AppData{
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var redAcePct: UILabel!
+    @IBOutlet weak var redKillPct: UILabel!
+    @IBOutlet weak var redBlockPct: UILabel!
+    @IBOutlet weak var redErrorPct: UILabel!
+    @IBOutlet weak var redSvErrorPct: UILabel!
     
+    @IBOutlet weak var blueActPct: UILabel!
+    @IBOutlet weak var blueKillPct: UILabel!
+    @IBOutlet weak var blueBlockPct: UILabel!
+    @IBOutlet weak var blueErrorPct: UILabel!
+    @IBOutlet weak var blueSvErrorPct: UILabel!
     
     @IBOutlet weak var statsHorizontalStackView: UIStackView!
     @IBOutlet weak var redStackView: UIStackView!
@@ -487,7 +497,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
      
-                
+               updatePercents()
             }
         }
     
@@ -527,6 +537,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
+       updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
@@ -570,6 +581,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if AppData.canEdit{
         set.redStats["redScore"]! += 1
         sender.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+            updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
@@ -580,6 +592,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if AppData.canEdit{
         set.blueStats["blueScore"]! += 1
             sender.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+            updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
@@ -628,6 +641,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+            updatePercents()
             if game.publicGame{
             game.updateFirebase()
             }
@@ -650,6 +664,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                   }
               }
           }
+            updatePercents()
+            if game.publicGame{
+            game.updateFirebase()
+            }
+            
         }
     }
     
@@ -764,6 +783,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func increaseRedScore(){
         set.redStats["redScore"]! += 1
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+        updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
@@ -772,6 +792,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func increaseBlueScore(){
         set.blueStats["blueScore"]! += 1
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+        updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
@@ -781,6 +802,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if set.redStats["redScore"]! > 0{
         set.redStats["redScore"]! -= 1
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+            updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
@@ -791,6 +813,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if set.blueStats["blueScore"]! > 0{
         set.blueStats["blueScore"]! -= 1
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+            updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
@@ -803,6 +826,43 @@ class ViewController: UIViewController, UITextFieldDelegate {
         set = game.sets[sender.selectedSegmentIndex]
         print(set.redStats)
         updateScreen()
+        
+    }
+    
+    func updatePercents(){
+        if set.redStats["redScore"]! != 0{
+            redAcePct.text = "\(Int(round(Double(set.redStats["Ace"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
+            redKillPct.text = "\(Int(round(Double(set.redStats["Kill"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
+            redBlockPct.text = "\(Int(round(Double(set.redStats["Block"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
+            redErrorPct.text = "\(Int(round(Double(set.redStats["Opponent Err"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
+            redSvErrorPct.text = "\(Int(round(Double(set.redStats["Opponent Serve Err"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
+            
+        }
+        else{
+            redAcePct.text = "0%"
+            redKillPct.text = "0%"
+            redBlockPct.text = "0%"
+            redErrorPct.text = "0%"
+            redSvErrorPct.text = "0%"
+        }
+        
+        
+        if set.blueStats["blueScore"]! != 0{
+            blueActPct.text = "\(Int(round(Double(set.blueStats["Ace"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
+            blueKillPct.text = "\(Int(round(Double(set.blueStats["Kill"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
+            blueBlockPct.text = "\(Int(round(Double(set.blueStats["Block"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
+            blueErrorPct.text = "\(Int(round(Double(set.blueStats["Opponent Err"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
+            blueSvErrorPct.text = "\(Int(round(Double(set.blueStats["Opponent Serve Err"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
+            
+        }
+        else{
+            blueActPct.text = "0%"
+            blueKillPct.text = "0%"
+            blueBlockPct.text = "0%"
+            blueErrorPct.text = "0%"
+            blueSvErrorPct.text = "0%"
+        }
+        
         
     }
     
