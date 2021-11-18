@@ -213,7 +213,7 @@
                                                                         <color key="backgroundColor" red="0.8403320312" green="0.192199707" blue="0.3156738281" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <gestureRecognizers/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="75"/>
-                                                                        <state key="normal" title="0">
+                                                                        <state key="normal" title="28">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                         <connections>
@@ -270,6 +270,9 @@
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="zZp-8d-7lw" firstAttribute="width" secondItem="0jL-qM-Zsp" secondAttribute="width" multiplier="0.568254" id="NCf-6T-oXE"/>
+                                                        </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ll4-VF-tZ3">
                                                         <rect key="frame" x="0.0" y="285" width="157.5" height="143"/>
@@ -560,6 +563,9 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="Mxa-iY-B2l" firstAttribute="width" secondItem="Jzb-kz-oV7" secondAttribute="width" multiplier="0.568254" id="Cqc-U8-wNL"/>
+                                                        </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-1L-zP0">
                                                         <rect key="frame" x="0.0" y="285" width="157.5" height="143"/>
