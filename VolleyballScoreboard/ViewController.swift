@@ -122,6 +122,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func statsAction(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "statsSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nvc = segue.destination as! StatsViewController
+        nvc.theGame = game
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
