@@ -83,7 +83,7 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.tabBarController!
-            vc.selectedIndex = 0
+            vc.selectedIndex = 1
         AppData.selectedGame = AppData.allGames[indexPath.row]
         AppData.canEdit = false
     }

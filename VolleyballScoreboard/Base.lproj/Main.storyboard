@@ -9,6 +9,49 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Home-->
+        <scene sceneID="93U-10-DNM">
+            <objects>
+                <viewController id="RqV-Ef-RC3" customClass="HomeViewController" customModule="VolleyballScoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GGe-fA-XzB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Easy Volleyball Scoreboard" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYm-Xa-LbB">
+                                <rect key="frame" x="57" y="42" width="206" height="73"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mz9-ek-Z2H">
+                                <rect key="frame" x="113" y="268.5" width="94.5" height="31"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="New Game" cornerStyle="large">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="newGameAction:" destination="RqV-Ef-RC3" eventType="touchUpInside" id="NlA-3S-VD4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kH4-JY-Iav"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <constraints>
+                            <constraint firstItem="Mz9-ek-Z2H" firstAttribute="centerY" secondItem="GGe-fA-XzB" secondAttribute="centerY" id="OQj-3d-fBi"/>
+                            <constraint firstItem="kH4-JY-Iav" firstAttribute="trailing" secondItem="nYm-Xa-LbB" secondAttribute="trailing" constant="57" id="Rec-5b-k22"/>
+                            <constraint firstItem="nYm-Xa-LbB" firstAttribute="leading" secondItem="kH4-JY-Iav" secondAttribute="leading" constant="57" id="Ykq-ca-f3E"/>
+                            <constraint firstItem="nYm-Xa-LbB" firstAttribute="top" secondItem="kH4-JY-Iav" secondAttribute="top" constant="42" id="neS-GD-HAK"/>
+                            <constraint firstItem="Mz9-ek-Z2H" firstAttribute="centerX" secondItem="GGe-fA-XzB" secondAttribute="centerX" id="xDL-x4-p6e"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="kpM-wQ-DGZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3YB-9A-dkh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1586.25" y="975"/>
+        </scene>
         <!--Scoreboard-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -109,7 +152,7 @@
                                                                                     <outletCollection property="gestureRecognizers" destination="bQZ-I2-5o4" appends="YES" id="ikq-5e-bAc"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ2-Dd-1Pd">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ2-Dd-1Pd">
                                                                                 <rect key="frame" x="0.0" y="56" width="60" height="17"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                 <nil key="textColor"/>
@@ -146,7 +189,7 @@
                                                                                     <outletCollection property="gestureRecognizers" destination="3gu-h7-7o3" appends="YES" id="FOs-p3-HzE"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIN-4I-gvJ">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIN-4I-gvJ">
                                                                                 <rect key="frame" x="0.0" y="56" width="60" height="17"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                 <nil key="textColor"/>
@@ -183,7 +226,7 @@
                                                                                     <outletCollection property="gestureRecognizers" destination="RpH-Ca-gaJ" appends="YES" id="w7w-Os-Lya"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZ0-LG-OaQ">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZ0-LG-OaQ">
                                                                                 <rect key="frame" x="0.0" y="56" width="60" height="17"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                 <nil key="textColor"/>
@@ -295,7 +338,7 @@
                                                                             <outletCollection property="gestureRecognizers" destination="ceb-00-co1" appends="YES" id="Mux-vo-b4v"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaJ-1g-JPp">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaJ-1g-JPp">
                                                                         <rect key="frame" x="0.0" y="50.5" width="157.5" height="17"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                         <nil key="textColor"/>
@@ -331,7 +374,7 @@
                                                                             <outletCollection property="gestureRecognizers" destination="3bO-f8-Nba" appends="YES" id="Huu-Z1-MM8"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpI-q8-Jfa">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpI-q8-Jfa">
                                                                         <rect key="frame" x="0.0" y="50.5" width="157.5" height="17"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                         <nil key="textColor"/>
@@ -470,7 +513,7 @@
                                                                                     <outletCollection property="gestureRecognizers" destination="vcD-EL-gj2" appends="YES" id="Exi-pg-B3N"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sls-93-IiV">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sls-93-IiV">
                                                                                 <rect key="frame" x="0.0" y="56" width="60" height="17"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                 <nil key="textColor"/>
@@ -506,7 +549,7 @@
                                                                                     <outletCollection property="gestureRecognizers" destination="tGm-Nt-ejd" appends="YES" id="tzp-P4-9sV"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtY-Fd-M3H">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtY-Fd-M3H">
                                                                                 <rect key="frame" x="0.0" y="56" width="60" height="17"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                 <nil key="textColor"/>
@@ -542,7 +585,7 @@
                                                                                     <outletCollection property="gestureRecognizers" destination="K6p-zh-0xZ" appends="YES" id="TGh-ar-uij"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwZ-rd-tna">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwZ-rd-tna">
                                                                                 <rect key="frame" x="0.0" y="56" width="60" height="17"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                                 <nil key="textColor"/>
@@ -588,7 +631,7 @@
                                                                             <outletCollection property="gestureRecognizers" destination="noF-Rs-ahi" appends="YES" id="EJv-ST-Hjc"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBo-sH-yvL">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBo-sH-yvL">
                                                                         <rect key="frame" x="0.0" y="50.5" width="157.5" height="17"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                         <nil key="textColor"/>
@@ -624,7 +667,7 @@
                                                                             <outletCollection property="gestureRecognizers" destination="3v4-bE-neu" appends="YES" id="irU-3Y-s8o"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jG7-pk-j0W">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jG7-pk-j0W">
                                                                         <rect key="frame" x="0.0" y="50.5" width="157.5" height="17"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                         <nil key="textColor"/>
@@ -752,7 +795,7 @@
                         <outletCollection property="blueStatsOutlet" destination="RF4-hd-n3x" collectionClass="NSMutableArray" id="Fe3-aB-Pnc"/>
                         <outletCollection property="blueStatsOutlet" destination="Jan-6R-fZi" collectionClass="NSMutableArray" id="LK9-Kk-ksK"/>
                         <outletCollection property="blueStatsOutlet" destination="qTn-z8-1XT" collectionClass="NSMutableArray" id="lxl-De-2s3"/>
-                        <segue destination="wqz-7V-8tN" kind="presentation" identifier="statsSegue" id="aAf-Ex-lEG"/>
+                        <segue destination="wqz-7V-8tN" kind="show" identifier="statsSegue" id="aAf-Ex-lEG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -851,23 +894,24 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebn-Wv-fiJ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="96" height="41"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpi-RM-cNI">
                                                                     <rect key="frame" x="96" y="0.0" width="96" height="41"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blue Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFX-73-Byt">
                                                                     <rect key="frame" x="192" y="0.0" width="96" height="41"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MsE-HU-4PL">
                                                             <rect key="frame" x="0.0" y="41" width="288" height="40.5"/>
@@ -993,7 +1037,7 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Errors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-Yg-2uy">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Errors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-Yg-2uy">
                                                                     <rect key="frame" x="96" y="9" width="96" height="23"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                     <nil key="textColor"/>
@@ -1076,6 +1120,7 @@
                             <constraint firstItem="RPb-po-dhK" firstAttribute="bottom" secondItem="eIU-Zt-irW" secondAttribute="bottom" id="yLg-Dh-rpP"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="hJx-KG-iOr"/>
                     <connections>
                         <outlet property="tableview" destination="eIU-Zt-irW" id="xCV-zu-cFH"/>
                     </connections>
@@ -1580,6 +1625,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="RqV-Ef-RC3" kind="relationship" relationship="viewControllers" id="4QX-gj-O5j"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="KHU-Dl-KmX"/>
                         <segue destination="p0k-cU-Sbq" kind="relationship" relationship="viewControllers" id="0gX-kG-8FN"/>
                         <segue destination="S5t-Nu-1o6" kind="relationship" relationship="viewControllers" id="uar-Xs-vhZ"/>
@@ -1593,6 +1639,7 @@
     <resources>
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="folder.fill" catalog="system" width="128" height="97"/>
+        <image name="house" catalog="system" width="128" height="106"/>
         <image name="tablecells" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
