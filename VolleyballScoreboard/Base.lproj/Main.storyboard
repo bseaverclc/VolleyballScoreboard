@@ -1950,6 +1950,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="pq9-hQ-0Fb"/>
                     <connections>
+                        <outlet property="blueTeamOutlet" destination="lVp-2p-7nd" id="EQX-iR-AxO"/>
+                        <outlet property="blueTeamRotationOutlet" destination="F3R-fs-VJ3" id="tB7-qK-qYP"/>
+                        <outlet property="redTeamOulet" destination="Iof-CW-Cnm" id="5Xa-8L-IHn"/>
+                        <outlet property="redTeamRotationOutlet" destination="1uO-oh-E71" id="9Ae-Hx-tsB"/>
                         <outlet property="tableViewOutlet" destination="Non-0o-xTp" id="3po-Um-zT0"/>
                         <outletCollection property="redRotationPlusMinusOutlets" destination="bxy-L6-vyw" collectionClass="NSMutableArray" id="mUf-F4-GdH"/>
                         <outletCollection property="redRotationPlusMinusOutlets" destination="Zl8-0B-yHI" collectionClass="NSMutableArray" id="Leh-Bp-bJM"/>

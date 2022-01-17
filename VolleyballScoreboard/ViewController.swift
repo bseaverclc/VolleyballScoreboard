@@ -131,6 +131,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "historySegue"{
             let nvc = segue.destination as! HistoryViewController
             nvc.set = set
+            nvc.game = game
         }
         else{
         let nvc = segue.destination as! StatsViewController

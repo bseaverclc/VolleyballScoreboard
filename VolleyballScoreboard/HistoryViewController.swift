@@ -11,6 +11,7 @@ import Foundation
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var set: ASet!
+    var game: Game!
     
     @IBOutlet weak var tableViewOutlet: UITableView!
     
@@ -18,12 +19,21 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet var blueRotationPlusMinusOutlets: [UILabel]!
     
+    @IBOutlet weak var redTeamOulet: UILabel!
+    @IBOutlet weak var blueTeamOutlet: UILabel!
+    @IBOutlet weak var redTeamRotationOutlet: UILabel!
     
+    @IBOutlet weak var blueTeamRotationOutlet: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
+        redTeamOulet.text = game.teams[0]
+        blueTeamOutlet.text = game.teams[1]
+        redTeamRotationOutlet.text = game.teams[0]
+        blueTeamRotationOutlet.text = game.teams[1]
+        
         var i = 0
         for label in redRotationPlusMinusOutlets{
             label.text = "\(set.redRotationPlusMinus[i])"
