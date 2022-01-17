@@ -23,6 +23,9 @@
 		D3583E21272F7FCE0067DE97 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E20272F7FCE0067DE97 /* GamesViewController.swift */; };
 		D3583E2B2730D2A60067DE97 /* CrazyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3583E2A2730D2A60067DE97 /* CrazyCell.swift */; };
 		D3CC3ED6278E6A2100E970B1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC3ED5278E6A2100E970B1 /* HomeViewController.swift */; };
+		D3F6C8712793079E00F5A11A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F6C8702793079E00F5A11A /* HistoryViewController.swift */; };
+		D3F6C8752793085200F5A11A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F6C8742793085200F5A11A /* HistoryCell.swift */; };
+		D3F6C87727930A7E00F5A11A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F6C87627930A7E00F5A11A /* Point.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		D3583E20272F7FCE0067DE97 /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		D3583E2A2730D2A60067DE97 /* CrazyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrazyCell.swift; sourceTree = "<group>"; };
 		D3CC3ED5278E6A2100E970B1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D3F6C8702793079E00F5A11A /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		D3F6C8742793085200F5A11A /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		D3F6C87627930A7E00F5A11A /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		ECF54B632198C2B95F2ED8EC /* Pods-VolleyballScoreboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolleyballScoreboard.release.xcconfig"; path = "Target Support Files/Pods-VolleyballScoreboard/Pods-VolleyballScoreboard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +99,9 @@
 				D3244E1427296F07000D7D26 /* SceneDelegate.swift */,
 				D3244E1627296F07000D7D26 /* ViewController.swift */,
 				D3244E1827296F07000D7D26 /* Main.storyboard */,
+				D3F6C8702793079E00F5A11A /* HistoryViewController.swift */,
+				D3F6C8742793085200F5A11A /* HistoryCell.swift */,
+				D3F6C87627930A7E00F5A11A /* Point.swift */,
 				D3CC3ED5278E6A2100E970B1 /* HomeViewController.swift */,
 				D3014A49278D2AC9009D989F /* StatsViewController.swift */,
 				D3583E2A2730D2A60067DE97 /* CrazyCell.swift */,
@@ -236,6 +245,9 @@
 				D3244E1727296F07000D7D26 /* ViewController.swift in Sources */,
 				D346CD792734D22A00A6F91C /* MyGamesController.swift in Sources */,
 				D3583E1E272E133F0067DE97 /* Game.swift in Sources */,
+				D3F6C8752793085200F5A11A /* HistoryCell.swift in Sources */,
+				D3F6C87727930A7E00F5A11A /* Point.swift in Sources */,
+				D3F6C8712793079E00F5A11A /* HistoryViewController.swift in Sources */,
 				D3244E1D27296F07000D7D26 /* VolleyballScoreboard.xcdatamodeld in Sources */,
 				D3583E2B2730D2A60067DE97 /* CrazyCell.swift in Sources */,
 				D3244E1327296F07000D7D26 /* AppDelegate.swift in Sources */,
@@ -399,7 +411,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = clc.VolleyballScoreboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -421,7 +433,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = clc.VolleyballScoreboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

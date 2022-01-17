@@ -163,6 +163,12 @@ public class ASet: Codable
    
     var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "redScore": 0]
     var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "blueScore": 0]
+    var pointHistory = [Point]()
+    var serve = "red"
+    var redRotation = 0
+    var blueRotation = 0
+    var redRotationPlusMinus = [0,0,0,0,0,0]
+    var blueRotationPlusMinus = [0,0,0,0,0,0]
 //    var redScore = 0
 //    var blueScore = 0
     var uid : String?

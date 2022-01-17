@@ -128,8 +128,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "historySegue"{
+            let nvc = segue.destination as! HistoryViewController
+            nvc.set = set
+        }
+        else{
         let nvc = segue.destination as! StatsViewController
         nvc.theGame = game
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -626,10 +632,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-  
-    
-    @IBAction func redStatAction(_ sender: UIButton) {
-        if AppData.canEdit{
+    func redStatActionReal(sender: UIButton){
         for (key,value) in set.redStats
         {
             if let title = sender.title(for: .normal)
@@ -638,7 +641,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 {
                     set.redStats[key]!+=1
                     sender.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
+                    let serve = set.serve;
+                    let redRotation = set.redRotation;
+                    let blueRotation = set.blueRotation;
                     increaseRedScore()
+                    set.pointHistory.append(Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
                 }
             }
         }
@@ -646,31 +653,56 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if game.publicGame{
             game.updateFirebase()
             }
+    }
+    
+    @IBAction func redStatAction(_ sender: UIButton) {
+        if AppData.canEdit{
+            if set.blueStats["blueScore"]! == 0 && set.redStats["redScore"] == 0{
+                setFirstServe(from: sender, who: "red")
+            }
+            else{
+                redStatActionReal(sender: sender)
+            }
+        
         }
         
     }
     
     @IBAction func blueStatAction(_ sender: UIButton) {
         if AppData.canEdit{
-          for (key,value) in set.blueStats
-          {
-              if let title = sender.title(for: .normal)
-              {
-                  if title.contains(key)
-                  {
-                      set.blueStats[key]!+=1
-                      sender.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
-                    increaseBlueScore()
-                    
-                  }
-              }
-          }
-            updatePercents()
-            if game.publicGame{
-            game.updateFirebase()
+            if set.blueStats["blueScore"]! == 0 && set.redStats["redScore"] == 0{
+                setFirstServe(from: sender, who: "blue")
             }
+            else{
+                blueStatActionReal(sender: sender)
+            }
+          
             
         }
+    }
+    
+    func blueStatActionReal(sender: UIButton){
+        for (key,value) in set.blueStats
+        {
+            if let title = sender.title(for: .normal)
+            {
+                if title.contains(key)
+                {
+                    set.blueStats[key]!+=1
+                    sender.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
+                    let serve = set.serve;
+                    let redRotation = set.redRotation;
+                    let blueRotation = set.blueRotation;
+                  increaseBlueScore()
+                    set.pointHistory.append(Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+                  
+                }
+            }
+        }
+          updatePercents()
+          if game.publicGame{
+          game.updateFirebase()
+          }
     }
     
     
@@ -782,7 +814,47 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func increaseRedScore(){
+        increaseRedScoreReal()
+        
+    }
+    
+    func increaseBlueScore(){
+        increaseBlueScoreReal()
+       
+    }
+    
+    func setFirstServe(from: UIButton, who : String){
+        let alert = UIAlertController(title: "Who served first?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "red", style: .default, handler: { alert in
+            self.set.serve = "red"
+            if who == "red"{
+            self.redStatActionReal(sender: from)
+            }
+            else{
+                self.blueStatActionReal(sender: from)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "blue", style: .default, handler: { alert in
+            self.set.serve = "blue"
+            if who == "red"{
+            self.redStatActionReal(sender: from)
+            }
+            else{
+                self.blueStatActionReal(sender: from)
+            }
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func increaseRedScoreReal(){
         set.redStats["redScore"]! += 1
+        set.redRotationPlusMinus[set.redRotation] += 1
+        set.blueRotationPlusMinus[set.blueRotation] -= 1
+        if set.serve != "red"
+        {
+            set.serve = "red"
+            set.redRotation = (set.redRotation + 1) % 6
+        }
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
         updatePercents()
         if game.publicGame{
@@ -790,14 +862,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func increaseBlueScore(){
+    func increaseBlueScoreReal(){
         set.blueStats["blueScore"]! += 1
+        set.blueRotationPlusMinus[set.blueRotation] += 1
+        set.redRotationPlusMinus[set.redRotation] -= 1
+        if set.serve != "blue"
+        {
+            set.serve = "blue"
+            set.blueRotation = (set.blueRotation + 1) % 6
+        }
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
         updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
     }
+    
+   
     
     func decreaseRedScore(){
         if set.redStats["redScore"]! > 0{
@@ -954,6 +1035,38 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //                print("printing events")
 //                print(dict2)
                 
+    }
+    
+    
+    @IBAction func undoAction(_ sender: Any) {
+        if let point = set.pointHistory.last{
+        set.serve = point.serve
+            set.blueRotation = point.blueRotation
+            set.redRotation = point.redRotation
+            if point.who == "red"{
+                
+                for (key,value) in set.redStats{
+                    if key == point.why{
+                        set.redStats[key]! -= 1
+                    }
+                }
+                decreaseRedScore()
+                
+            }
+            if point.who == "blue"{
+                
+                for (key,value) in set.blueStats{
+                    if key == point.why{
+                        set.blueStats[key]! -= 1
+                    }
+                }
+                decreaseBlueScore()
+                
+            }
+            updateScreen()
+            set.pointHistory.removeLast()
+            
+        }
     }
     
 }
