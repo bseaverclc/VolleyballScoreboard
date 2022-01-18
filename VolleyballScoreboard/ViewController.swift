@@ -102,6 +102,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var set : ASet!
     var game : Game!
     var first = true
+    var setNum = 1
     
     
     
@@ -131,6 +132,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "historySegue"{
             let nvc = segue.destination as! HistoryViewController
             nvc.set = set
+            nvc.setNum = setNum
             nvc.game = game
         }
         else{
@@ -165,6 +167,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         game = appGame
                         AppData.selectedGame = game
                         set = game.sets[0]
+                        setNum = 1
                         setSegmentedControlOutlet.selectedSegmentIndex = 0
                         DispatchQueue.main.async {
                             self.updateScreen()
@@ -176,6 +179,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 game = g
                 set = game.sets[0]
                 setSegmentedControlOutlet.selectedSegmentIndex = 0
+                setNum = 1
                 DispatchQueue.main.async {
                     self.updateScreen()
                 }
@@ -266,6 +270,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         game.sets.append(ASet())
         game.sets.append(ASet())
         set = game.sets[0]
+        setNum = 1
         self.setSegmentedControlOutlet.selectedSegmentIndex = 0
         AppData.canEdit = true
         AppData.selectedGame = game
@@ -907,7 +912,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func setChooserAction(_ sender: UISegmentedControl) {
         
         set = game.sets[sender.selectedSegmentIndex]
-        print(set.redStats)
+        setNum = sender.selectedSegmentIndex + 1
+       // print(set.redStats)
         updateScreen()
         
     }
@@ -1020,6 +1026,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if(g.uid == self.game.uid){
                     self.game = g
                     self.set = self.game.sets[self.setSegmentedControlOutlet.selectedSegmentIndex]
+                    self.setNum = self.setSegmentedControlOutlet.selectedSegmentIndex + 1
                     self.updateScreenFromFirebase()
                 }
                 }

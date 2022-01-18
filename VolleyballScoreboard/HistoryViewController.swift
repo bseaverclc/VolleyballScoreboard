@@ -11,8 +11,10 @@ import Foundation
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var set: ASet!
+    var setNum: Int!
     var game: Game!
     
+    @IBOutlet weak var setOutlet: UILabel!
     @IBOutlet weak var tableViewOutlet: UITableView!
     
     @IBOutlet var redRotationPlusMinusOutlets: [UILabel]!
@@ -29,6 +31,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
+        setOutlet.text = "Set \(setNum!)"
         redTeamOulet.text = game.teams[0]
         blueTeamOutlet.text = game.teams[1]
         redTeamRotationOutlet.text = game.teams[0]
