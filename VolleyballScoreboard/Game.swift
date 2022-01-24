@@ -86,8 +86,14 @@ public class Game: Codable{
         
     }
     
-    func addSet(key: String, dict: [String:Any] ){
-        sets.append(ASet(key: key, dict: dict))
+    func addSet(key: String, dict: [String:Any] ) -> ASet{
+        let createdSet = ASet(key: key, dict: dict)
+        sets.append(createdSet)
+        return createdSet
+    }
+    
+    func addSet(set: ASet){
+        sets.append(set)
     }
     
     func deleteFromFirebase(){
@@ -120,10 +126,21 @@ public class Game: Codable{
         gameRef.setValue(dict)
         
         for set in sets{
-            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats] as [String : Any]
+            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "serve": set.serve, "redRotation": set.redRotation, "blueRotation": set.blueRotation, "redRotationPlusMinus": set.redRotationPlusMinus, "blueRotationPlusMinus": set.blueRotationPlusMinus, "pointHistory": set.pointHistory ] as [String : Any]
+            //let setDict = ["redStats": set.redStats,"blueStats": set.blueStats] as [String : Any]
             let setsID = gameRef.child("sets").childByAutoId()
             set.uid = setsID.key
             setsID.setValue(setDict)
+            
+
+            
+            for point in set.pointHistory{
+                let setDict = ["serve": point.serve, "redRotation": point.redRotation, "blueRotation": point.blueRotation, "who": point.who, "why": point.why, "score": point.score] as [String: Any]
+                let pointRef = setsID.child("pointHistory").childByAutoId()
+                point.uid = pointRef.key!
+                pointRef.setValue(setDict)
+                //ref.child(point.uid).updateChildValues(setDict)
+            }
             
         }
         
@@ -146,8 +163,15 @@ public class Game: Codable{
         ref = ref.child("sets")
         
         for set in sets{
-            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats] as [String : Any]
+            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "serve": set.serve, "redRotation": set.redRotation, "blueRotation": set.blueRotation, "redRotationPlusMinus": set.redRotationPlusMinus, "blueRotationPlusMinus": set.blueRotationPlusMinus] as [String: Any]
             ref.child(set.uid!).updateChildValues(setDict)
+            
+            
+            for point in set.pointHistory{
+                let pointDict = ["serve": point.serve, "redRotation": point.redRotation, "blueRotation": point.blueRotation, "who": point.who, "why": point.why, "score": point.score] as [String: Any]
+                
+                ref.child(set.uid!).child("pointHistory").child(point.uid).updateChildValues(pointDict)
+            }
         
         }
         
@@ -163,12 +187,13 @@ public class ASet: Codable
    
     var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "redScore": 0]
     var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "blueScore": 0]
-    var pointHistory = [Point]()
+   
     var serve = "red"
     var redRotation = 0
     var blueRotation = 0
     var redRotationPlusMinus = [0,0,0,0,0,0]
     var blueRotationPlusMinus = [0,0,0,0,0,0]
+    var pointHistory = [Point]()
 //    var redScore = 0
 //    var blueScore = 0
     var uid : String?
@@ -182,11 +207,53 @@ public class ASet: Codable
         uid = key
         redStats = dict["redStats"] as! [String:Int]
         blueStats = dict["blueStats"] as! [String:Int]
+        if let s = dict["serve"] as? String{
+            serve = s
+        }
+        if let rr = dict["redRotation"] as? Int{
+            redRotation = rr
+        }
+        if let br = dict["blueRotation"] as? Int{
+            blueRotation = br
+        }
+        if let rrpm = dict["redRotationPlusMinus"] as? [Int]{
+            redRotationPlusMinus = rrpm
+        }
+        if let brpm = dict["blueRotationPlusMinus"] as? [Int]{
+            blueRotationPlusMinus = brpm
+        }
+//        if let ph = dict["pointHistory"] as? [Any]{
+//            //pointHistory = ph as! [Point]
+//            if let phd = ph as? [String: Any]{
+//                for point in phd{
+//                    
+//                }
+//            }
+//            print("got point history from Firebase")
+//        }
+//        else{
+//            print("making pointHistory from firebase did not work")
+//        }
 //        redScore = dict["redScore"] as! Int
 //        blueScore = dict["blueScore"] as! Int
         
      
       
+    }
+    
+    func addPoint(point: Point){
+        
+            
+        pointHistory.append(point)
+            let ref = Database.database().reference().child(uid!)
+        point.uid = ref.childByAutoId().key!
+            print("added point with key \(point.uid)")
+            //updateFirebase()
+        
+    }
+    
+    func addPoint(key: String, dict: [String: Any]){
+        pointHistory.append(Point(key: key, dict: dict))
     }
     
     

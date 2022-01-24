@@ -87,10 +87,24 @@ class HomeViewController: UIViewController {
 //                    }
 //                }
                 if add{
-                g.addSet(key: snapshot2.key, dict: dict2)
+                var theSet = g.addSet(key: snapshot2.key, dict: dict2)
                 //print("Added Event")
                 //print("\(a.first) \(a.events[a.events.count-1].name)")
+                    ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observe(.childAdded) { snapshot3 in
+                        guard let dict3 = snapshot3.value as? [String: Any]
+                        else{print("Error reading pointHistory Change from Firebase")
+                            return
+                        }
+                        theSet.addPoint(key: snapshot3.key, dict: dict3)
+                        print("Added a point from getGamesFromFirebase")
+                        
+                        
+                        
+                    }
+                    
                 }
+                
+                
                 
             }
             ref.removeObserver(withHandle: handle2)
@@ -148,8 +162,53 @@ class HomeViewController: UIViewController {
                     return
                 }
                 
-                g.addSet(key: snapshot2.key, dict: dict2)
+                var theSet = ASet(key: snapshot2.key, dict: dict2)
+                //var theSet2 = g.addSet(key: snapshot2.key, dict: dict2)
                 print("added a set from firebase change")
+                
+                ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observe(.childAdded) { snapshot3 in
+                    guard let dict3 = snapshot3.value as? [String: Any]
+                    else{print("Error reading pointHistory Change from Firebase")
+                        return
+                    }
+                    theSet.addPoint(key: snapshot3.key, dict: dict3)
+                    print("Added a point from gameChangedFirebase")
+                    
+                    
+                    
+                }
+                
+                ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observeSingleEvent(of: .value, with: { snapshot in
+                       print("--load has completed and the last point was read--")
+                    g.addSet(set: theSet)
+                    for i in 0..<AppData.allGames.count{
+                        if(AppData.allGames[i].uid == uid){
+                            AppData.allGames[i] = g
+                            
+                            print("addd changed game to AppData")
+                           // print("Who just won the point \(AppData.allGames[i].sets[0].pointHistory.last!.why)")
+                            break;
+                        }
+                    }
+                        
+                        for i in 0..<GamesViewController.filteredGames.count{
+                            if(GamesViewController.filteredGames[i].uid == uid){
+                                GamesViewController.filteredGames[i] = g
+                                print("addd changed game to gamesVC filteredGames")
+                                break;
+                            }
+                        }
+                    
+    //                if let ga = self.game{
+    //                if(g.uid == self.game.uid){
+    //                    self.game = g
+    //                    self.set = self.game.sets[self.setSegmentedControlOutlet.selectedSegmentIndex]
+    //                    self.updateScreenFromFirebase()
+    //                }
+    //                }
+                    
+                   })
+                
             })
         
             
