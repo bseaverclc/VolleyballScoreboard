@@ -1199,8 +1199,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 decreaseBlueScore()
                 
             }
+            if let guid = game.uid{
+            set.deletePointFromFirebase(gameUid: guid, euid: point.uid)
+            }
+            //set.pointHistory.removeLast()
             updateScreen()
-            set.pointHistory.removeLast()
             
         }
     }

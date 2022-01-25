@@ -256,6 +256,20 @@ public class ASet: Codable
         pointHistory.append(Point(key: key, dict: dict))
     }
     
+    func deletePointFromFirebase(gameUid: String, euid: String){
+        if let uia = uid{
+            pointHistory.removeLast()
+            print("Trying to remove point \(euid)")
+            Database.database().reference().child("games").child(gameUid).child("sets").child(uia).child("pointHistory").child(euid).removeValue()
+            //print(ref)
+        print("Point has been removed from Firebase")
+            
+        }
+        else{
+            print("Error Deleting Event! Event not in Firebase")
+        }
+    }
+    
     
 }
 
