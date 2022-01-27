@@ -175,6 +175,8 @@ public class Game: Codable{
         
         }
         
+      
+
         
         print("updating game in firebase")
     }
@@ -245,10 +247,14 @@ public class ASet: Codable
         
             
         pointHistory.append(point)
-            let ref = Database.database().reference().child(uid!)
+        if let ui = uid{
+        let ref = Database.database().reference().child(ui)
         point.uid = ref.childByAutoId().key!
             print("added point with key \(point.uid)")
+        }
+        
             //updateFirebase()
+        
         
     }
     

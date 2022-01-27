@@ -162,8 +162,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print("Game Did Appear")
         if let g = AppData.selectedGame {
             if g.publicGame{
+                var alive = false
                 for appGame in AppData.allGames{
                     if appGame.uid == g.uid{
+                        alive = true
                         game = appGame
                         AppData.selectedGame = game
                         set = game.sets[0]
@@ -173,6 +175,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             self.updateScreen()
                         }
                     }
+                }
+                if !alive{
+                    var alert = UIAlertController(title: "Error", message: "Game has been deleted online.  Please delete from My Games", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { alert in
+                        self.newGame()
+                    }))
+                    present(alert, animated: true, completion: nil)
                 }
             }
             else{
@@ -296,7 +305,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                            UserDefaults.standard.set(encoded, forKey: "myGames")
                        }
         
-        let alert = UIAlertController(title: "Create a New Game?", message: "Public Game: Everyone can view but only you can edit\n  Private Game: Only you can view and edit", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Create a New Game?", message: "Public Game: Everyone can view\n  Private Game: Only you can view", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Create Public Game", style: .default, handler: { a in
             self.createGame()
             self.game.publicGame = true
@@ -323,10 +332,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             AppData.canEdit = true
             AppData.myGames.append(self.game)
         }))
-//        alert.addAction(UIAlertAction(title: "View Public Games", style: .destructive, handler: { a in
-//            let vc = self.tabBarController!
-//                vc.selectedIndex = 2
-//        }))
+        alert.addAction(UIAlertAction(title: "View Public Games", style: .destructive, handler: { a in
+            let vc = self.tabBarController!
+                vc.selectedIndex = 2
+        }))
         present(alert, animated: true) {
             
         }
@@ -594,6 +603,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if AppData.canEdit{
         set.redStats["redScore"]! += 1
         sender.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+            
+            let serve = set.serve;
+            let redRotation = set.redRotation;
+            let blueRotation = set.blueRotation;
+           // increaseRedScore()
+            var point = Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)")
+            if game.publicGame{
+            set.addPoint(point: point )
+            }
+            else{
+                set.pointHistory.append(point)
+            }
+            
+            set.redRotationPlusMinus[set.redRotation] += 1
+            set.blueRotationPlusMinus[set.blueRotation] -= 1
+            if set.serve != "red"
+            {
+                set.serve = "red"
+                set.redRotation = (set.redRotation + 1) % 6
+            }
+            
+            
             updatePercents()
         if game.publicGame{
         game.updateFirebase()
@@ -605,6 +636,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if AppData.canEdit{
         set.blueStats["blueScore"]! += 1
             sender.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+            
+            let serve = set.serve;
+            let redRotation = set.redRotation;
+            let blueRotation = set.blueRotation;
+          //increaseBlueScore()
+            set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+            
+            set.blueRotationPlusMinus[set.blueRotation] += 1
+            set.redRotationPlusMinus[set.redRotation] -= 1
+            if set.serve != "blue"
+            {
+                set.serve = "blue"
+                set.blueRotation = (set.blueRotation + 1) % 6
+            }
+            
             updatePercents()
         if game.publicGame{
         game.updateFirebase()
@@ -651,7 +697,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
                     increaseRedScore()
-                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+                    var point = Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)")
+                    if game.publicGame{
+                    set.addPoint(point: point )
+                    }
+                    else{
+                        set.pointHistory.append(point)
+                    }
                     
                 }
             }
@@ -1176,7 +1228,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func undoAction(_ sender: Any) {
         if let point = set.pointHistory.last{
-        set.serve = point.serve
+            set.serve = point.serve
             set.blueRotation = point.blueRotation
             set.redRotation = point.redRotation
             if point.who == "red"{
@@ -1188,6 +1240,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
                 decreaseRedScore()
                 
+                set.redRotationPlusMinus[set.redRotation] -= 1
+                set.blueRotationPlusMinus[set.blueRotation] += 1
+                
             }
             if point.who == "blue"{
                 
@@ -1197,12 +1252,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
                 decreaseBlueScore()
+                set.redRotationPlusMinus[set.redRotation] += 1
+                set.blueRotationPlusMinus[set.blueRotation] -= 1
                 
             }
             if let guid = game.uid{
             set.deletePointFromFirebase(gameUid: guid, euid: point.uid)
             }
-            //set.pointHistory.removeLast()
+            else{
+            set.pointHistory.removeLast()
+            }
             updateScreen()
             
         }

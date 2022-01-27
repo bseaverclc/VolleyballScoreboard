@@ -74,6 +74,7 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         let vc = self.tabBarController!
             vc.selectedIndex = 1
         AppData.selectedGame = AppData.myGames[indexPath.row]
+        
         AppData.canEdit = true
     }
     
@@ -90,6 +91,7 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
                 }
                 AppData.myGames[indexPath.row].deleteFromFirebase()
                 AppData.myGames.remove(at: indexPath.row)
+                
 
                 
                 tableView.reloadData()

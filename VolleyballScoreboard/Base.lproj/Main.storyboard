@@ -821,62 +821,62 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="KjT-Ne-A6k">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="KjT-Ne-A6k">
                     <connections>
                         <action selector="redSubtractAction:" destination="BYZ-38-t0r" id="7ih-kU-p64"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="ewi-5X-6kd">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="ewi-5X-6kd">
                     <connections>
                         <action selector="blueSubtractAction:" destination="BYZ-38-t0r" id="2LZ-wn-RbY"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="bQZ-I2-5o4">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="bQZ-I2-5o4">
                     <connections>
                         <action selector="redAceSubtractAction:" destination="BYZ-38-t0r" id="eJL-MZ-alP"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="3gu-h7-7o3">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="3gu-h7-7o3">
                     <connections>
                         <action selector="redKillSubtractAction:" destination="BYZ-38-t0r" id="dtr-ee-0YO"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="RpH-Ca-gaJ">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="RpH-Ca-gaJ">
                     <connections>
                         <action selector="redBKLSubtractAction:" destination="BYZ-38-t0r" id="HDt-kB-ZbX"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="ceb-00-co1">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="ceb-00-co1">
                     <connections>
                         <action selector="redOppErrorSubtractAction:" destination="BYZ-38-t0r" id="lyA-ae-G35"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="3bO-f8-Nba">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="3bO-f8-Nba">
                     <connections>
                         <action selector="redOppServErrorSubtractAction:" destination="BYZ-38-t0r" id="ppL-H1-GAc"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="vcD-EL-gj2">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="vcD-EL-gj2">
                     <connections>
                         <action selector="blueAceSubtractAction:" destination="BYZ-38-t0r" id="J8N-JH-9P0"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="tGm-Nt-ejd">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="tGm-Nt-ejd">
                     <connections>
                         <action selector="blueKillSubtractAction:" destination="BYZ-38-t0r" id="qcp-kb-JdL"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="K6p-zh-0xZ">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="K6p-zh-0xZ">
                     <connections>
                         <action selector="blueBKLSubtractAction:" destination="BYZ-38-t0r" id="xTB-wo-VMN"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="noF-Rs-ahi">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="noF-Rs-ahi">
                     <connections>
                         <action selector="blueOppErrorSubtractAction:" destination="BYZ-38-t0r" id="gKU-6a-K5g"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="3v4-bE-neu">
+                <swipeGestureRecognizer enabled="NO" direction="left" id="3v4-bE-neu">
                     <connections>
                         <action selector="blueOppServErrorSubtractAction:" destination="BYZ-38-t0r" id="PgV-n0-1aA"/>
                     </connections>
@@ -1644,38 +1644,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siT-He-AHd">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="siT-He-AHd">
                                 <rect key="frame" x="0.0" y="10" width="320" height="22"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pipeline 17-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iof-CW-Cnm">
-                                        <rect key="frame" x="0.0" y="0.0" width="136" height="22"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pipeline 17-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iof-CW-Cnm">
+                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="22"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcZ-uk-IDC">
+                                        <rect key="frame" x="107.5" y="0.0" width="22.5" height="22"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqT-KT-CGA">
-                                        <rect key="frame" x="136" y="0.0" width="48" height="22"/>
+                                        <rect key="frame" x="132" y="0.0" width="57.5" height="22"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adversity 17-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVp-2p-7nd">
-                                        <rect key="frame" x="184" y="0.0" width="136" height="22"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2O-db-jJS">
+                                        <rect key="frame" x="191.5" y="0.0" width="22.5" height="22"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adversity 17-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lVp-2p-7nd">
+                                        <rect key="frame" x="216" y="0.0" width="104" height="22"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="KqT-KT-CGA" firstAttribute="width" secondItem="siT-He-AHd" secondAttribute="width" multiplier="0.15" id="JOS-5t-dgJ"/>
-                                    <constraint firstItem="lVp-2p-7nd" firstAttribute="width" secondItem="siT-He-AHd" secondAttribute="width" multiplier="0.425" id="Ln2-XW-pqZ"/>
-                                    <constraint firstItem="Iof-CW-Cnm" firstAttribute="width" secondItem="siT-He-AHd" secondAttribute="width" multiplier="0.425" id="ubO-Q0-wsU"/>
+                                    <constraint firstItem="U2O-db-jJS" firstAttribute="width" secondItem="siT-He-AHd" secondAttribute="width" multiplier="0.07" id="GdP-uk-g7F"/>
+                                    <constraint firstItem="KqT-KT-CGA" firstAttribute="width" secondItem="siT-He-AHd" secondAttribute="width" multiplier="0.18" id="JOS-5t-dgJ"/>
+                                    <constraint firstItem="WcZ-uk-IDC" firstAttribute="width" secondItem="siT-He-AHd" secondAttribute="width" multiplier="0.07" id="cWb-6K-Qn1"/>
+                                    <constraint firstItem="Iof-CW-Cnm" firstAttribute="width" secondItem="siT-He-AHd" secondAttribute="width" multiplier="0.33" id="ubO-Q0-wsU"/>
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Non-0o-xTp">
                                 <rect key="frame" x="0.0" y="37" width="320" height="424"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCell" rowHeight="53" id="S3Y-0S-B9v" customClass="HistoryCell" customModule="VolleyballScoreboard" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="320" height="53"/>
@@ -1684,47 +1703,51 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojK-BB-Civ">
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ojK-BB-Civ">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hk-qI-ySJ">
                                                             <rect key="frame" x="0.0" y="0.0" width="105.5" height="53"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvN-Es-MJh">
-                                                            <rect key="frame" x="105.5" y="0.0" width="22.5" height="53"/>
+                                                            <rect key="frame" x="107.5" y="0.0" width="22.5" height="53"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27-25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mr-HI-lil">
-                                                            <rect key="frame" x="128" y="0.0" width="64" height="53"/>
+                                                            <rect key="frame" x="132" y="0.0" width="57.5" height="53"/>
                                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coL-uG-KDR">
-                                                            <rect key="frame" x="192" y="0.0" width="22.5" height="53"/>
+                                                            <rect key="frame" x="191.5" y="0.0" width="22.5" height="53"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFo-t5-rAT">
-                                                            <rect key="frame" x="214.5" y="0.0" width="105.5" height="53"/>
+                                                            <rect key="frame" x="216" y="0.0" width="104" height="53"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="MFo-t5-rAT" firstAttribute="width" secondItem="ojK-BB-Civ" secondAttribute="width" multiplier="0.33" id="ach-rc-aWM"/>
                                                         <constraint firstItem="coL-uG-KDR" firstAttribute="width" secondItem="ojK-BB-Civ" secondAttribute="width" multiplier="0.07" id="d3V-eK-q9S"/>
                                                         <constraint firstItem="TvN-Es-MJh" firstAttribute="width" secondItem="ojK-BB-Civ" secondAttribute="width" multiplier="0.07" id="hO3-5C-oTP"/>
                                                         <constraint firstItem="2hk-qI-ySJ" firstAttribute="width" secondItem="ojK-BB-Civ" secondAttribute="width" multiplier="0.33" id="kST-ZK-NIK"/>
-                                                        <constraint firstItem="7mr-HI-lil" firstAttribute="width" secondItem="ojK-BB-Civ" secondAttribute="width" multiplier="0.2" id="uJ4-xI-TaB"/>
+                                                        <constraint firstItem="7mr-HI-lil" firstAttribute="width" secondItem="ojK-BB-Civ" secondAttribute="width" multiplier="0.18" id="uJ4-xI-TaB"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -1939,10 +1962,12 @@
                             <constraint firstItem="cxb-Gi-D0X" firstAttribute="bottom" secondItem="7eE-3e-eH2" secondAttribute="bottom" id="Jw8-zC-mZG"/>
                             <constraint firstItem="Non-0o-xTp" firstAttribute="trailing" secondItem="cxb-Gi-D0X" secondAttribute="trailing" id="LFK-tG-4A8"/>
                             <constraint firstItem="7eE-3e-eH2" firstAttribute="height" secondItem="hKu-Ei-PKN" secondAttribute="height" multiplier="0.15" id="QEs-dN-EEb"/>
+                            <constraint firstItem="siT-He-AHd" firstAttribute="leading" secondItem="cxb-Gi-D0X" secondAttribute="leading" id="dw0-Gk-j4C"/>
                             <constraint firstItem="7eE-3e-eH2" firstAttribute="top" secondItem="Non-0o-xTp" secondAttribute="bottom" constant="5" id="eMX-m2-6Qv"/>
                             <constraint firstItem="siT-He-AHd" firstAttribute="top" secondItem="cxb-Gi-D0X" secondAttribute="top" constant="10" id="qPg-H8-IaK"/>
                             <constraint firstItem="siT-He-AHd" firstAttribute="height" secondItem="hKu-Ei-PKN" secondAttribute="height" multiplier="0.040493" id="qUI-AW-c43"/>
                             <constraint firstItem="cxb-Gi-D0X" firstAttribute="trailing" secondItem="siT-He-AHd" secondAttribute="trailing" id="tHS-oR-za5"/>
+                            <constraint firstItem="siT-He-AHd" firstAttribute="trailing" secondItem="cxb-Gi-D0X" secondAttribute="trailing" id="vlM-L3-RoQ"/>
                             <constraint firstItem="Non-0o-xTp" firstAttribute="leading" secondItem="cxb-Gi-D0X" secondAttribute="leading" id="w5l-mk-h4g"/>
                             <constraint firstItem="Non-0o-xTp" firstAttribute="top" secondItem="siT-He-AHd" secondAttribute="bottom" constant="5" id="wpz-dh-MVo"/>
                             <constraint firstItem="7eE-3e-eH2" firstAttribute="leading" secondItem="cxb-Gi-D0X" secondAttribute="leading" id="xGu-PD-Xgw"/>
