@@ -349,6 +349,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func chooseNumSets(){
+        
+    }
+    
     
     
     func setSwipeDirection(){
