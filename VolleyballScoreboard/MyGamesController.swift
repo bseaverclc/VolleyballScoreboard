@@ -73,7 +73,12 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.tabBarController!
             vc.selectedIndex = 1
+        if filteredGames.count == 0{
         AppData.selectedGame = AppData.myGames[indexPath.row]
+        }
+        else{
+            AppData.selectedGame = filteredGames[indexPath.row]
+        }
         
         AppData.canEdit = true
     }

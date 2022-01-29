@@ -26,6 +26,10 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var redTeamRotationOutlet: UILabel!
     
     @IBOutlet weak var blueTeamRotationOutlet: UILabel!
+    override func viewWillAppear(_ animated: Bool) {
+        scrollToBottom()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +64,18 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             i+=1
         }
+        
+        
 
+    }
+    
+    func scrollToBottom(){
+        if(set.pointHistory.count != 0)
+            
+        {
+        let indexPath = IndexPath(item: set.pointHistory.count - 1, section: 0)
+        tableViewOutlet.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.bottom, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,6 +85,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! HistoryCell
         cell.configure(point: set.pointHistory[indexPath.row])
+        
         
         return cell
     }
