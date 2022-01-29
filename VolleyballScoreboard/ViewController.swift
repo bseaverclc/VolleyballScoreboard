@@ -599,8 +599,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func redAction(_ sender: UIButton) {
-        if AppData.canEdit{
+    func redActionReal(sender: UIButton)
+    {
         set.redStats["redScore"]! += 1
         sender.setTitle("\(set.redStats["redScore"]!)", for: .normal)
             
@@ -621,7 +621,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if set.serve != "red"
             {
                 set.serve = "red"
-                set.redRotation = (set.redRotation + 1) % 6
+                set.redRotation = (set.redRotation + 1)
+                if set.redRotation == 6{
+                    set.redRotation = 0
+                }
             }
             
             
@@ -629,11 +632,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
         game.updateFirebase()
         }
+    }
+    
+    @IBAction func redAction(_ sender: UIButton) {
+        if AppData.canEdit{
+            
+            if set.blueStats["blueScore"]! == 0 && set.redStats["redScore"]! == 0{
+                setFirstServeNoStats(from: sender, who: "red")
+            }
+            else{
+                redActionReal(sender: sender)
+            }
+            
+            
+        
         }
     }
     
-    @IBAction func blueAction(_ sender: UIButton) {
-        if AppData.canEdit{
+    func blueActionReal(sender: UIButton){
         set.blueStats["blueScore"]! += 1
             sender.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
             
@@ -648,13 +664,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if set.serve != "blue"
             {
                 set.serve = "blue"
-                set.blueRotation = (set.blueRotation + 1) % 6
+                set.blueRotation = (set.blueRotation + 1)
+                if set.blueRotation == 6{
+                    set.blueRotation = 0
+                }
             }
             
             updatePercents()
         if game.publicGame{
         game.updateFirebase()
         }
+    }
+    
+    
+    @IBAction func blueAction(_ sender: UIButton) {
+        if AppData.canEdit{
+            
+            if set.blueStats["blueScore"]! == 0 && set.redStats["redScore"]! == 0{
+                setFirstServeNoStats(from: sender, who: "blue")
+            }
+            else{
+                blueActionReal(sender: sender)
+            }
+            
+        
         }
     }
     
@@ -883,6 +916,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
        
     }
     
+    func setFirstServeNoStats(from: UIButton, who: String){
+        let alert = UIAlertController(title: "Who served first?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "red", style: .default, handler: { alert in
+            self.set.serve = "red"
+            if who == "red"{
+                self.redActionReal(sender: from)
+            }
+            else{
+                self.blueActionReal(sender: from)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "blue", style: .default, handler: { alert in
+            self.set.serve = "blue"
+            if who == "red"{
+                self.redActionReal(sender: from)
+            }
+            else{
+                self.blueActionReal(sender: from)
+            }
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
     func setFirstServe(from: UIButton, who : String){
         let alert = UIAlertController(title: "Who served first?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "red", style: .default, handler: { alert in
@@ -913,7 +969,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if set.serve != "red"
         {
             set.serve = "red"
-            set.redRotation = (set.redRotation + 1) % 6
+            set.redRotation = (set.redRotation + 1)
+            if set.redRotation == 6{
+                set.redRotation = 0
+            }
         }
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
         updatePercents()
@@ -929,7 +988,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if set.serve != "blue"
         {
             set.serve = "blue"
-            set.blueRotation = (set.blueRotation + 1) % 6
+            set.blueRotation = (set.blueRotation + 1)
+            if set.blueRotation == 6{
+                set.blueRotation = 0
+            }
         }
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
         updatePercents()
@@ -1227,6 +1289,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func undoAction(_ sender: Any) {
+        if AppData.canEdit{
         if let point = set.pointHistory.last{
             set.serve = point.serve
             set.blueRotation = point.blueRotation
@@ -1266,6 +1329,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
-    
+    }
 }
 

@@ -40,12 +40,24 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         var i = 0
         for label in redRotationPlusMinusOutlets{
             label.text = "\(set.redRotationPlusMinus[i])"
+            if set.redRotationPlusMinus[i] > 0{
+                label.backgroundColor = UIColor.green
+            }
+            else if set.redRotationPlusMinus[i] < 0{
+                label.backgroundColor = UIColor.red
+            }
             i+=1
         }
         
         i = 0
         for label in blueRotationPlusMinusOutlets{
             label.text = "\(set.blueRotationPlusMinus[i])"
+            if set.blueRotationPlusMinus[i] > 0{
+                label.backgroundColor = UIColor.green
+            }
+            else if set.blueRotationPlusMinus[i] < 0{
+                label.backgroundColor = UIColor.red
+            }
             i+=1
         }
 

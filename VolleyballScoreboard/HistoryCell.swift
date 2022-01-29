@@ -65,13 +65,17 @@ class HistoryCell: UITableViewCell {
         }
         redRotationOutlet.text = "\(point.redRotation + 1)"
         blueRotationOutlet.text = "\(point.blueRotation + 1)"
+        redRotationOutlet.backgroundColor = UIColor.white
+        blueRotationOutlet.backgroundColor = UIColor.white
         if point.serve == "red"{
             redRotationOutlet.text = "\(point.redRotation + 1)*"
+            redRotationOutlet.backgroundColor = UIColor.yellow
             blueRotationOutlet.text = "\(point.blueRotation + 1)"
         }
         else{
             redRotationOutlet.text = "\(point.redRotation + 1)"
             blueRotationOutlet.text = "\(point.blueRotation + 1)*"
+            blueRotationOutlet.backgroundColor = UIColor.yellow
         }
         
         scoreOutlet.text = point.score
