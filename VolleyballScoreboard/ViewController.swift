@@ -53,6 +53,7 @@ class AppData{
     static var myUIDs: [String] = []
     static var selectedColorButton = "red"
     static var canDelete = false
+    static var loadedData = false
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {
@@ -140,9 +141,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
         nvc.theGame = game
         }
     }
+    
+    @objc func functionName (notification: NSNotification){
+        if let g = game{
+            if let s = set{
+                for ga in AppData.allGames{
+                    if ga.uid == g.uid{
+                        game = ga
+                        for se in game.sets{
+                            if se.uid == set.uid{
+                                set = se;
+                            }
+                        }
+                        break;
+                    }
+                }
+                updateScreenFromFirebase()
+                print("observer happening and updating screen")
+            }
+        }
+        
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        NotificationCenter.default.addObserver(self, selector: #selector(functionName), name: Notification.Name("notifyScreenChange"), object: nil)
         //getGamesFromFirebase()
         //gameChangedInFirebase()
        // gameDeletedInFirebase()
@@ -489,6 +515,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateScreenFromFirebase(){
+        
         print("update Screen from firebase being called")
         if let s = set{
             if let g = game{

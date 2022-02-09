@@ -190,6 +190,8 @@ class HomeViewController: UIViewController {
                         if(AppData.allGames[i].uid == uid){
                             AppData.allGames[i] = g
                             
+                            NotificationCenter.default.post(name: Notification.Name("notifyScreenChange"), object: nil)
+                            
                             print("addd changed game to AppData")
                            // print("Who just won the point \(AppData.allGames[i].sets[0].pointHistory.last!.why)")
                             break;
@@ -218,7 +220,7 @@ class HomeViewController: UIViewController {
         
             
               // waits to happen when all things are read
-            ref.child("games").child(uid).child("sets").observeSingleEvent(of: .value, with: { snapshot in
+            ref.child("games").child(uid).observeSingleEvent(of: .value, with: { snapshot in
                    print("--load has completed and the last set was read--")
                 for i in 0..<AppData.allGames.count{
                     if(AppData.allGames[i].uid == uid){
@@ -244,10 +246,12 @@ class HomeViewController: UIViewController {
 //                }
 //                }
                 
+                
+                
                })
 
             
-        
+         
        
             
         }
