@@ -19,9 +19,11 @@ class HomeViewController: UIViewController {
         gameDeletedInFirebase()
         
         if let items = UserDefaults.standard.data(forKey: "myGames") {
+            print("number of items \(items.count)")
                         let decoder = JSONDecoder()
                         if let decoded = try? decoder.decode([Game].self, from: items) {
                             AppData.myGames = decoded
+                            print("number of my games \(AppData.myGames.count)")
                         }
            
                 }
@@ -30,6 +32,7 @@ class HomeViewController: UIViewController {
                         let decoder = JSONDecoder()
                         if let decoded = try? decoder.decode([String].self, from: items) {
                             AppData.myUIDs = decoded
+                            print("number of my uids \(AppData.myUIDs)")
                         }
            
                 }
@@ -96,7 +99,7 @@ class HomeViewController: UIViewController {
                             return
                         }
                         theSet.addPoint(key: snapshot3.key, dict: dict3)
-                        print("Added a point from getGamesFromFirebase")
+                        //print("Added a point from getGamesFromFirebase")
                         
                         
                         
@@ -116,15 +119,17 @@ class HomeViewController: UIViewController {
         
         ref.removeAllObservers()
         
-       
-        for u in AppData.myUIDs{
-            for g in AppData.allGames{
-                if u == g.uid{
-                    AppData.myGames.append(g)
-                    print("Added a public game to my games")
-                }
-            }
-        }
+//       print("About to add public games to my games")
+//        print("AppData.myUIDs count \(AppData.myUIDs.count)")
+//        print("AppData.allGames count \(AppData.allGames.count)")
+//        for u in AppData.myUIDs{
+//            for g in AppData.allGames{
+//                if u == g.uid{
+//                    AppData.myGames.append(g)
+//                    print("Added a public game to my games")
+//                }
+//            }
+//        }
     }
     
     func gameChangedInFirebase(){
@@ -172,7 +177,7 @@ class HomeViewController: UIViewController {
                         return
                     }
                     theSet.addPoint(key: snapshot3.key, dict: dict3)
-                    print("Added a point from gameChangedFirebase")
+                    print("Added a point from gameChangedInFirebase from HomeViewController")
                     
                     
                     

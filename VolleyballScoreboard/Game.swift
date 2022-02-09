@@ -190,19 +190,39 @@ public class ASet: Codable
     var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "redScore": 0]
     var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "blueScore": 0]
    
+//    var serve: String?
+//    var redRotation: Int?
+//    var blueRotation: Int?
+//    var redRotationPlusMinus: [Int]?
+//    var blueRotationPlusMinus : [Int]?
+//    var pointHistory : [Point]?
+//
+//    var redScore : Int?
+//    var blueScore : Int?
+    
     var serve = "red"
     var redRotation = 0
     var blueRotation = 0
     var redRotationPlusMinus = [0,0,0,0,0,0]
     var blueRotationPlusMinus = [0,0,0,0,0,0]
     var pointHistory = [Point]()
-//    var redScore = 0
-//    var blueScore = 0
+
+    var redScore = 0
+    var blueScore = 0
     var uid : String?
+    
     
     init()
     {
-        
+//         serve = "red"
+//         redRotation = 0
+//         blueRotation = 0
+//         redRotationPlusMinus = [0,0,0,0,0,0]
+//         blueRotationPlusMinus = [0,0,0,0,0,0]
+//         pointHistory = [Point]()
+//
+//         redScore = 0
+//         blueScore = 0
     }
     
     init(key: String, dict: [String:Any] ) {
@@ -224,6 +244,11 @@ public class ASet: Codable
         if let brpm = dict["blueRotationPlusMinus"] as? [Int]{
             blueRotationPlusMinus = brpm
         }
+        
+//        pointHistory = [Point]()
+//
+//        redScore = 0
+//        blueScore = 0
 //        if let ph = dict["pointHistory"] as? [Any]{
 //            //pointHistory = ph as! [Point]
 //            if let phd = ph as? [String: Any]{

@@ -20,6 +20,27 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         tableviewOutlet.dataSource = self
         tableviewOutlet.delegate = self
         searchOutlet.delegate = self
+        print("About to add public games to my games")
+         print("AppData.myUIDs count \(AppData.myUIDs.count)")
+         print("AppData.allGames count \(AppData.allGames.count)")
+         for u in AppData.myUIDs{
+             var found = false
+            for m in AppData.myGames{
+                if u == m.uid{
+                    found = true
+                    break
+                }
+            }
+             if !found{
+             for g in AppData.allGames{
+                 if u == g.uid{
+
+                     AppData.myGames.append(g)
+                     print("Added a public game to my games")
+                 }
+             }
+             }
+         }
 
     }
     

@@ -144,7 +144,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         ref = Database.database().reference()
         //getGamesFromFirebase()
-        gameChangedInFirebase()
+        //gameChangedInFirebase()
        // gameDeletedInFirebase()
         
         
@@ -216,6 +216,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        print("view did disappear")
         if let theGame = game{
             if theGame.publicGame{
         for i in 0 ..< AppData.myGames.count{
@@ -922,7 +923,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func setFirstServeNoStats(from: UIButton, who: String){
         let alert = UIAlertController(title: "Who served first?", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "red", style: .default, handler: { alert in
+        var red = "red"
+        var blue = "blue"
+        if redTextFieldOutlet.text!.count != 0{
+            red = redTextFieldOutlet.text!
+        }
+        if blueTextFieldOutlet.text!.count != 0{
+            blue = blueTextFieldOutlet.text!
+        }
+        alert.addAction(UIAlertAction(title: red, style: .default, handler: { alert in
             self.set.serve = "red"
             if who == "red"{
                 self.redActionReal(sender: from)
@@ -931,7 +940,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.blueActionReal(sender: from)
             }
         }))
-        alert.addAction(UIAlertAction(title: "blue", style: .default, handler: { alert in
+        alert.addAction(UIAlertAction(title: blue, style: .default, handler: { alert in
             self.set.serve = "blue"
             if who == "red"{
                 self.redActionReal(sender: from)
@@ -945,7 +954,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func setFirstServe(from: UIButton, who : String){
         let alert = UIAlertController(title: "Who served first?", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "red", style: .default, handler: { alert in
+        var red = "red"
+        var blue = "blue"
+        if redTextFieldOutlet.text!.count != 0{
+            red = redTextFieldOutlet.text!
+        }
+        if blueTextFieldOutlet.text!.count != 0{
+            blue = blueTextFieldOutlet.text!
+        }
+        alert.addAction(UIAlertAction(title: red, style: .default, handler: { alert in
             self.set.serve = "red"
             if who == "red"{
             self.redStatActionReal(sender: from)
@@ -954,7 +971,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.blueStatActionReal(sender: from)
             }
         }))
-        alert.addAction(UIAlertAction(title: "blue", style: .default, handler: { alert in
+        alert.addAction(UIAlertAction(title: blue, style: .default, handler: { alert in
             self.set.serve = "blue"
             if who == "red"{
             self.redStatActionReal(sender: from)
@@ -1128,7 +1145,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         return
                     }
                     theSet.addPoint(key: snapshot3.key, dict: dict3)
-                    print("Added a point from gameChangedFirebase")
+                    print("Added a point from gameChangedFirebase from ViewController")
                     
                     
                     
