@@ -73,9 +73,8 @@ class HomeViewController: UIViewController {
             AppData.allGames.append(g)
             //print("Added Athlete to allAthletes \(AppData.allAthletes[Data.allAthletes.count-1].first) ")
             }
-            for s in g.sets{
-                //print(e.name)
-            }
+        
+            
             handle2 = ref.child("games").child(uid).child("sets").observe(.childAdded) { (snapshot2) in
                 guard let dict2 = snapshot2.value as? [String:Any]
                 else{ print("Error")
@@ -161,7 +160,7 @@ class HomeViewController: UIViewController {
 //
 //
             ref.child("games").child(uid).child("sets").observe(.childAdded, with: { (snapshot2) in
-  
+                
                 guard let dict2 = snapshot2.value as? [String:Any]
                 else{ print("Error")
                     return
@@ -177,7 +176,7 @@ class HomeViewController: UIViewController {
                         return
                     }
                     theSet.addPoint(key: snapshot3.key, dict: dict3)
-                    print("Added a point from gameChangedInFirebase from HomeViewController")
+                    //print("Added a point from gameChangedInFirebase from HomeViewController")
                     
                     
                     
