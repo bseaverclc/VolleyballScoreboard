@@ -188,13 +188,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print("Game Did Appear")
         if let g = AppData.selectedGame {
             if g.publicGame{
+                print("public game")
                 var alive = false
                 for appGame in AppData.allGames{
                     if appGame.uid == g.uid{
+                        print("found the game")
                         alive = true
                         game = appGame
                         AppData.selectedGame = game
                         set = game.sets[0]
+                        print(set.redStats["redScore"]!)
                         setNum = 1
                         setSegmentedControlOutlet.selectedSegmentIndex = 0
                         DispatchQueue.main.async {
@@ -226,6 +229,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
         else{
+            print("creating a newGame")
             game = nil
             set = nil
             newGame()
@@ -250,6 +254,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 AppData.myGames[i] = theGame
             }
         }
+                for i in 0 ..< AppData.allGames.count{
+                    if AppData.allGames[i].uid == theGame.uid{
+                        AppData.allGames[i] = theGame
+                    }
+                }
             AppData.selectedGame = theGame
         }
         }
@@ -601,12 +610,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
+    
     @IBAction func saveAction(_ sender: UIButton) {
         var errorMessage = "You don't have edit/save rights"
         var errorTitle = "Fail!"
         if AppData.canEdit{
             if game.publicGame{
         game.updateFirebase()
+                
+                
+                
+                
                 errorTitle = "Success!"
                 errorMessage = "Game has been saved"
                 let alert = UIAlertController(title: "Success!", message: "Game has been saved", preferredStyle: .alert)

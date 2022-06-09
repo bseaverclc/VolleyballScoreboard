@@ -148,6 +148,11 @@ class HomeViewController: UIViewController {
                 return
             }
             
+            if let selgame = AppData.selectedGame{
+                if selgame.uid == uid && AppData.canEdit{
+                    return
+                }
+            }
             
             let g = Game(key: uid, dict: dict)
             

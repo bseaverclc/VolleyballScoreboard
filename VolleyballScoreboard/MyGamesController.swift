@@ -23,31 +23,33 @@ class MyGamesController:  UIViewController, UITableViewDelegate, UITableViewData
         print("About to add public games to my games")
          print("AppData.myUIDs count \(AppData.myUIDs.count)")
          print("AppData.allGames count \(AppData.allGames.count)")
-         for u in AppData.myUIDs{
-             var found = false
-            for m in AppData.myGames{
-                if u == m.uid{
-                    found = true
-                    break
-                }
-            }
-             if !found{
-             for g in AppData.allGames{
-                 if u == g.uid{
-
-                     AppData.myGames.append(g)
-                     print("Added a public game to my games")
-                 }
-             }
-             }
-         }
+         
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        for u in AppData.myUIDs{
+            var found = false
+           for m in AppData.myGames{
+               if u == m.uid{
+                   found = true
+                   break
+               }
+           }
+            if !found{
+            for g in AppData.allGames{
+                if u == g.uid{
+
+                    AppData.myGames.append(g)
+                    print("Added a public game to my games")
+                }
+            }
+            }
+        }
         
         AppData.myGames = AppData.myGames.sorted(by: {
             $0.date.compare($1.date) == .orderedDescending})
+        print("ViewDidAppear done sorting")
         tableviewOutlet.reloadData()
     }
     
