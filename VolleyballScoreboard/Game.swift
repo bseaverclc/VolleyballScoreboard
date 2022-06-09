@@ -163,7 +163,7 @@ public class Game: Codable{
         ref = ref.child("sets")
         
         for set in sets{
-            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "serve": set.serve, "redRotation": set.redRotation, "blueRotation": set.blueRotation, "redRotationPlusMinus": set.redRotationPlusMinus, "blueRotationPlusMinus": set.blueRotationPlusMinus] as [String: Any]
+            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "serve": set.serve, "redRotation": set.redRotation, "blueRotation": set.blueRotation, "redRotationPlusMinus": set.redRotationPlusMinus, "blueRotationPlusMinus": set.blueRotationPlusMinus, "redAttack": set.redAttack, "redOne": set.redOne, "redTwo": set.redTwo, "redThree": set.redThree] as [String: Any]
             ref.child(set.uid!).updateChildValues(setDict)
             
             
@@ -187,7 +187,7 @@ public class Game: Codable{
 public class ASet: Codable
 {
    
-    var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "redScore": 0]
+    var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "redScore": 0, "Attack Err": 0]
     var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "blueScore": 0]
    
 //    var serve: String?
@@ -209,7 +209,13 @@ public class ASet: Codable
 
     var redScore = 0
     var blueScore = 0
+    
     var uid : String?
+    
+    var redAttack = 0
+    var redOne = 0
+    var redTwo = 0
+    var redThree = 0
     
     
     init()
@@ -244,6 +250,20 @@ public class ASet: Codable
         if let brpm = dict["blueRotationPlusMinus"] as? [Int]{
             blueRotationPlusMinus = brpm
         }
+        if let ra = dict["redAttack"] as? Int{
+            redAttack = ra
+        }
+        if let rone = dict["redOne"] as? Int{
+            redOne = rone
+        }
+        if let rtwo = dict["redTwo"] as? Int{
+            redTwo = rtwo
+        }
+        if let rthree = dict["redThree"] as? Int{
+            redThree = rthree
+        }
+        
+    
         
 //        pointHistory = [Point]()
 //
