@@ -62,12 +62,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
    
     @IBOutlet weak var redAttackOutlet: UIButton!
     
+    @IBOutlet weak var blueAttackOutlet: UIButton!
     
     @IBOutlet weak var redOneLabel: UILabel!
     @IBOutlet weak var redTwoLabel: UILabel!
     @IBOutlet weak var redThreeLabel: UILabel!
     
-   
+    @IBOutlet weak var blueOneLabel: UILabel!
+    @IBOutlet weak var blueTwoLabel: UILabel!
+    @IBOutlet weak var blueThreeLabel: UILabel!
+    
     @IBOutlet weak var blueUnearnedPct: UILabel!
     @IBOutlet weak var blueEarnedPct: UILabel!
     
@@ -604,6 +608,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 redTwoLabel.text = "\(set.redTwo)"
                 redThreeLabel.text = "\(set.redThree)"
                 
+                blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+                
                 
        updatePercents()
         if game.publicGame{
@@ -781,8 +787,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         set.redAttack = set.redAttack + 1
                         redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
                     }
-                    if key == "Attack Err"{
-                        // add to blue attack and change outlet
+                    if key == "Opponent Attack Err"{
+                        set.blueAttack = set.blueAttack + 1
+                        blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
                     }
                     sender.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
                     let serve = set.serve;
@@ -840,6 +847,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
             {
                 if title.contains(key)
                 {
+                    if key == "Kill"{
+                        set.blueAttack = set.blueAttack + 1
+                        blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+                    }
+                    if key == "Opponent Attack Err"{
+                        set.redAttack = set.redAttack + 1
+                        redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
+                    }
+                    
                     set.blueStats[key]!+=1
                     sender.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
                     let serve = set.serve;
@@ -1415,6 +1431,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    @IBAction func blueAttackAction(_ sender: UIButton) {
+        print("blueAttackAction")
+        set.blueAttack = set.blueAttack + 1
+        
+        blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+        
+    }
+    
+    
     @IBAction func swipeRedAttackAction(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .down{
             set.redAttack = set.redAttack - 1
@@ -1423,6 +1448,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func swipeBlueAttackAction(_ sender: UISwipeGestureRecognizer) {
+        if sender.direction == .down{
+            set.blueAttack = set.blueAttack - 1
+            
+            blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+        }
+    }
     
     
     @IBAction func redOneAction(_ sender: UIButton) {
@@ -1440,6 +1472,50 @@ class ViewController: UIViewController, UITextFieldDelegate {
         redThreeLabel.text = "\(set.redThree)"
     }
     
+    @IBAction func blueOneAction(_ sender: UIButton) {
+        set.blueOne = set.blueOne + 1
+        blueOneLabel.text = "\(set.blueOne)"
+    }
+    
+    @IBAction func blueTwoAction(_ sender: UIButton) {
+        set.blueTwo = set.blueTwo + 1
+        blueTwoLabel.text = "\(set.blueTwo)"
+    }
+    
+    @IBAction func blueThreeAction(_ sender: UIButton) {
+        set.blueThree = set.blueThree + 1
+        blueThreeLabel.text = "\(set.blueThree)"
+    }
+    
+    @IBAction func swipeRedOne(_ sender: UISwipeGestureRecognizer) {
+        set.redOne = set.redOne - 1
+        redOneLabel.text = "\(set.redOne)"
+    }
+    
+    @IBAction func swipeRedTwo(_ sender: UISwipeGestureRecognizer) {
+        set.redTwo = set.redTwo - 1
+        redTwoLabel.text = "\(set.redTwo)"
+    }
+    
+    @IBAction func swipeRedThree(_ sender: UISwipeGestureRecognizer) {
+        set.redThree = set.redThree - 1
+        redThreeLabel.text = "\(set.redThree)"
+    }
+    
+    @IBAction func swipeBlueOne(_ sender: UISwipeGestureRecognizer) {
+        set.blueOne = set.blueOne - 1
+        blueOneLabel.text = "\(set.blueOne)"
+    }
+    
+    @IBAction func swipeBlueTwo(_ sender: UISwipeGestureRecognizer) {
+        set.blueTwo = set.blueTwo - 1
+        blueTwoLabel.text = "\(set.blueTwo)"
+    }
+    
+    @IBAction func swipeBlueThree(_ sender: UISwipeGestureRecognizer) {
+        set.blueThree = set.blueThree - 1
+        blueThreeLabel.text = "\(set.blueThree)"
+    }
     
     
 }

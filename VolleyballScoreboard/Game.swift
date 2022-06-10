@@ -187,8 +187,8 @@ public class Game: Codable{
 public class ASet: Codable
 {
    
-    var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "redScore": 0, "Attack Err": 0]
-    var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "blueScore": 0]
+    var redStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "redScore": 0, "Opponent Attack Err": 0]
+    var blueStats = ["Ace": 0, "Kill": 0, "Block" :0, "Opponent Err": 0, "Opponent Serve Err":0, "blueScore":0, "Opponent Attack Err": 0]
    
 //    var serve: String?
 //    var redRotation: Int?
@@ -216,6 +216,11 @@ public class ASet: Codable
     var redOne = 0
     var redTwo = 0
     var redThree = 0
+    
+    var blueAttack = 0
+    var blueOne = 0
+    var blueTwo = 0
+    var blueThree = 0
     
     
     init()
@@ -261,6 +266,18 @@ public class ASet: Codable
         }
         if let rthree = dict["redThree"] as? Int{
             redThree = rthree
+        }
+        if let ba = dict["blueAttack"] as? Int{
+            blueAttack = ba
+        }
+        if let bone = dict["blueOne"] as? Int{
+            blueOne = bone
+        }
+        if let btwo = dict["blueTwo"] as? Int{
+            blueTwo = btwo
+        }
+        if let bthree = dict["blueThree"] as? Int{
+            blueThree = bthree
         }
         
     
