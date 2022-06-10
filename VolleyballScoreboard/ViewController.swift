@@ -74,9 +74,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
    
     @IBOutlet weak var redHitPercentLabel: UILabel!
+    @IBOutlet weak var redPassAvgLabel: UILabel!
     
+    @IBOutlet weak var redEarnedPctLabel: UILabel!
     @IBOutlet weak var blueHitPercentLabel: UILabel!
+    @IBOutlet weak var bluePassAvgLabel: UILabel!
     
+    @IBOutlet weak var blueEarnedPctLabel: UILabel!
     @IBOutlet weak var statsHorizontalStackView: UIStackView!
     @IBOutlet weak var redStackView: UIStackView!
     @IBOutlet weak var blueStackView: UIStackView!
@@ -1160,48 +1164,69 @@ class ViewController: UIViewController, UITextFieldDelegate {
             blueHitPercentLabel.text = "0.000"
         }
         
+        var redPasses = set.blueStats["Ace"]! + set.redOne + set.redTwo + set.redThree
+        var redPassTotal = set.redOne + 2*set.redTwo + 3*set.redThree
+        if redPasses != 0{
+            var redAvg = Double(Int((Double(redPassTotal)/Double(redPasses))*10))/10.0
+            redPassAvgLabel.text = "\(redAvg)"
+        }
+        else{
+            redPassAvgLabel.text = "0.0"
+        }
+        
+        var bluePasses = set.redStats["Ace"]! + set.blueOne + set.blueTwo + set.blueThree
+        var bluePassTotal = set.blueOne + 2*set.blueTwo + 3*set.blueThree
+        if bluePasses != 0{
+            var blueAvg = Double(Int((Double(bluePassTotal)/Double(bluePasses))*10))/10.0
+            bluePassAvgLabel.text = "\(blueAvg)"
+        }
+        else{
+            bluePassAvgLabel.text = "0.0"
+        }
         
         
         
-//        if set.redStats["redScore"]! != 0{
+        
+       if set.redStats["redScore"]! != 0{
 //            redAcePct.text = "\(Int(round(Double(set.redStats["Ace"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
 //            redKillPct.text = "\(Int(round(Double(set.redStats["Kill"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
 //            redBlockPct.text = "\(Int(round(Double(set.redStats["Block"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
 //            redErrorPct.text = "\(Int(round(Double(set.redStats["Opponent Err"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
 //            redSvErrorPct.text = "\(Int(round(Double(set.redStats["Opponent Serve Err"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
-//            redEarnedPct.text = "\(Int(round(Double(set.redStats["Ace"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Kill"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Block"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
+           redEarnedPctLabel.text = "\(Int(round(Double(set.redStats["Ace"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Kill"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Block"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
 //            redUnearnedPct.text = "\(Int(round(Double(set.redStats["Opponent Err"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Opponent Serve Err"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
-//        }
-//        else{
+        }
+        else{
 //            redAcePct.text = "0%"
 //            redKillPct.text = "0%"
 //            redBlockPct.text = "0%"
 //            redErrorPct.text = "0%"
 //            redSvErrorPct.text = "0%"
-//            redEarnedPct.text = "0%"
+            redEarnedPctLabel.text = "0%"
 //            redUnearnedPct.text = "0%"
-//        }
+       }
+        
 //        
 //        
-//        if set.blueStats["blueScore"]! != 0{
+        if set.blueStats["blueScore"]! != 0{
 //            blueActPct.text = "\(Int(round(Double(set.blueStats["Ace"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
 //            blueKillPct.text = "\(Int(round(Double(set.blueStats["Kill"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
 //            blueBlockPct.text = "\(Int(round(Double(set.blueStats["Block"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
 //            blueErrorPct.text = "\(Int(round(Double(set.blueStats["Opponent Err"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
 //            blueSvErrorPct.text = "\(Int(round(Double(set.blueStats["Opponent Serve Err"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
-//            blueEarnedPct.text = "\(Int(round(Double(set.blueStats["Ace"]!)/Double(set.blueStats["blueScore"]!)*100.0 + Double(set.blueStats["Kill"]!)/Double(set.blueStats["blueScore"]!)*100.0 + Double(set.blueStats["Block"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
+           blueEarnedPctLabel.text = "\(Int(round(Double(set.blueStats["Ace"]!)/Double(set.blueStats["blueScore"]!)*100.0 + Double(set.blueStats["Kill"]!)/Double(set.blueStats["blueScore"]!)*100.0 + Double(set.blueStats["Block"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
 //            blueUnearnedPct.text = "\(Int(round(Double(set.blueStats["Opponent Err"]!)/Double(set.blueStats["blueScore"]!)*100.0 + Double(set.blueStats["Opponent Serve Err"]!)/Double(set.blueStats["blueScore"]!)*100.0)))%"
 //            
-//        }
-//        else{
+        }
+       else{
 //            blueActPct.text = "0%"
 //            blueKillPct.text = "0%"
 //            blueBlockPct.text = "0%"
 //            blueErrorPct.text = "0%"
 //            blueSvErrorPct.text = "0%"
-//            blueEarnedPct.text = "0%"
+            blueEarnedPctLabel.text = "0%"
 //            blueUnearnedPct.text = "0%"
-//        }
+        }
         
         
     }
@@ -1429,7 +1454,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         set.redStats[key]! -= 1
                         if key == "Opponent Attack Err"{
                             set.blueAttack = set.blueAttack - 1
-                            
+                        }
+                        if key == "Kill"{
+                            set.redAttack = set.redAttack - 1
                         }
                     }
                 }
@@ -1446,6 +1473,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         set.blueStats[key]! -= 1
                         if key == "Opponent Attack Err"{
                             set.redAttack = set.redAttack - 1
+                        }
+                        if key == "Kill"{
+                            set.blueAttack = set.blueAttack - 1
                         }
                     }
                 }
@@ -1490,6 +1520,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             set.redAttack = set.redAttack - 1
             
             redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
+            updatePercents()
         }
     }
     
@@ -1498,6 +1529,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             set.blueAttack = set.blueAttack - 1
             
             blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+            updatePercents()
         }
     }
     
@@ -1505,61 +1537,73 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func redOneAction(_ sender: UIButton) {
         set.redOne = set.redOne + 1
         redOneLabel.text = "\(set.redOne)"
+        updatePercents()
     }
     
     @IBAction func redTwoAction(_ sender: UIButton) {
         set.redTwo = set.redTwo + 1
         redTwoLabel.text = "\(set.redTwo)"
+        updatePercents()
     }
     
     @IBAction func redThreeAction(_ sender: UIButton) {
         set.redThree = set.redThree + 1
         redThreeLabel.text = "\(set.redThree)"
+        updatePercents()
     }
     
     @IBAction func blueOneAction(_ sender: UIButton) {
         set.blueOne = set.blueOne + 1
         blueOneLabel.text = "\(set.blueOne)"
+        updatePercents()
     }
     
     @IBAction func blueTwoAction(_ sender: UIButton) {
         set.blueTwo = set.blueTwo + 1
         blueTwoLabel.text = "\(set.blueTwo)"
+        updatePercents()
     }
     
     @IBAction func blueThreeAction(_ sender: UIButton) {
         set.blueThree = set.blueThree + 1
         blueThreeLabel.text = "\(set.blueThree)"
+        updatePercents()
     }
     
     @IBAction func swipeRedOne(_ sender: UISwipeGestureRecognizer) {
         set.redOne = set.redOne - 1
         redOneLabel.text = "\(set.redOne)"
+        updatePercents()
     }
     
     @IBAction func swipeRedTwo(_ sender: UISwipeGestureRecognizer) {
         set.redTwo = set.redTwo - 1
         redTwoLabel.text = "\(set.redTwo)"
+        updatePercents()
     }
     
     @IBAction func swipeRedThree(_ sender: UISwipeGestureRecognizer) {
         set.redThree = set.redThree - 1
         redThreeLabel.text = "\(set.redThree)"
+        updatePercents()
     }
     
     @IBAction func swipeBlueOne(_ sender: UISwipeGestureRecognizer) {
         set.blueOne = set.blueOne - 1
         blueOneLabel.text = "\(set.blueOne)"
+        updatePercents()
     }
     
     @IBAction func swipeBlueTwo(_ sender: UISwipeGestureRecognizer) {
         set.blueTwo = set.blueTwo - 1
         blueTwoLabel.text = "\(set.blueTwo)"
+        updatePercents()
     }
     
     @IBAction func swipeBlueThree(_ sender: UISwipeGestureRecognizer) {
         set.blueThree = set.blueThree - 1
         blueThreeLabel.text = "\(set.blueThree)"
+        updatePercents()
     }
     
     
