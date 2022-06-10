@@ -223,6 +223,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 set = game.sets[0]
                 setSegmentedControlOutlet.selectedSegmentIndex = 0
                 setNum = 1
+                
                 DispatchQueue.main.async {
                     self.updateScreen()
                 }
@@ -598,10 +599,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         for outlet in redStatsOutlet{
             var title = outlet.title(for: .normal)!
+            if title.contains("Opponent Attack Err"){
+                outlet.setTitle("Opponent Attack Err\n0", for: .normal)
+            }
             for (key,value) in set.redStats{
+                
+                
                 if title.contains(key){
                     outlet.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
                 }
+                
             }
             
      
@@ -610,10 +617,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         for outlet in blueStatsOutlet{
             var title = outlet.title(for: .normal)!
+            if title.contains("Opponent Attack Err"){
+                outlet.setTitle("Opponent Attack Err\n0", for: .normal)
+            }
             for (key,value) in set.blueStats{
+               
                 if title.contains(key){
                     outlet.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
                 }
+                
             }
             
         }
