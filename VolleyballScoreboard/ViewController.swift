@@ -72,8 +72,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var blueTwoLabel: UILabel!
     @IBOutlet weak var blueThreeLabel: UILabel!
     
-    @IBOutlet weak var blueUnearnedPct: UILabel!
-    @IBOutlet weak var blueEarnedPct: UILabel!
+   
+    @IBOutlet weak var redHitPercentLabel: UILabel!
+    
+    @IBOutlet weak var blueHitPercentLabel: UILabel!
     
     @IBOutlet weak var statsHorizontalStackView: UIStackView!
     @IBOutlet weak var redStackView: UIStackView!
@@ -562,7 +564,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 redOneLabel.text = "\(set.redOne)"
                 redTwoLabel.text = "\(set.redTwo)"
                 redThreeLabel.text = "\(set.redThree)"
+                
+                blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+                blueOneLabel.text = "\(set.blueOne)"
+                blueTwoLabel.text = "\(set.blueTwo)"
+                blueThreeLabel.text = "\(set.blueThree)"
+                
                updatePercents()
+                
+                
+                
             }
         }
     
@@ -609,6 +620,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 redThreeLabel.text = "\(set.redThree)"
                 
                 blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+                blueOneLabel.text = "\(set.blueOne)"
+                blueTwoLabel.text = "\(set.blueTwo)"
+                blueThreeLabel.text = "\(set.blueThree)"
                 
                 
        updatePercents()
@@ -1126,6 +1140,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updatePercents(){
+        if set.redAttack != 0{
+            var redPercent = Double(Int((Double(set.redStats["Kill"]! - set.blueStats["Opponent Attack Err"]!)/Double(set.redAttack))*1000))/1000.0
+            //var redPercentString = String(format: "%.000f", redPercent)
+            redHitPercentLabel.text = "\(redPercent)"
+            
+        }
+        else{
+            redHitPercentLabel.text = "0.000"
+        }
+        
+        if set.blueAttack != 0{
+            var bluePercent = Double(Int((Double(set.blueStats["Kill"]! - set.redStats["Opponent Attack Err"]!)/Double(set.blueAttack))*1000))/1000.0
+            //var redPercentString = String(format: "%.000f", redPercent)
+            blueHitPercentLabel.text = "\(bluePercent)"
+            
+        }
+        else{
+            blueHitPercentLabel.text = "0.000"
+        }
+        
+        
+        
+        
 //        if set.redStats["redScore"]! != 0{
 //            redAcePct.text = "\(Int(round(Double(set.redStats["Ace"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
 //            redKillPct.text = "\(Int(round(Double(set.redStats["Kill"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
@@ -1390,6 +1427,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 for (key,value) in set.redStats{
                     if key == point.why{
                         set.redStats[key]! -= 1
+                        if key == "Opponent Attack Err"{
+                            set.blueAttack = set.blueAttack - 1
+                            
+                        }
                     }
                 }
                 decreaseRedScore()
@@ -1403,6 +1444,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 for (key,value) in set.blueStats{
                     if key == point.why{
                         set.blueStats[key]! -= 1
+                        if key == "Opponent Attack Err"{
+                            set.redAttack = set.redAttack - 1
+                        }
                     }
                 }
                 decreaseBlueScore()
@@ -1428,6 +1472,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         set.redAttack = set.redAttack + 1
         
         redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
+        updatePercents()
     }
     
     
@@ -1436,7 +1481,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         set.blueAttack = set.blueAttack + 1
         
         blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
-        
+        updatePercents()
     }
     
     
