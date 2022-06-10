@@ -1179,7 +1179,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         var redPasses = set.blueStats["Ace"]! + set.redOne + set.redTwo + set.redThree
         var redPassTotal = set.redOne + 2*set.redTwo + 3*set.redThree
         if redPasses != 0{
-            var redAvg = Double(Int((Double(redPassTotal)/Double(redPasses))*10))/10.0
+            var redAvg = Double(Int((Double(redPassTotal)/Double(redPasses))*100))/100.0
             redPassAvgLabel.text = "\(redAvg)"
         }
         else{
@@ -1189,7 +1189,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         var bluePasses = set.redStats["Ace"]! + set.blueOne + set.blueTwo + set.blueThree
         var bluePassTotal = set.blueOne + 2*set.blueTwo + 3*set.blueThree
         if bluePasses != 0{
-            var blueAvg = Double(Int((Double(bluePassTotal)/Double(bluePasses))*10))/10.0
+            var blueAvg = Double(Int((Double(bluePassTotal)/Double(bluePasses))*100))/100.0
             bluePassAvgLabel.text = "\(blueAvg)"
         }
         else{
@@ -1515,6 +1515,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     
@@ -1524,6 +1527,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     
@@ -1533,6 +1539,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
             updatePercents()
+            if game.publicGame{
+                game.updateFirebase()
+            }
         }
     }
     
@@ -1542,6 +1551,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
             updatePercents()
+            if game.publicGame{
+                game.updateFirebase()
+            }
         }
     }
     
@@ -1550,72 +1562,108 @@ class ViewController: UIViewController, UITextFieldDelegate {
         set.redOne = set.redOne + 1
         redOneLabel.text = "\(set.redOne)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func redTwoAction(_ sender: UIButton) {
         set.redTwo = set.redTwo + 1
         redTwoLabel.text = "\(set.redTwo)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func redThreeAction(_ sender: UIButton) {
         set.redThree = set.redThree + 1
         redThreeLabel.text = "\(set.redThree)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func blueOneAction(_ sender: UIButton) {
         set.blueOne = set.blueOne + 1
         blueOneLabel.text = "\(set.blueOne)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func blueTwoAction(_ sender: UIButton) {
         set.blueTwo = set.blueTwo + 1
         blueTwoLabel.text = "\(set.blueTwo)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func blueThreeAction(_ sender: UIButton) {
         set.blueThree = set.blueThree + 1
         blueThreeLabel.text = "\(set.blueThree)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func swipeRedOne(_ sender: UISwipeGestureRecognizer) {
         set.redOne = set.redOne - 1
         redOneLabel.text = "\(set.redOne)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func swipeRedTwo(_ sender: UISwipeGestureRecognizer) {
         set.redTwo = set.redTwo - 1
         redTwoLabel.text = "\(set.redTwo)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func swipeRedThree(_ sender: UISwipeGestureRecognizer) {
         set.redThree = set.redThree - 1
         redThreeLabel.text = "\(set.redThree)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func swipeBlueOne(_ sender: UISwipeGestureRecognizer) {
         set.blueOne = set.blueOne - 1
         blueOneLabel.text = "\(set.blueOne)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func swipeBlueTwo(_ sender: UISwipeGestureRecognizer) {
         set.blueTwo = set.blueTwo - 1
         blueTwoLabel.text = "\(set.blueTwo)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     @IBAction func swipeBlueThree(_ sender: UISwipeGestureRecognizer) {
         set.blueThree = set.blueThree - 1
         blueThreeLabel.text = "\(set.blueThree)"
         updatePercents()
+        if game.publicGame{
+            game.updateFirebase()
+        }
     }
     
     
