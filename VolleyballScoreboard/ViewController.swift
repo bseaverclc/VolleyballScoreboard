@@ -684,13 +684,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let redRotation = set.redRotation;
             let blueRotation = set.blueRotation;
            // increaseRedScore()
-            var point = Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)")
-            if game.publicGame{
-            set.addPoint(point: point )
-            }
-            else{
-                set.pointHistory.append(point)
-            }
+        set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+//            if game.publicGame{
+//            set.addPoint(point: point )
+//            }
+//            else{
+//                set.pointHistory.append(point)
+//            }
             
             set.redRotationPlusMinus[set.redRotation] += 1
             set.blueRotationPlusMinus[set.blueRotation] -= 1
@@ -814,13 +814,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
                     increaseRedScore()
-                    var point = Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)")
-                    if game.publicGame{
-                    set.addPoint(point: point )
-                    }
-                    else{
-                        set.pointHistory.append(point)
-                    }
+                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+//                    if game.publicGame{
+//                    set.addPoint(point: point )
+//                    }
+//                    else{
+//                        set.pointHistory.append(point)
+//                    }
                     
                 }
             }
@@ -1145,9 +1145,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func updatePercents(){
         if set.redAttack != 0{
-            var redPercent = Double(Int((Double(set.redStats["Kill"]! - set.blueStats["Opponent Attack Err"]!)/Double(set.redAttack))*1000))/1000.0
-            //var redPercentString = String(format: "%.000f", redPercent)
-            redHitPercentLabel.text = "\(redPercent)"
+            if let attackErr = set.blueStats["Opponent Attack Err"]{
+                var redPercent = Double(Int((Double(set.redStats["Kill"]! - attackErr)/Double(set.redAttack))*1000))/1000.0
+                //var redPercentString = String(format: "%.000f", redPercent)
+                redHitPercentLabel.text = "\(redPercent)"
+            }
+            else{
+                redHitPercentLabel.text = "NA"
+            }
+            
             
         }
         else{
@@ -1155,9 +1161,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         if set.blueAttack != 0{
-            var bluePercent = Double(Int((Double(set.blueStats["Kill"]! - set.redStats["Opponent Attack Err"]!)/Double(set.blueAttack))*1000))/1000.0
-            //var redPercentString = String(format: "%.000f", redPercent)
-            blueHitPercentLabel.text = "\(bluePercent)"
+            if let attackErr = set.redStats["Opponent Attack Err"]{
+                var bluePercent = Double(Int((Double(set.blueStats["Kill"]! - attackErr)/Double(set.blueAttack))*1000))/1000.0
+                //var redPercentString = String(format: "%.000f", redPercent)
+                blueHitPercentLabel.text = "\(bluePercent)"
+            }
+            else{
+                blueHitPercentLabel.text = "NA"
+            }
+            
             
         }
         else{

@@ -163,7 +163,7 @@ public class Game: Codable{
         ref = ref.child("sets")
         
         for set in sets{
-            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "serve": set.serve, "redRotation": set.redRotation, "blueRotation": set.blueRotation, "redRotationPlusMinus": set.redRotationPlusMinus, "blueRotationPlusMinus": set.blueRotationPlusMinus, "redAttack": set.redAttack, "redOne": set.redOne, "redTwo": set.redTwo, "redThree": set.redThree] as [String: Any]
+            let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "serve": set.serve, "redRotation": set.redRotation, "blueRotation": set.blueRotation, "redRotationPlusMinus": set.redRotationPlusMinus, "blueRotationPlusMinus": set.blueRotationPlusMinus, "redAttack": set.redAttack, "redOne": set.redOne, "redTwo": set.redTwo, "redThree": set.redThree, "blueOne": set.blueOne, "blueTwo": set.blueTwo, "blueThree": set.blueThree] as [String: Any]
             ref.child(set.uid!).updateChildValues(setDict)
             
             
