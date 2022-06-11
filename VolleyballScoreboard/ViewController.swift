@@ -823,8 +823,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                     if key == "Block"{
                         set.blueAttack = set.blueAttack + 1
-                        if let oae = set.blueStats["Opponent Attack Err"]{
-                            set.blueStats["Opponent Attack Err"]! += 1
+                        if let oae = set.redStats["Opponent Attack Err"]{
+                            set.redStats["Opponent Attack Err"]! += 1
                         }
                         
                     }
@@ -895,8 +895,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                     if key == "Block"{
                         set.redAttack = set.redAttack + 1
-                        if let oae = set.redStats["Opponent Attack Err"]{
-                            set.redStats["Opponent Attack Err"]! += 1
+                        if let oae = set.blueStats["Opponent Attack Err"]{
+                            set.blueStats["Opponent Attack Err"]! += 1
                         }
                     }
                     
@@ -1497,6 +1497,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         if key == "Kill"{
                             set.redAttack = set.redAttack - 1
                         }
+                        if key == "Block"{
+                            set.blueAttack -= 1
+                            if let oae = set.redStats["Opponent Attack Err"]{
+                                set.redStats["Opponent Attack Err"]! -= 1
+                            }
+                        }
                     }
                 }
                 decreaseRedScore()
@@ -1515,6 +1521,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         }
                         if key == "Kill"{
                             set.blueAttack = set.blueAttack - 1
+                        }
+                        if key == "Block"{
+                            set.redAttack -= 1
+                            if let oae = set.blueStats["Opponent Attack Err"]{
+                                set.blueStats["Opponent Attack Err"]! -= 1
+                            }
                         }
                     }
                 }
