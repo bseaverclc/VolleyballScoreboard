@@ -821,6 +821,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         set.blueAttack = set.blueAttack + 1
                         blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
                     }
+                    if key == "Block"{
+                        set.blueAttack = set.blueAttack + 1
+                        if let oae = set.blueStats["Opponent Attack Err"]{
+                            set.blueStats["Opponent Attack Err"]! += 1
+                        }
+                        
+                    }
                     sender.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
                     let serve = set.serve;
                     let redRotation = set.redRotation;
@@ -837,6 +844,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        updateScreen()
             updatePercents()
             if game.publicGame{
             game.updateFirebase()
@@ -885,6 +893,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         set.redAttack = set.redAttack + 1
                         redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
                     }
+                    if key == "Block"{
+                        set.redAttack = set.redAttack + 1
+                        if let oae = set.redStats["Opponent Attack Err"]{
+                            set.redStats["Opponent Attack Err"]! += 1
+                        }
+                    }
                     
                     set.blueStats[key]!+=1
                     sender.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
@@ -897,6 +911,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        updateScreen()
           updatePercents()
           if game.publicGame{
           game.updateFirebase()
