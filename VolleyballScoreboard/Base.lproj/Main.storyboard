@@ -139,7 +139,7 @@
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VIu-vh-HOe">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="73"/>
-                                                                                <color key="backgroundColor" red="1" green="0.18899828767123289" blue="0.20962649828767124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                                 <gestureRecognizers/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                                 <state key="normal">
@@ -166,7 +166,7 @@
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yJs-pV-J7r">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="73"/>
-                                                                                <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                                 <gestureRecognizers/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                                 <state key="normal">
@@ -193,7 +193,7 @@
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3Ps-km-YvP">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="73"/>
-                                                                                <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                                 <gestureRecognizers/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                                 <state key="normal">
@@ -222,7 +222,7 @@
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVq-6N-7UR">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="235"/>
-                                                                        <color key="backgroundColor" red="0.8403320312" green="0.192199707" blue="0.3156738281" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                         <gestureRecognizers/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="75"/>
                                                                         <state key="normal" title="28">
@@ -340,7 +340,7 @@
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nIi-Xc-3yV">
                                                                         <rect key="frame" x="53" y="0.0" width="51.5" height="64.5"/>
-                                                                        <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                         <gestureRecognizers/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                         <state key="normal">
@@ -355,7 +355,7 @@
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="FCZ-zj-Ijz">
                                                                         <rect key="frame" x="106.5" y="0.0" width="51" height="64.5"/>
-                                                                        <color key="backgroundColor" red="1" green="0.18899828769999999" blue="0.20962649829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                         <gestureRecognizers/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                         <state key="normal">
@@ -534,7 +534,7 @@
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-Hx-Wwq">
                                                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="235"/>
-                                                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                         <gestureRecognizers/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="75"/>
                                                                         <state key="normal" title="25">
@@ -627,7 +627,7 @@
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-5f-cnS">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="73"/>
-                                                                                <color key="backgroundColor" red="0.35193905861233726" green="0.55542320518355293" blue="0.98393301552385781" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                                 <gestureRecognizers/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                                 <state key="normal">
@@ -654,7 +654,7 @@
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RF4-hd-n3x">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="73"/>
-                                                                                <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                                 <gestureRecognizers/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                                 <state key="normal">
@@ -681,7 +681,7 @@
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Qls-yn-MBM">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="73"/>
-                                                                                <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                                 <gestureRecognizers/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                                 <state key="normal">
@@ -725,7 +725,7 @@
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Jan-6R-fZi">
                                                                         <rect key="frame" x="0.0" y="0.0" width="51" height="64.5"/>
-                                                                        <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                         <gestureRecognizers/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                         <state key="normal">
@@ -740,7 +740,7 @@
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-z8-1XT">
                                                                         <rect key="frame" x="53" y="0.0" width="51.5" height="64.5"/>
-                                                                        <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                         <gestureRecognizers/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                         <state key="normal">
@@ -755,7 +755,7 @@
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="xVt-S3-PqD">
                                                                         <rect key="frame" x="106.5" y="0.0" width="51" height="64.5"/>
-                                                                        <color key="backgroundColor" red="0.35193905860000002" green="0.55542320519999999" blue="0.98393301550000001" alpha="0.9996948242" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                         <gestureRecognizers/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                         <state key="normal">
@@ -1029,20 +1029,19 @@
                         <outletCollection property="redStatsOutlet" destination="rUV-qe-RZJ" collectionClass="NSMutableArray" id="IuI-2k-Ohx"/>
                         <outletCollection property="blueStatsOutlet" destination="Jan-6R-fZi" collectionClass="NSMutableArray" id="LK9-Kk-ksK"/>
                         <outletCollection property="blueStatsOutlet" destination="qTn-z8-1XT" collectionClass="NSMutableArray" id="lxl-De-2s3"/>
-                        <outletCollection property="blueStatsOutlet" destination="Jan-6R-fZi" collectionClass="NSMutableArray" id="CQF-8X-jC7"/>
                         <outletCollection property="blueStatsOutlet" destination="xVt-S3-PqD" collectionClass="NSMutableArray" id="ZbM-LC-Sz3"/>
                         <segue destination="wqz-7V-8tN" kind="show" identifier="statsSegue" id="aAf-Ex-lEG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer enabled="NO" direction="left" id="KjT-Ne-A6k">
+                <swipeGestureRecognizer direction="down" id="KjT-Ne-A6k">
                     <connections>
-                        <action selector="redSubtractAction:" destination="BYZ-38-t0r" id="7ih-kU-p64"/>
+                        <action selector="redSubtractAction:" destination="BYZ-38-t0r" id="7Ry-sC-EB3"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer enabled="NO" direction="left" id="ewi-5X-6kd">
+                <swipeGestureRecognizer direction="down" id="ewi-5X-6kd">
                     <connections>
-                        <action selector="blueSubtractAction:" destination="BYZ-38-t0r" id="2LZ-wn-RbY"/>
+                        <action selector="blueSubtractAction:" destination="BYZ-38-t0r" id="ocT-Tv-SiV"/>
                     </connections>
                 </swipeGestureRecognizer>
                 <swipeGestureRecognizer enabled="NO" direction="left" id="bQZ-I2-5o4">

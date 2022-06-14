@@ -18,11 +18,12 @@ extension ViewController: UIColorPickerViewControllerDelegate {
         if AppData.selectedColorButton == "red"{
         for button in redStatsOutlet{
             button.backgroundColor = viewController.selectedColor
+            
         }
         
         redSetOutlet.backgroundColor = viewController.selectedColor
-        
         redOutlet.backgroundColor = viewController.selectedColor
+        AppData.redColor = viewController.selectedColor
         }
         else{
             for button in blueStatsOutlet{
@@ -30,8 +31,8 @@ extension ViewController: UIColorPickerViewControllerDelegate {
             }
             
             blueSetOutlet.backgroundColor = viewController.selectedColor
-            
             blueOutlet.backgroundColor = viewController.selectedColor
+            AppData.blueColor = viewController.selectedColor
         }
         
             
@@ -54,6 +55,8 @@ class AppData{
     static var selectedColorButton = "red"
     static var canDelete = false
     static var loadedData = false
+    static var redColor = UIColor.systemRed
+    static var blueColor = UIColor.systemBlue
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {
@@ -102,6 +105,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var redOutlet: UIButton!
     @IBOutlet weak var blueOutlet: UIButton!
     @IBOutlet weak var redKillOutlet: UIButton!
+    
+   
     
 //    var redScore = 0
 //    var blueScore = 0
@@ -690,6 +695,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func redActionReal(sender: UIButton)
     {
         set.redStats["redScore"]! += 1
+        highlightRedButton(button: sender)
         sender.setTitle("\(set.redStats["redScore"]!)", for: .normal)
             
             let serve = set.serve;
@@ -740,7 +746,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func blueActionReal(sender: UIButton){
         set.blueStats["blueScore"]! += 1
             sender.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
-            
+        highlightBlueButton(button: sender)
             let serve = set.serve;
             let redRotation = set.redRotation;
             let blueRotation = set.blueRotation;
@@ -829,6 +835,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         
                     }
                     sender.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
+                    highlightRedButton(button: sender)
                     let serve = set.serve;
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
@@ -902,6 +909,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                     set.blueStats[key]!+=1
                     sender.setTitle("\(key)\n\(set.blueStats[key]!)", for: .normal)
+                    highlightBlueButton(button: sender)
                     let serve = set.serve;
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
@@ -1493,6 +1501,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 for (key,value) in set.redStats{
                     if key == point.why{
                         set.redStats[key]! -= 1
+                        for button in redStatsOutlet{
+                            var title = button.title(for: .normal)!
+                            if title.contains(key){
+                                highlightRedButton(button: button)
+                            }
+                        }
                         if key == "Opponent Attack Err"{
                             set.blueAttack = set.blueAttack - 1
                         }
@@ -1518,6 +1532,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 for (key,value) in set.blueStats{
                     if key == point.why{
                         set.blueStats[key]! -= 1
+                        for button in blueStatsOutlet{
+                            var title = button.title(for: .normal)!
+                            if title.contains(key){
+                                highlightBlueButton(button: button)
+                            }
+                        }
                         if key == "Opponent Attack Err"{
                             set.redAttack = set.redAttack - 1
                         }
@@ -1552,10 +1572,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func redAttackAction(_ sender: UIButton) {
         print("redAttackAction")
+        highlightButton(button: sender)
         set.redAttack = set.redAttack + 1
         
         redAttackOutlet.setTitle("Attack\n    \(set.redAttack)", for: .normal)
         updatePercents()
+        
         if game.publicGame{
             game.updateFirebase()
         }
@@ -1565,7 +1587,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func blueAttackAction(_ sender: UIButton) {
         print("blueAttackAction")
         set.blueAttack = set.blueAttack + 1
-        
+        highlightButton(button: sender)
         blueAttackOutlet.setTitle("Attack\n    \(set.blueAttack)", for: .normal)
         updatePercents()
         if game.publicGame{
@@ -1601,6 +1623,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func redOneAction(_ sender: UIButton) {
         set.redOne = set.redOne + 1
+        highlightButton(button: sender)
         redOneLabel.text = "\(set.redOne)"
         updatePercents()
         if game.publicGame{
@@ -1610,6 +1633,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func redTwoAction(_ sender: UIButton) {
         set.redTwo = set.redTwo + 1
+        highlightButton(button: sender)
         redTwoLabel.text = "\(set.redTwo)"
         updatePercents()
         if game.publicGame{
@@ -1619,6 +1643,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func redThreeAction(_ sender: UIButton) {
         set.redThree = set.redThree + 1
+        highlightButton(button: sender)
         redThreeLabel.text = "\(set.redThree)"
         updatePercents()
         if game.publicGame{
@@ -1628,6 +1653,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func blueOneAction(_ sender: UIButton) {
         set.blueOne = set.blueOne + 1
+        highlightButton(button: sender)
         blueOneLabel.text = "\(set.blueOne)"
         updatePercents()
         if game.publicGame{
@@ -1637,6 +1663,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func blueTwoAction(_ sender: UIButton) {
         set.blueTwo = set.blueTwo + 1
+        highlightButton(button: sender)
         blueTwoLabel.text = "\(set.blueTwo)"
         updatePercents()
         if game.publicGame{
@@ -1646,6 +1673,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func blueThreeAction(_ sender: UIButton) {
         set.blueThree = set.blueThree + 1
+        highlightButton(button: sender)
         blueThreeLabel.text = "\(set.blueThree)"
         updatePercents()
         if game.publicGame{
@@ -1707,6 +1735,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func highlightRedButton(button: UIButton){
+        print("calling highlightRedbutton")
+       // var ogc = button.backgroundColor
+        button.backgroundColor = UIColor.green
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+            button.backgroundColor = AppData.redColor
+            print("changing back to red color")
+        }
+    }
+    
+    func highlightBlueButton(button: UIButton){
+        print("calling highlightBluebutton")
+       // var ogc = button.backgroundColor
+        button.backgroundColor = UIColor.green
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+            button.backgroundColor = AppData.blueColor
+            print("changing back to blue color")
+        }
+    }
+    
+    func highlightButton(button: UIButton){
+        print("calling highlightbutton")
+       // var ogc = button.backgroundColor
+        button.backgroundColor = UIColor.green
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+            button.backgroundColor = UIColor.systemYellow
+            print("changing back to yellow color")
+        }
+    }
     
 }
 
