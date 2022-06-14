@@ -1549,6 +1549,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func redAttackAction(_ sender: UIButton) {
+        if AppData.canEdit{
         print("redAttackAction")
         highlightButton(button: sender)
         set.redAttack = set.redAttack + 1
@@ -1559,10 +1560,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     
     @IBAction func blueAttackAction(_ sender: UIButton) {
+        if AppData.canEdit{
         print("blueAttackAction")
         set.blueAttack = set.blueAttack + 1
         highlightButton(button: sender)
@@ -1571,10 +1574,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     
     @IBAction func swipeRedAttackAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         if sender.direction == .down{
             set.redAttack = set.redAttack - 1
             
@@ -1584,9 +1589,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 game.updateFirebase()
             }
         }
+        }
     }
     
     @IBAction func swipeBlueAttackAction(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         if sender.direction == .down{
             set.blueAttack = set.blueAttack - 1
             
@@ -1596,10 +1603,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 game.updateFirebase()
             }
         }
+        }
     }
     
     
     @IBAction func redOneAction(_ sender: UIButton) {
+        if AppData.canEdit{
         set.redOne = set.redOne + 1
         highlightButton(button: sender)
         redOneLabel.text = "\(set.redOne)"
@@ -1607,9 +1616,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func redTwoAction(_ sender: UIButton) {
+        if AppData.canEdit{
         set.redTwo = set.redTwo + 1
         highlightButton(button: sender)
         redTwoLabel.text = "\(set.redTwo)"
@@ -1617,9 +1628,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func redThreeAction(_ sender: UIButton) {
+        if AppData.canEdit{
         set.redThree = set.redThree + 1
         highlightButton(button: sender)
         redThreeLabel.text = "\(set.redThree)"
@@ -1627,9 +1640,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func blueOneAction(_ sender: UIButton) {
+        if AppData.canEdit{
         set.blueOne = set.blueOne + 1
         highlightButton(button: sender)
         blueOneLabel.text = "\(set.blueOne)"
@@ -1637,9 +1652,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func blueTwoAction(_ sender: UIButton) {
+        if AppData.canEdit{
         set.blueTwo = set.blueTwo + 1
         highlightButton(button: sender)
         blueTwoLabel.text = "\(set.blueTwo)"
@@ -1647,9 +1664,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func blueThreeAction(_ sender: UIButton) {
+        if AppData.canEdit{
         set.blueThree = set.blueThree + 1
         highlightButton(button: sender)
         blueThreeLabel.text = "\(set.blueThree)"
@@ -1657,59 +1676,73 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func swipeRedOne(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.redOne = set.redOne - 1
         redOneLabel.text = "\(set.redOne)"
         updatePercents()
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func swipeRedTwo(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.redTwo = set.redTwo - 1
         redTwoLabel.text = "\(set.redTwo)"
         updatePercents()
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func swipeRedThree(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
+ 
         set.redThree = set.redThree - 1
         redThreeLabel.text = "\(set.redThree)"
         updatePercents()
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func swipeBlueOne(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.blueOne = set.blueOne - 1
         blueOneLabel.text = "\(set.blueOne)"
         updatePercents()
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func swipeBlueTwo(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.blueTwo = set.blueTwo - 1
         blueTwoLabel.text = "\(set.blueTwo)"
         updatePercents()
         if game.publicGame{
             game.updateFirebase()
         }
+        }
     }
     
     @IBAction func swipeBlueThree(_ sender: UISwipeGestureRecognizer) {
+        if AppData.canEdit{
         set.blueThree = set.blueThree - 1
         blueThreeLabel.text = "\(set.blueThree)"
         updatePercents()
         if game.publicGame{
             game.updateFirebase()
+        }
         }
     }
     
