@@ -565,12 +565,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
-                redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
+                redAttackOutlet.setTitle("Attack\n    \(set.redAttack)", for: .normal)
                 redOneLabel.text = "\(set.redOne)"
                 redTwoLabel.text = "\(set.redTwo)"
                 redThreeLabel.text = "\(set.redThree)"
                 
-                blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+                blueAttackOutlet.setTitle("Attack\n    \(set.blueAttack)", for: .normal)
                 blueOneLabel.text = "\(set.blueOne)"
                 blueTwoLabel.text = "\(set.blueTwo)"
                 blueThreeLabel.text = "\(set.blueThree)"
@@ -630,12 +630,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
                 
-                redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
+                redAttackOutlet.setTitle("Attack\n    \(set.redAttack)", for: .normal)
                 redOneLabel.text = "\(set.redOne)"
                 redTwoLabel.text = "\(set.redTwo)"
                 redThreeLabel.text = "\(set.redThree)"
                 
-                blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+                blueAttackOutlet.setTitle("Attack\n    \(set.blueAttack)", for: .normal)
                 blueOneLabel.text = "\(set.blueOne)"
                 blueTwoLabel.text = "\(set.blueTwo)"
                 blueThreeLabel.text = "\(set.blueThree)"
@@ -1173,9 +1173,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func updatePercents(){
         if set.redAttack != 0{
             if let attackErr = set.blueStats["Opponent Attack Err"]{
-                var redPercent = Double(Int((Double(set.redStats["Kill"]! - attackErr)/Double(set.redAttack))*1000))/1000.0
-                //var redPercentString = String(format: "%.000f", redPercent)
-                redHitPercentLabel.text = "\(redPercent)"
+                //var redPercent = Double(Int((Double(set.redStats["Kill"]! - attackErr)/Double(set.redAttack))*1000))/1000.0
+                var redPercent2 = (Double(set.redStats["Kill"]! - attackErr))/Double(set.redAttack)
+                var redPercentString = String(format: "%.3f", redPercent2)
+                redHitPercentLabel.text = "\(redPercentString)"
             }
             else{
                 redHitPercentLabel.text = "NA"
@@ -1189,9 +1190,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         if set.blueAttack != 0{
             if let attackErr = set.redStats["Opponent Attack Err"]{
-                var bluePercent = Double(Int((Double(set.blueStats["Kill"]! - attackErr)/Double(set.blueAttack))*1000))/1000.0
-                //var redPercentString = String(format: "%.000f", redPercent)
-                blueHitPercentLabel.text = "\(bluePercent)"
+                //var bluePercent = Double(Int((Double(set.blueStats["Kill"]! - attackErr)/Double(set.blueAttack))*1000))/1000.0
+                var bluePercent2 = Double(set.blueStats["Kill"]! - attackErr)/Double(set.blueAttack)
+                var bluePercentString = String(format: "%.3f", bluePercent2)
+                blueHitPercentLabel.text = "\(bluePercentString)"
             }
             else{
                 blueHitPercentLabel.text = "NA"
@@ -1552,7 +1554,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print("redAttackAction")
         set.redAttack = set.redAttack + 1
         
-        redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
+        redAttackOutlet.setTitle("Attack\n    \(set.redAttack)", for: .normal)
         updatePercents()
         if game.publicGame{
             game.updateFirebase()
@@ -1564,7 +1566,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print("blueAttackAction")
         set.blueAttack = set.blueAttack + 1
         
-        blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+        blueAttackOutlet.setTitle("Attack\n    \(set.blueAttack)", for: .normal)
         updatePercents()
         if game.publicGame{
             game.updateFirebase()
@@ -1576,7 +1578,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if sender.direction == .down{
             set.redAttack = set.redAttack - 1
             
-            redAttackOutlet.setTitle("Attack\n  \(set.redAttack)", for: .normal)
+            redAttackOutlet.setTitle("Attack\n    \(set.redAttack)", for: .normal)
             updatePercents()
             if game.publicGame{
                 game.updateFirebase()
@@ -1588,7 +1590,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if sender.direction == .down{
             set.blueAttack = set.blueAttack - 1
             
-            blueAttackOutlet.setTitle("Attack\n  \(set.blueAttack)", for: .normal)
+            blueAttackOutlet.setTitle("Attack\n    \(set.blueAttack)", for: .normal)
             updatePercents()
             if game.publicGame{
                 game.updateFirebase()

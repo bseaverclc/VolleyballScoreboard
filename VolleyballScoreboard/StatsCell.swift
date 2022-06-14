@@ -64,7 +64,7 @@ class StatsCell: UITableViewCell {
         redBlocksOutlet.text = "\(redDict["Block"]!)"
         redServiceErrorsOutlet.text = "\(blueDict["Opponent Serve Err"]!)"
         if let rae = blueDict["Opponent Attack Err"]{
-            redErrorsOutlet.text = "\(rae + blueDict["Opponent Serve Err"]! + blueDict["Opponent Err"]!)"
+            redErrorsOutlet.text = "\(rae - blueDict["Block"]! + blueDict["Opponent Serve Err"]! + blueDict["Opponent Err"]!)"
         }
         else{
         redErrorsOutlet.text = "\(blueDict["Opponent Err"]! + blueDict["Opponent Serve Err"]!)"
@@ -88,7 +88,7 @@ class StatsCell: UITableViewCell {
         blueBlocksOutlet.text = "\(blueDict["Block"]!)"
         blueServiceErrorsOutlet.text = "\(redDict["Opponent Serve Err"]!)"
         if let bae = redDict["Opponent Attack Err"]{
-            blueErrorsOutlet.text = "\(bae + redDict["Opponent Serve Err"]! + redDict["Opponent Err"]!)"
+            blueErrorsOutlet.text = "\(bae - redDict["Block"]! + redDict["Opponent Serve Err"]! + redDict["Opponent Err"]!)"
         }
         else{
         blueErrorsOutlet.text = "\(redDict["Opponent Err"]! + redDict["Opponent Serve Err"]!)"
@@ -109,9 +109,10 @@ class StatsCell: UITableViewCell {
     func updatePercents(set : ASet){
         if set.redAttack != 0{
             if let attackErr = set.blueStats["Opponent Attack Err"]{
-                var redPercent = Double(Int((Double(set.redStats["Kill"]! - attackErr)/Double(set.redAttack))*1000))/1000.0
-                //var redPercentString = String(format: "%.000f", redPercent)
-                redHitPctOutlet.text = "\(redPercent)"
+                //var redPercent = Double(Int((Double(set.redStats["Kill"]! - attackErr)/Double(set.redAttack))*1000))/1000.0
+                var redPercent2 = (Double(set.redStats["Kill"]! - attackErr))/Double(set.redAttack)
+                var redPercentString = String(format: "%.3f", redPercent2)
+                redHitPctOutlet.text = "\(redPercentString)"
             }
             else{
                 redHitPctOutlet.text = "NA"
@@ -125,9 +126,10 @@ class StatsCell: UITableViewCell {
         
         if set.blueAttack != 0{
             if let attackErr = set.redStats["Opponent Attack Err"]{
-                var bluePercent = Double(Int((Double(set.blueStats["Kill"]! - attackErr)/Double(set.blueAttack))*1000))/1000.0
-                //var redPercentString = String(format: "%.000f", redPercent)
-                blueHitPctOutlet.text = "\(bluePercent)"
+               // var bluePercent = Double(Int((Double(set.blueStats["Kill"]! - attackErr)/Double(set.blueAttack))*1000))/1000.0
+                var bluePercent2 = (Double(set.blueStats["Kill"]! - attackErr))/Double(set.blueAttack)
+                var bluePercentString = String(format: "%.3f", bluePercent2)
+                blueHitPctOutlet.text = "\(bluePercentString)"
             }
             else{
                 blueHitPctOutlet.text = "NA"
