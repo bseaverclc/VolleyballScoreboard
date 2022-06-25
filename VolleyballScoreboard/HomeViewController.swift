@@ -155,6 +155,7 @@ class HomeViewController: UIViewController {
             }
             
             let g = Game(key: uid, dict: dict)
+           
             
             
 //           // Data.allAthletes.append(a)
@@ -164,6 +165,8 @@ class HomeViewController: UIViewController {
 //            })
 //
 //
+            
+            //**** Start Here for commented out code
             ref.child("games").child(uid).child("sets").observe(.childAdded, with: { (snapshot2) in
                 
                 guard let dict2 = snapshot2.value as? [String:Any]
@@ -260,7 +263,7 @@ class HomeViewController: UIViewController {
             
          
        
-            
+          //**** End Here for commented out code
         }
         
                 

@@ -646,7 +646,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 blueThreeLabel.text = "\(set.blueThree)"
                 
                 
-       updatePercents()
+      updatePercents()
 //        if game.publicGame{
 //        game.updateFirebase()
 //        }
@@ -841,6 +841,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let blueRotation = set.blueRotation;
                     increaseRedScore()
                     set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+                  
 //                    if game.publicGame{
 //                    set.addPoint(point: point )
 //                    }
@@ -854,10 +855,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updatePercents()
         updateScreen()
             
-//            if game.publicGame{
-//            game.updateFirebase()
-//
-//            }
+            if game.publicGame{
+            game.updateFirebase()
+
+            }
     }
     
     @IBAction func redStatAction(_ sender: UIButton) {
@@ -914,8 +915,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let serve = set.serve;
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
-                  increaseBlueScore()
+                    increaseBlueScore()
                     set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+                    
                   
                 }
             }
@@ -923,9 +925,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updatePercents()
         updateScreen()
           
-//          if game.publicGame{
-//          game.updateFirebase()
-//          }
+          if game.publicGame{
+          game.updateFirebase()
+          }
     }
     
     
@@ -1122,9 +1124,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
         updatePercents()
-        if game.publicGame{
-        game.updateFirebase()
-        }
+//        if game.publicGame{
+//        game.updateFirebase()
+//        }
     }
     
     func increaseBlueScoreReal(){
@@ -1141,9 +1143,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
         updatePercents()
-        if game.publicGame{
-        game.updateFirebase()
-        }
+//        if game.publicGame{
+//        game.updateFirebase()
+//        }
     }
     
    
