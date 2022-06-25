@@ -165,12 +165,14 @@ public class Game: Codable{
         for set in sets{
             let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "serve": set.serve, "redRotation": set.redRotation, "blueRotation": set.blueRotation, "redRotationPlusMinus": set.redRotationPlusMinus, "blueRotationPlusMinus": set.blueRotationPlusMinus, "redAttack": set.redAttack, "redOne": set.redOne, "redTwo": set.redTwo, "redThree": set.redThree, "blueAttack": set.blueAttack, "blueOne": set.blueOne, "blueTwo": set.blueTwo, "blueThree": set.blueThree] as [String: Any]
             ref.child(set.uid!).updateChildValues(setDict)
+            print("updating a set in firebase")
             
             
             for point in set.pointHistory{
                 let pointDict = ["serve": point.serve, "redRotation": point.redRotation, "blueRotation": point.blueRotation, "who": point.who, "why": point.why, "score": point.score] as [String: Any]
                 
                 ref.child(set.uid!).child("pointHistory").child(point.uid).updateChildValues(pointDict)
+                print("updating point history on firebase")
             }
         
         }

@@ -190,26 +190,27 @@ class HomeViewController: UIViewController {
                 ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observeSingleEvent(of: .value, with: { snapshot in
                        print("--load has completed and the last point was read--")
                     g.addSet(set: theSet)
-                    for i in 0..<AppData.allGames.count{
-                        if(AppData.allGames[i].uid == uid){
-                            AppData.allGames[i] = g
-                            
-                            NotificationCenter.default.post(name: Notification.Name("notifyScreenChange"), object: nil)
-                            
-                            print("addd changed game to AppData")
-                           // print("Who just won the point \(AppData.allGames[i].sets[0].pointHistory.last!.why)")
-                            break;
-                        }
-                    }
-                        
-                        for i in 0..<GamesViewController.filteredGames.count{
-                            if(GamesViewController.filteredGames[i].uid == uid){
-                                GamesViewController.filteredGames[i] = g
-                                print("addd changed game to gamesVC filteredGames")
-                                break;
-                            }
-                        }
-                    
+                    NotificationCenter.default.post(name: Notification.Name("notifyScreenChange"), object: nil)
+//                    for i in 0..<AppData.allGames.count{
+//                        if(AppData.allGames[i].uid == uid){
+//                            AppData.allGames[i] = g
+//
+//                           NotificationCenter.default.post(name: Notification.Name("notifyScreenChange"), object: nil)
+//
+//                            print("addd changed game to AppData")
+//                           // print("Who just won the point \(AppData.allGames[i].sets[0].pointHistory.last!.why)")
+//                            break;
+//                        }
+//                    }
+//
+//                        for i in 0..<GamesViewController.filteredGames.count{
+//                            if(GamesViewController.filteredGames[i].uid == uid){
+//                                GamesViewController.filteredGames[i] = g
+//                                print("addd changed game to gamesVC filteredGames")
+//                                break;
+//                            }
+//                        }
+
     //                if let ga = self.game{
     //                if(g.uid == self.game.uid){
     //                    self.game = g
@@ -217,18 +218,20 @@ class HomeViewController: UIViewController {
     //                    self.updateScreenFromFirebase()
     //                }
     //                }
-                    
+
                    })
                 
             })
         
             
               // waits to happen when all things are read
-            ref.child("games").child(uid).observeSingleEvent(of: .value, with: { snapshot in
+            ref.child("games").child("sets").observeSingleEvent(of: .value, with: { snapshot in
                    print("--load has completed and the last set was read--")
+               
                 for i in 0..<AppData.allGames.count{
                     if(AppData.allGames[i].uid == uid){
                         AppData.allGames[i] = g
+                        
                         print("addd changed game to AppData")
                         break;
                     }
