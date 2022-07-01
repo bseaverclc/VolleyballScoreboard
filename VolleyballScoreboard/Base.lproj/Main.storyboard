@@ -370,13 +370,13 @@
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serve Receive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kh7-fb-twQ">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serve Receive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kh7-fb-twQ" userLabel="redServeReceiveLabel">
                                                                 <rect key="frame" x="33" y="66.5" width="91.5" height="14"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-cv-0Nw">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-cv-0Nw" userLabel="redServeReceiveStackView">
                                                                 <rect key="frame" x="0.0" y="82.5" width="157.5" height="55"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-Ad-UrI">
@@ -491,7 +491,7 @@
                                                             <constraint firstItem="hRq-cv-0Nw" firstAttribute="leading" secondItem="ll4-VF-tZ3" secondAttribute="leading" id="EDN-t0-aDP"/>
                                                             <constraint firstItem="Kh7-fb-twQ" firstAttribute="height" secondItem="ll4-VF-tZ3" secondAttribute="height" multiplier="0.1" id="Iyb-Je-Ya3"/>
                                                             <constraint firstAttribute="trailing" secondItem="hRq-cv-0Nw" secondAttribute="trailing" id="UDR-eI-0Cm"/>
-                                                            <constraint firstItem="4Dy-Pf-4fI" firstAttribute="height" secondItem="ll4-VF-tZ3" secondAttribute="height" multiplier="0.47" id="n7M-T9-waC"/>
+                                                            <constraint firstItem="hRq-cv-0Nw" firstAttribute="height" secondItem="ll4-VF-tZ3" secondAttribute="height" multiplier="0.4" id="xx7-Ge-0wl"/>
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
@@ -769,13 +769,13 @@
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serve Receive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9rc-TJ-HVa">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serve Receive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9rc-TJ-HVa" userLabel="BlueServeReceiveLabel">
                                                                 <rect key="frame" x="33" y="66.5" width="91.5" height="14"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wI4-tQ-TQt">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wI4-tQ-TQt" userLabel="BlueServeReceiveStackView">
                                                                 <rect key="frame" x="0.0" y="82.5" width="157.5" height="55"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cm7-RH-dSx">
@@ -887,8 +887,8 @@
                                                             </stackView>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstItem="wI4-tQ-TQt" firstAttribute="height" secondItem="ADH-1L-zP0" secondAttribute="height" multiplier="0.4" id="2qP-SB-5LQ"/>
                                                             <constraint firstItem="wI4-tQ-TQt" firstAttribute="leading" secondItem="ADH-1L-zP0" secondAttribute="leading" id="LE5-zl-HeR"/>
-                                                            <constraint firstItem="c2C-sP-U6b" firstAttribute="height" secondItem="ADH-1L-zP0" secondAttribute="height" multiplier="0.47" id="gFE-7Y-afN"/>
                                                             <constraint firstAttribute="trailing" secondItem="wI4-tQ-TQt" secondAttribute="trailing" id="hSj-t1-QcJ"/>
                                                             <constraint firstItem="9rc-TJ-HVa" firstAttribute="height" secondItem="ADH-1L-zP0" secondAttribute="height" multiplier="0.1" id="hpK-WE-DpT"/>
                                                         </constraints>
@@ -984,9 +984,13 @@
                         <outlet property="blueAttackOutlet" destination="TEC-oN-xAN" id="4yC-5v-eX9"/>
                         <outlet property="blueEarnedPctLabel" destination="Oaw-gA-SQZ" id="kUH-h0-EGF"/>
                         <outlet property="blueHitPercentLabel" destination="NBc-YE-fhX" id="mX4-Pj-iig"/>
+                        <outlet property="blueHitTextLabel" destination="Um1-R5-3YZ" id="xsu-wE-YJu"/>
                         <outlet property="blueOneLabel" destination="Gs0-SS-59V" id="vSL-V0-0bx"/>
                         <outlet property="blueOutlet" destination="Tb1-Hx-Wwq" id="VCX-rE-ss5"/>
                         <outlet property="bluePassAvgLabel" destination="fyl-bR-2K6" id="dEN-Vw-mIO"/>
+                        <outlet property="bluePassTextLabel" destination="XN1-sy-T9n" id="g5V-Ux-k99"/>
+                        <outlet property="blueServeReceiveLabelConstraints" destination="hpK-WE-DpT" id="lhF-9F-fgI"/>
+                        <outlet property="blueServeReceiveStackConstraints" destination="2qP-SB-5LQ" id="47K-GL-S3W"/>
                         <outlet property="blueSetOutlet" destination="N3G-9Z-0ua" id="VwZ-Ua-eLQ"/>
                         <outlet property="blueStackView" destination="kwA-MX-Nq8" id="knX-Fy-JMI"/>
                         <outlet property="blueTextFieldOutlet" destination="MC9-o5-sUQ" id="Xap-SZ-yyo"/>
@@ -995,10 +999,14 @@
                         <outlet property="redAttackOutlet" destination="Xiw-hk-DdH" id="utp-QG-vYH"/>
                         <outlet property="redEarnedPctLabel" destination="oev-88-rOb" id="Twh-0b-LBU"/>
                         <outlet property="redHitPercentLabel" destination="tda-g3-9Wn" id="TSx-oj-1VV"/>
+                        <outlet property="redHitTextLabel" destination="U0g-gZ-Tly" id="HXw-rd-rUj"/>
                         <outlet property="redKillOutlet" destination="3Ps-km-YvP" id="oXe-UM-mie"/>
                         <outlet property="redOneLabel" destination="CsZ-R2-rRZ" id="BNZ-Hh-lNY"/>
                         <outlet property="redOutlet" destination="mVq-6N-7UR" id="7Sr-Gt-ysU"/>
                         <outlet property="redPassAvgLabel" destination="Pph-iY-6Sr" id="PfC-c4-cEK"/>
+                        <outlet property="redPassTextLabel" destination="WWF-ic-vzL" id="4um-6E-fK0"/>
+                        <outlet property="redServeReceiveConstraints" destination="xx7-Ge-0wl" id="2Xp-IF-J7k"/>
+                        <outlet property="redServeReceiveLabelConstraints" destination="Iyb-Je-Ya3" id="j98-dD-LAf"/>
                         <outlet property="redSetOutlet" destination="blF-R4-AOL" id="5Nv-lq-bBM"/>
                         <outlet property="redStackView" destination="gkF-kW-YGD" id="U8p-uM-VVK"/>
                         <outlet property="redTextFieldOutlet" destination="vfQ-zx-n5O" id="hsj-ZM-lbA"/>

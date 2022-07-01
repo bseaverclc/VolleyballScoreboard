@@ -10,6 +10,12 @@ import UIKit
 import AudioToolbox
 import Firebase
 
+extension NSLayoutConstraint {
+    func constraintWithMultiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: self.firstItem!, attribute: self.firstAttribute, relatedBy: self.relation, toItem: self.secondItem, attribute: self.secondAttribute, multiplier: multiplier, constant: self.constant)
+    }
+}
+
 @available(iOS 14.0, *)
 extension ViewController: UIColorPickerViewControllerDelegate {
     
@@ -62,7 +68,16 @@ class AppData{
 class ViewController: UIViewController, UITextFieldDelegate {
     
    
-   
+    @IBOutlet weak var redServeReceiveConstraints: NSLayoutConstraint!
+    @IBOutlet weak var redServeReceiveLabelConstraints: NSLayoutConstraint!
+    
+  
+    @IBOutlet weak var blueServeReceiveStackConstraints: NSLayoutConstraint!
+    @IBOutlet weak var blueServeReceiveLabelConstraints: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var blueErrorsConstraints: NSLayoutConstraint!
+    
     @IBOutlet weak var redAttackOutlet: UIButton!
     
     @IBOutlet weak var blueAttackOutlet: UIButton!
@@ -76,11 +91,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var blueThreeLabel: UILabel!
     
    
+    @IBOutlet weak var redHitTextLabel: UILabel!
     @IBOutlet weak var redHitPercentLabel: UILabel!
+    
+    @IBOutlet weak var redPassTextLabel: UILabel!
     @IBOutlet weak var redPassAvgLabel: UILabel!
     
     @IBOutlet weak var redEarnedPctLabel: UILabel!
+    
+    @IBOutlet weak var blueHitTextLabel: UILabel!
     @IBOutlet weak var blueHitPercentLabel: UILabel!
+    
+    @IBOutlet weak var bluePassTextLabel: UILabel!
     @IBOutlet weak var bluePassAvgLabel: UILabel!
     
     @IBOutlet weak var blueEarnedPctLabel: UILabel!
@@ -177,6 +199,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         ref = Database.database().reference()
         NotificationCenter.default.addObserver(self, selector: #selector(functionName), name: Notification.Name("notifyScreenChange"), object: nil)
         //getGamesFromFirebase()
@@ -254,6 +278,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             redTextFieldOutlet.isEnabled = false
             blueTextFieldOutlet.isEnabled = false
         }
+        
+        simpleStats()
+        
+        
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -1274,6 +1303,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             set.serve = point.serve
             set.blueRotation = point.blueRotation
             set.redRotation = point.redRotation
+            print(point.who)
             if point.who == "red"{
                 
                 for (key,value) in set.redStats{
@@ -1340,12 +1370,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
             updateScreen()
            
             if let guid = game.uid{
+               // set.pointHistory.removeLast()
+               // game.updateFirebase()
             set.deletePointFromFirebase(gameUid: guid, euid: point.uid)
             
             }
             else{
             set.pointHistory.removeLast()
             }
+            
             
             
         }
@@ -1579,6 +1612,39 @@ class ViewController: UIViewController, UITextFieldDelegate {
             button.backgroundColor = UIColor.systemYellow
             print("changing back to yellow color")
         }
+    }
+    
+    func setMultiplier(constraint: NSLayoutConstraint, multiplier : CGFloat){
+        let newConstraint = constraint.constraintWithMultiplier(multiplier)
+        view.removeConstraint(constraint)
+        view.addConstraint(newConstraint)
+        view.layoutIfNeeded()
+        //constraint = newConstraint
+    }
+    
+    func simpleStats(){
+        setMultiplier(constraint: redServeReceiveConstraints, multiplier: 0.0)
+        setMultiplier(constraint: redServeReceiveLabelConstraints, multiplier: 0.0)
+        setMultiplier(constraint: blueServeReceiveStackConstraints, multiplier: 0.0)
+        setMultiplier(constraint: blueServeReceiveLabelConstraints, multiplier: 0.0)
+
+       
+        redOneLabel.isHidden = true
+        redTwoLabel.isHidden = true
+        redThreeLabel.isHidden = true
+        blueOneLabel.isHidden = true
+        blueTwoLabel.isHidden = true
+        blueThreeLabel.isHidden = true
+        redAttackOutlet.isHidden = true
+        blueAttackOutlet.isHidden = true
+        redHitTextLabel.isHidden = true
+        redHitPercentLabel.isHidden = true
+        blueHitTextLabel.isHidden = true
+        blueHitPercentLabel.isHidden = true
+        redPassTextLabel.isHidden = true
+        redPassAvgLabel.isHidden = true
+        bluePassTextLabel.isHidden = true
+        bluePassAvgLabel.isHidden = true
     }
     
 }

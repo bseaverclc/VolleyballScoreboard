@@ -131,9 +131,9 @@ class HomeViewController: UIViewController {
 //        }
     }
     
-    func gameChangedInFirebase(){
+    func gameChangedInFirebase2(){
         
-        
+        var changedGame: Game!
         var ref: DatabaseReference!
 
         ref = Database.database().reference()
@@ -141,20 +141,32 @@ class HomeViewController: UIViewController {
         ref.child("games").observe(.childChanged) { (snapshot) in
             print("childchanged game changed on firebase")
             let uid = snapshot.key
-            //print(uid)
+            print(snapshot)
            
             guard let dict = snapshot.value as? [String:Any]
             else{ print("Error in observe child Changed")
                 return
             }
             
-            if let selgame = AppData.selectedGame{
-                if selgame.uid == uid && AppData.canEdit{
-                    return
+//            if let selgame = AppData.selectedGame{
+//                if selgame.uid == uid && AppData.canEdit{
+//                    return
+//                }
+//            }
+            
+            for i in 0..<AppData.allGames.count{
+                if(AppData.allGames[i].uid == uid){
+                    changedGame = AppData.allGames[i]
+
+                    print("found changed game")
+                    break;
                 }
             }
             
             let g = Game(key: uid, dict: dict)
+            print("Game created from observing gameChange \(g.teams)")
+            
+        
            
             
             
@@ -167,17 +179,17 @@ class HomeViewController: UIViewController {
 //
             
             //**** Start Here for commented out code
-            ref.child("games").child(uid).child("sets").observe(.childAdded, with: { (snapshot2) in
-                
+            ref.child("games").child(uid).child("sets").observe(.childChanged, with: { (snapshot2) in
+
                 guard let dict2 = snapshot2.value as? [String:Any]
                 else{ print("Error")
                     return
                 }
-                
+
                 var theSet = ASet(key: snapshot2.key, dict: dict2)
                 //var theSet2 = g.addSet(key: snapshot2.key, dict: dict2)
                 print("added a set from firebase change")
-                
+
                 ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observe(.childAdded) { snapshot3 in
                     guard let dict3 = snapshot3.value as? [String: Any]
                     else{print("Error reading pointHistory Change from Firebase")
@@ -185,11 +197,11 @@ class HomeViewController: UIViewController {
                     }
                     theSet.addPoint(key: snapshot3.key, dict: dict3)
                     //print("Added a point from gameChangedInFirebase from HomeViewController")
-                    
-                    
-                    
+
+
+
                 }
-                
+
                 ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observeSingleEvent(of: .value, with: { snapshot in
                        print("--load has completed and the last point was read--")
                     g.addSet(set: theSet)
@@ -223,23 +235,23 @@ class HomeViewController: UIViewController {
     //                }
 
                    })
-                
+
             })
-        
-            
+
+
               // waits to happen when all things are read
             ref.child("games").child("sets").observeSingleEvent(of: .value, with: { snapshot in
                    print("--load has completed and the last set was read--")
-               
+
                 for i in 0..<AppData.allGames.count{
                     if(AppData.allGames[i].uid == uid){
                         AppData.allGames[i] = g
-                        
+
                         print("addd changed game to AppData")
                         break;
                     }
                 }
-                    
+
                     for i in 0..<GamesViewController.filteredGames.count{
                         if(GamesViewController.filteredGames[i].uid == uid){
                             GamesViewController.filteredGames[i] = g
@@ -247,7 +259,7 @@ class HomeViewController: UIViewController {
                             break;
                         }
                     }
-                
+
 //                if let ga = self.game{
 //                if(g.uid == self.game.uid){
 //                    self.game = g
@@ -255,14 +267,158 @@ class HomeViewController: UIViewController {
 //                    self.updateScreenFromFirebase()
 //                }
 //                }
-                
-                
-                
+
+
+
                })
 
+
+
+
+          //**** End Here for commented out code
+        }
+        
+                
+//                print("printing events")
+//                print(dict2)
+                
+    }
+    
+    func gameChangedInFirebase(){
+        
+        
+        var ref: DatabaseReference!
+
+        ref = Database.database().reference()
+        
+        ref.child("games").observe(.childChanged) { (snapshot) in
+            print("childchanged game changed on firebase")
+            let uid = snapshot.key
+            print(snapshot)
+           
+            guard let dict = snapshot.value as? [String:Any]
+            else{ print("Error in observe child Changed")
+                return
+            }
             
-         
-       
+//            if let selgame = AppData.selectedGame{
+//                if selgame.uid == uid && AppData.canEdit{
+//                    return
+//                }
+//            }
+            
+            let g = Game(key: uid, dict: dict)
+            print("Game created from observing gameChange \(g.teams)")
+            
+        
+           
+            
+            
+//           // Data.allAthletes.append(a)
+//           // ref.child("athletes").child(uid).child("events").
+//            ref.child("athletes").child(uid).child("events").observe(.childRemoved, with: { (snapshot2) in
+//                print("observe event removed from launchvc")
+//            })
+//
+//
+            
+            //**** Start Here for commented out code
+            ref.child("games").child(uid).child("sets").observe(.childAdded, with: { (snapshot2) in
+
+                guard let dict2 = snapshot2.value as? [String:Any]
+                else{ print("Error")
+                    return
+                }
+
+                var theSet = ASet(key: snapshot2.key, dict: dict2)
+                //var theSet2 = g.addSet(key: snapshot2.key, dict: dict2)
+                print("added a set from firebase change")
+
+                ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observe(.childAdded) { snapshot3 in
+                    guard let dict3 = snapshot3.value as? [String: Any]
+                    else{print("Error reading pointHistory Change from Firebase")
+                        return
+                    }
+                    theSet.addPoint(key: snapshot3.key, dict: dict3)
+                    //print("Added a point from gameChangedInFirebase from HomeViewController")
+
+
+
+                }
+
+                ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observeSingleEvent(of: .value, with: { snapshot in
+                       print("--load has completed and the last point was read--")
+                    g.addSet(set: theSet)
+                    NotificationCenter.default.post(name: Notification.Name("notifyScreenChange"), object: nil)
+//                    for i in 0..<AppData.allGames.count{
+//                        if(AppData.allGames[i].uid == uid){
+//                            AppData.allGames[i] = g
+//
+//                           NotificationCenter.default.post(name: Notification.Name("notifyScreenChange"), object: nil)
+//
+//                            print("addd changed game to AppData")
+//                           // print("Who just won the point \(AppData.allGames[i].sets[0].pointHistory.last!.why)")
+//                            break;
+//                        }
+//                    }
+//
+//                        for i in 0..<GamesViewController.filteredGames.count{
+//                            if(GamesViewController.filteredGames[i].uid == uid){
+//                                GamesViewController.filteredGames[i] = g
+//                                print("addd changed game to gamesVC filteredGames")
+//                                break;
+//                            }
+//                        }
+
+    //                if let ga = self.game{
+    //                if(g.uid == self.game.uid){
+    //                    self.game = g
+    //                    self.set = self.game.sets[self.setSegmentedControlOutlet.selectedSegmentIndex]
+    //                    self.updateScreenFromFirebase()
+    //                }
+    //                }
+
+                   })
+
+            })
+
+
+              // waits to happen when all things are read
+            ref.child("games").child("sets").observeSingleEvent(of: .value, with: { snapshot in
+                   print("--load has completed and the last set was read--")
+
+                for i in 0..<AppData.allGames.count{
+                    if(AppData.allGames[i].uid == uid){
+                        AppData.allGames[i] = g
+
+                        print("addd changed game to AppData")
+                        break;
+                    }
+                }
+
+                    for i in 0..<GamesViewController.filteredGames.count{
+                        if(GamesViewController.filteredGames[i].uid == uid){
+                            GamesViewController.filteredGames[i] = g
+                            print("addd changed game to gamesVC filteredGames")
+                            break;
+                        }
+                    }
+
+//                if let ga = self.game{
+//                if(g.uid == self.game.uid){
+//                    self.game = g
+//                    self.set = self.game.sets[self.setSegmentedControlOutlet.selectedSegmentIndex]
+//                    self.updateScreenFromFirebase()
+//                }
+//                }
+
+
+
+               })
+
+
+
+
           //**** End Here for commented out code
         }
         
