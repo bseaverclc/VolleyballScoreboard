@@ -67,6 +67,8 @@ class StatsCell: UITableViewCell {
         let blueDict = set.blueStats
         redPointsOutlet.text = "\(redDict["redScore"]!)"
         redKillsOutlet.text = "\(redDict["Kill"]!)"
+        
+        
         if let rae = blueDict["Opponent Attack Err"]{
             redAttackErrorsOutlet.text = "\(rae)"
         }
@@ -82,6 +84,7 @@ class StatsCell: UITableViewCell {
         else{
         redErrorsOutlet.text = "\(blueDict["Opponent Err"]! + blueDict["Opponent Serve Err"]!)"
         }
+        
         if Int(set.redStats["redScore"]!) != 0
         {
         redPercentEarnedOutlet.text = "\(Int(round(Double(set.redStats["Ace"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Kill"]!)/Double(set.redStats["redScore"]!)*100.0 + Double(set.redStats["Block"]!)/Double(set.redStats["redScore"]!)*100.0)))%"
@@ -180,6 +183,110 @@ class StatsCell: UITableViewCell {
         
         
 
+        highlightWinners(set: set)
+        
+    }
+    
+    func highlightWinners(set : ASet){
+        if set.redStats["redScore"]! > set.blueStats["blueScore"]!{
+            redPointsOutlet.backgroundColor = UIColor.green
+        }
+        else  if set.redStats["redScore"]! < set.blueStats["blueScore"]!{
+            bluePointsOutlet.backgroundColor = UIColor.green
+        }
+        
+        
+        if set.redStats["Kill"]! > set.blueStats["Kill"]!{
+            redKillsOutlet.backgroundColor = UIColor.green
+        }
+        else  if set.redStats["Kill"]! < set.blueStats["Kill"]!{
+            blueKillsOutlet.backgroundColor = UIColor.green
+        }
+        
+        if let bae = set.redStats["Opponent Attack Err"], let rae = set.blueStats["Opponent Attack Err"]{
+            if rae < bae{
+            redAttackErrorsOutlet.backgroundColor = UIColor.green
+        }
+        else  if rae > bae{
+            blueAttackErrorsOutlet.backgroundColor = UIColor.green
+        }
+        }
+        
+        if set.redAttack > set.blueAttack{
+            redAttacksOutlet.backgroundColor = UIColor.green
+        }
+        else  if set.redAttack < set.blueAttack{
+            blueAttacksOutlet.backgroundColor = UIColor.green
+        }
+        
+        if set.redStats["Ace"]! > set.blueStats["Ace"]!{
+            redAcesOutlet.backgroundColor = UIColor.green
+        }
+        else  if set.redStats["Ace"]! < set.blueStats["Ace"]!{
+            blueAcesOutlet.backgroundColor = UIColor.green
+        }
+        
+        if set.redStats["Block"]! > set.blueStats["Block"]!{
+            redBlocksOutlet.backgroundColor = UIColor.green
+        }
+        else  if set.redStats["Block"]! < set.blueStats["Block"]!{
+            blueBlocksOutlet.backgroundColor = UIColor.green
+        }
+        
+        if set.redStats["Opponent Serve Err"]! > set.blueStats["Opponent Serve Err"]!{
+            redServiceErrorsOutlet.backgroundColor = UIColor.green
+        }
+        else  if set.redStats["Opponent Serve Err"]! < set.blueStats["Opponent Serve Err"]!{
+            blueServiceErrorsOutlet.backgroundColor = UIColor.green
+        }
+        
+        var totalRedErrors = 0
+        if let rae = set.blueStats["Opponent Attack Err"]{
+            totalRedErrors = (rae - set.blueStats["Block"]! + set.blueStats["Opponent Serve Err"]! + set.blueStats["Opponent Err"]!)
+        }
+        else{
+        totalRedErrors = (set.blueStats["Opponent Err"]! + set.blueStats["Opponent Serve Err"]!)
+        }
+        var totalBlueErrors = 0
+        if let bae = set.redStats["Opponent Attack Err"]{
+            totalBlueErrors = (bae - set.redStats["Block"]! + set.redStats["Opponent Serve Err"]! + set.redStats["Opponent Err"]!)
+        }
+        else{
+        totalBlueErrors = (set.redStats["Opponent Err"]! + set.redStats["Opponent Serve Err"]!)
+        }
+        
+        if totalRedErrors > totalBlueErrors{
+            blueErrorsOutlet.backgroundColor = UIColor.green
+        }
+        else  if totalRedErrors < totalBlueErrors{
+            redErrorsOutlet.backgroundColor = UIColor.green
+        }
+        
+        if let rhp = redHitPctOutlet.text, let bhp = blueHitPctOutlet.text{
+            if let r = Double(rhp), let b = Double(bhp){
+                if r > b{
+                    redHitPctOutlet.backgroundColor = UIColor.green
+                }
+                else  if totalRedErrors < totalBlueErrors{
+                    blueHitPctOutlet.backgroundColor = UIColor.green
+                }
+            }
+        }
+        
+        if let rpa = redPassAvgOutlet.text, let bpa = bluePassAvgOutlet.text{
+            if let r = Double(rpa), let b = Double(bpa){
+                if r > b{
+                    redPassAvgOutlet.backgroundColor = UIColor.green
+                }
+                else  if totalRedErrors < totalBlueErrors{
+                    bluePassAvgOutlet.backgroundColor = UIColor.green
+                }
+            }
+        }
+        
+    
+       
+       
         
         
     }
