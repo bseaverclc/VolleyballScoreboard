@@ -27,7 +27,7 @@ class StatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! StatsCell
-        cell.configure(set: theGame.sets[indexPath.row], setNum: indexPath.row + 1, teams: theGame.teams)
+        cell.configure(set: theGame.sets[indexPath.row], setNum: indexPath.row + 1, teams: theGame.teams, gameType: theGame.type ?? 0)
         
         return cell
     }

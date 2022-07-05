@@ -9,7 +9,13 @@ import UIKit
 import Foundation
 
 class StatsCell: UITableViewCell {
-
+    
+    @IBOutlet weak var attacksStackView: UIStackView!
+    
+    @IBOutlet weak var hitPctStackView: UIStackView!
+    
+    @IBOutlet weak var passAvgStackView: UIStackView!
+    
     @IBOutlet weak var redPointsOutlet: UILabel!
     @IBOutlet weak var redKillsOutlet: UILabel!
     @IBOutlet weak var redAttackErrorsOutlet: UILabel!
@@ -43,9 +49,16 @@ class StatsCell: UITableViewCell {
     @IBOutlet weak var redTeamOutlet: UILabel!
     @IBOutlet weak var blueTeamOutlet: UILabel!
     
+  
     
-    func configure(set: ASet, setNum: Int, teams: [String])
+    
+    func configure(set: ASet, setNum: Int, teams: [String], gameType: Int)
     {
+        if gameType == 1{
+            attacksStackView.isHidden = true
+            hitPctStackView.isHidden = true
+            passAvgStackView.isHidden = true
+        }
         setNumOutlet.text = "Set #\(setNum)"
         redTeamOutlet.text = teams[0]
         blueTeamOutlet.text = teams[1]

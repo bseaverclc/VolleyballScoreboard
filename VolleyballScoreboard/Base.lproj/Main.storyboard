@@ -497,7 +497,6 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="q8g-0f-CTY" firstAttribute="height" secondItem="gkF-kW-YGD" secondAttribute="height" multiplier="0.0794393" id="Dlo-ff-Hyb"/>
-                                                    <constraint firstItem="ll4-VF-tZ3" firstAttribute="height" secondItem="gkF-kW-YGD" secondAttribute="height" multiplier="0.334112" id="HXZ-gg-bT1"/>
                                                     <constraint firstItem="0jL-qM-Zsp" firstAttribute="height" secondItem="gkF-kW-YGD" secondAttribute="height" multiplier="0.549065" id="jOd-Pg-AQq"/>
                                                 </constraints>
                                             </stackView>
@@ -896,7 +895,6 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="Jzb-kz-oV7" firstAttribute="height" secondItem="kwA-MX-Nq8" secondAttribute="height" multiplier="0.549065" id="QPG-YV-xcV"/>
-                                                    <constraint firstItem="ADH-1L-zP0" firstAttribute="height" secondItem="kwA-MX-Nq8" secondAttribute="height" multiplier="0.334112" id="j1B-6N-eIZ"/>
                                                     <constraint firstItem="nWi-nC-927" firstAttribute="height" secondItem="kwA-MX-Nq8" secondAttribute="height" multiplier="0.0794393" id="xyO-N5-z1i"/>
                                                 </constraints>
                                             </stackView>
@@ -1464,6 +1462,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="attacksStackView" destination="EMh-Uk-7vL" id="HQM-uR-beE"/>
                                             <outlet property="blueAcesOutlet" destination="dfB-T9-9We" id="aDC-X2-4WU"/>
                                             <outlet property="blueAttackErrorsOutlet" destination="Zqs-FJ-k9i" id="iiX-I0-imR"/>
                                             <outlet property="blueAttacksOutlet" destination="cbj-OP-1tG" id="2aL-Da-pQH"/>
@@ -1476,6 +1475,8 @@
                                             <outlet property="bluePointsOutlet" destination="dbQ-37-dJ8" id="STO-y0-xex"/>
                                             <outlet property="blueServiceErrorsOutlet" destination="ImQ-jV-cIr" id="wlK-JS-cYH"/>
                                             <outlet property="blueTeamOutlet" destination="WFX-73-Byt" id="X1K-56-JGV"/>
+                                            <outlet property="hitPctStackView" destination="hZo-1H-u9s" id="5Ha-ie-EX5"/>
+                                            <outlet property="passAvgStackView" destination="8G4-pS-dt1" id="mOx-at-53W"/>
                                             <outlet property="redAcesOutlet" destination="b7r-rI-Ngd" id="hn6-je-KyI"/>
                                             <outlet property="redAttackErrorsOutlet" destination="3pt-dS-bWN" id="gIn-Vn-Zob"/>
                                             <outlet property="redAttacksOutlet" destination="Iag-gq-uaO" id="SJx-yg-tmN"/>

@@ -221,6 +221,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         print("Game Did Appear")
         if let g = AppData.selectedGame {
+            if let gt = g.type{
+                if gt == 0{
+                    fullStats()
+                }
+                else{
+                    simpleStats()
+                }
+            }
             if g.publicGame{
                 print("public game")
                 var alive = false
@@ -268,6 +276,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             game = nil
             set = nil
             newGame()
+           fullStats()
         }
         
         if AppData.canEdit{
@@ -278,9 +287,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             redTextFieldOutlet.isEnabled = false
             blueTextFieldOutlet.isEnabled = false
         }
-        
-        simpleStats()
-        
+      
+       
+       
         
         
     }
@@ -384,7 +393,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: "Create a New Game?", message: "Public Game: Everyone can view\n  Private Game: Only you can view", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Create Public Game", style: .default, handler: { a in
             self.createGame()
+           self.chooseStats()
             self.game.publicGame = true
+            
             AppData.canEdit = true
             self.game.saveToFirebase()
             print("UId after saving to firebase: \(self.game.uid)")
@@ -404,6 +415,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(UIAlertAction(title: "Create Private Game", style: .default, handler: {a in
             
             self.createGame()
+            self.chooseStats()
             self.game.publicGame = false
             AppData.canEdit = true
             AppData.myGames.append(self.game)
@@ -418,11 +430,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         
         
+        
+        
         //reset()
         
         //AppData.allGames.append(game)
         
         
+    }
+    
+    func chooseStats(){
+        let alert2 = UIAlertController(title: "Stats", message: "Simple Stats or Full Stats?", preferredStyle: .alert)
+        alert2.addAction(UIAlertAction(title: "Simple", style: .default, handler: { a in
+            self.game.type = 1
+            self.simpleStats()
+            if self.game.publicGame{
+                self.game.updateFirebase()
+            }
+            
+        }))
+        alert2.addAction(UIAlertAction(title: "Full", style: .default, handler: {a in
+            
+            self.game.type = 0
+            self.fullStats()
+            if self.game.publicGame{
+                self.game.updateFirebase()
+            }
+        }))
+        present(alert2, animated: true) {
+            
+        }
     }
     
     func chooseNumSets(){
@@ -1614,19 +1651,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func setMultiplier(constraint: NSLayoutConstraint, multiplier : CGFloat){
+    func setMultiplier(constraint: inout NSLayoutConstraint, multiplier : CGFloat){
         let newConstraint = constraint.constraintWithMultiplier(multiplier)
         view.removeConstraint(constraint)
         view.addConstraint(newConstraint)
-        view.layoutIfNeeded()
-        //constraint = newConstraint
+        //view.layoutIfNeeded()
+        constraint = newConstraint
     }
     
     func simpleStats(){
-        setMultiplier(constraint: redServeReceiveConstraints, multiplier: 0.0)
-        setMultiplier(constraint: redServeReceiveLabelConstraints, multiplier: 0.0)
-        setMultiplier(constraint: blueServeReceiveStackConstraints, multiplier: 0.0)
-        setMultiplier(constraint: blueServeReceiveLabelConstraints, multiplier: 0.0)
+     
+        
+        setMultiplier(constraint: &redServeReceiveConstraints, multiplier: 0.01)
+        setMultiplier(constraint: &redServeReceiveLabelConstraints, multiplier: 0.01)
+        setMultiplier(constraint: &blueServeReceiveStackConstraints, multiplier: 0.01)
+        setMultiplier(constraint: &blueServeReceiveLabelConstraints, multiplier: 0.01)
+        
 
        
         redOneLabel.isHidden = true
@@ -1645,6 +1685,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
         redPassAvgLabel.isHidden = true
         bluePassTextLabel.isHidden = true
         bluePassAvgLabel.isHidden = true
+        view.layoutIfNeeded()
+    }
+    
+    func fullStats(){
+        
+        setMultiplier(constraint: &redServeReceiveLabelConstraints, multiplier: 0.10)
+        setMultiplier(constraint: &redServeReceiveConstraints, multiplier: 0.40)
+        
+        setMultiplier(constraint: &blueServeReceiveLabelConstraints, multiplier: 0.10)
+        setMultiplier(constraint: &blueServeReceiveStackConstraints, multiplier: 0.40)
+        view.layoutIfNeeded()
+       
+        redOneLabel.isHidden = false
+        redTwoLabel.isHidden = false
+        redThreeLabel.isHidden = false
+        blueOneLabel.isHidden = false
+        blueTwoLabel.isHidden = false
+        blueThreeLabel.isHidden = false
+        redAttackOutlet.isHidden = false
+        blueAttackOutlet.isHidden = false
+        redHitTextLabel.isHidden = false
+        redHitPercentLabel.isHidden = false
+        blueHitTextLabel.isHidden = false
+        blueHitPercentLabel.isHidden = false
+        redPassTextLabel.isHidden = false
+        redPassAvgLabel.isHidden = false
+        bluePassTextLabel.isHidden = false
+        bluePassAvgLabel.isHidden = false
+        
     }
     
 }

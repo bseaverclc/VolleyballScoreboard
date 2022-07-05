@@ -16,6 +16,7 @@ public class Game: Codable{
     var uid : String?
     var publicGame : Bool = true
     var intDate: Int
+    var type: Int?
     
     
     
@@ -36,6 +37,12 @@ public class Game: Codable{
     }
     
     init(key: String, dict: [String:Any] ) {
+        if let t = dict["type"] as? Int{
+            type = t
+        }
+        else{
+            type = 0
+        }
         teams = dict["teams"] as! [String]
         setWins = dict["setWins"] as! [Int]
         
@@ -118,7 +125,7 @@ public class Game: Codable{
         let timeString = formatter1.string(from: date)
         
         let ref = Database.database().reference()
-        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "publicGame": publicGame, "intDate": intDate] as [String : Any]
+        let dict = ["type": self.type ?? 0,  "teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "publicGame": publicGame, "intDate": intDate] as [String : Any]
        
         
         let gameRef = ref.child("games").childByAutoId()
@@ -157,7 +164,7 @@ public class Game: Codable{
         let timeString = formatter1.string(from: date)
         
         var ref = Database.database().reference().child("games").child(uid!)
-        let dict = ["teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "intDate": intDate] as [String : Any]
+        let dict = ["type" : self.type ?? 0,  "teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "intDate": intDate] as [String : Any]
         
         ref.updateChildValues(dict)
         ref = ref.child("sets")
