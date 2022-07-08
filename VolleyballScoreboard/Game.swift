@@ -172,14 +172,22 @@ public class Game: Codable{
         for set in sets{
             let setDict = ["redStats": set.redStats,"blueStats": set.blueStats, "serve": set.serve, "redRotation": set.redRotation, "blueRotation": set.blueRotation, "redRotationPlusMinus": set.redRotationPlusMinus, "blueRotationPlusMinus": set.blueRotationPlusMinus, "redAttack": set.redAttack, "redOne": set.redOne, "redTwo": set.redTwo, "redThree": set.redThree, "blueAttack": set.blueAttack, "blueOne": set.blueOne, "blueTwo": set.blueTwo, "blueThree": set.blueThree] as [String: Any]
             ref.child(set.uid!).updateChildValues(setDict)
-            print("updating a set in firebase")
+            //print("updating a set in firebase")
             
             
             for point in set.pointHistory{
                 let pointDict = ["serve": point.serve, "redRotation": point.redRotation, "blueRotation": point.blueRotation, "who": point.who, "why": point.why, "score": point.score] as [String: Any]
                 
+                if point.uid == ""{
+                    let ref = Database.database().reference().child(set.uid!)
+                point.uid = ref.childByAutoId().key!
+                    print("added point with key \(point.uid)")
+                }
+                
                 ref.child(set.uid!).child("pointHistory").child(point.uid).updateChildValues(pointDict)
-                print("updating point history on firebase")
+                    //print("updating point history on firebase")
+                
+                
             }
         
         }
@@ -318,11 +326,11 @@ public class ASet: Codable
         
             
         pointHistory.append(point)
-        if let ui = uid{
-        let ref = Database.database().reference().child(ui)
-        point.uid = ref.childByAutoId().key!
-            print("added point with key \(point.uid)")
-        }
+//        if let ui = uid{
+//        let ref = Database.database().reference().child(ui)
+//        point.uid = ref.childByAutoId().key!
+//            print("added point with key \(point.uid)")
+//        }
         
             //updateFirebase()
         
@@ -333,7 +341,7 @@ public class ASet: Codable
         pointHistory.append(Point(key: key, dict: dict))
     }
     
-    func deletePointFromFirebase(gameUid: String, euid: String){
+    func deletePointFromFirebase(gameUid: String, euid: String, action: () -> Void){
         if let uia = uid{
             pointHistory.removeLast()
             print("Trying to remove point \(euid)")
@@ -345,6 +353,35 @@ public class ASet: Codable
         else{
             print("Error Deleting Event! Event not in Firebase")
         }
+    }
+    
+    func setUpdateFirebase(gameUid: String){
+        
+        
+        var ref = Database.database().reference().child("games").child(gameUid)
+            let setDict = ["redStats": redStats,"blueStats": blueStats, "serve": serve, "redRotation": redRotation, "blueRotation": blueRotation, "redRotationPlusMinus": redRotationPlusMinus, "blueRotationPlusMinus": blueRotationPlusMinus, "redAttack": redAttack, "redOne": redOne, "redTwo": redTwo, "redThree": redThree, "blueAttack": blueAttack, "blueOne": blueOne, "blueTwo": blueTwo, "blueThree": blueThree] as [String: Any]
+            ref.child(uid!).updateChildValues(setDict)
+            //print("updating a set in firebase")
+            
+            
+            for point in pointHistory{
+                let pointDict = ["serve": point.serve, "redRotation": point.redRotation, "blueRotation": point.blueRotation, "who": point.who, "why": point.why, "score": point.score] as [String: Any]
+                
+                if point.uid == ""{
+                    let ref = Database.database().reference().child(uid!)
+                point.uid = ref.childByAutoId().key!
+                    print("added point with key \(point.uid)")
+                }
+                
+                ref.child(uid!).child("pointHistory").child(point.uid).updateChildValues(pointDict)
+                    //print("updating point history on firebase")
+                
+                
+            }
+        
+        
+        
+        
     }
     
     

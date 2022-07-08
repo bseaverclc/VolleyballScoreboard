@@ -23,6 +23,7 @@ public class Point: Codable{
         self.who = who
         self.why = why
         self.score = score
+        //print("created a point object from init1")
     }
     
     init(key: String, dict: [String: Any]){

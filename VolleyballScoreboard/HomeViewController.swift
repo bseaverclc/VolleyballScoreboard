@@ -294,18 +294,19 @@ class HomeViewController: UIViewController {
         ref.child("games").observe(.childChanged) { (snapshot) in
             print("childchanged game changed on firebase")
             let uid = snapshot.key
-            print(snapshot)
+            //print(snapshot)
            
             guard let dict = snapshot.value as? [String:Any]
             else{ print("Error in observe child Changed")
                 return
             }
             
-//            if let selgame = AppData.selectedGame{
-//                if selgame.uid == uid && AppData.canEdit{
-//                    return
-//                }
-//            }
+            if let selgame = AppData.selectedGame{
+                if selgame.uid == uid && AppData.canEdit{
+                    print("returning because I made the change")
+                    return
+                }
+            }
             
             let g = Game(key: uid, dict: dict)
             print("Game created from observing gameChange \(g.teams)")
@@ -332,15 +333,17 @@ class HomeViewController: UIViewController {
 
                 var theSet = ASet(key: snapshot2.key, dict: dict2)
                 //var theSet2 = g.addSet(key: snapshot2.key, dict: dict2)
-                print("added a set from firebase change")
+                print("added a set from firebase change from HomeViewController")
 
                 ref.child("games").child(uid).child("sets").child(snapshot2.key).child("pointHistory").observe(.childAdded) { snapshot3 in
+                    
+                    
                     guard let dict3 = snapshot3.value as? [String: Any]
                     else{print("Error reading pointHistory Change from Firebase")
                         return
                     }
                     theSet.addPoint(key: snapshot3.key, dict: dict3)
-                    //print("Added a point from gameChangedInFirebase from HomeViewController")
+                    print("Added a point from gameChangedInFirebase from HomeViewController")
 
 
 

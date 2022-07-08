@@ -363,6 +363,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         game.sets.append(ASet())
         game.sets.append(ASet())
         game.sets.append(ASet())
+        game.sets.append(ASet())
+        game.sets.append(ASet())
         set = game.sets[0]
         setNum = 1
         self.setSegmentedControlOutlet.selectedSegmentIndex = 0
@@ -790,7 +792,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             updatePercents()
         if game.publicGame{
-        game.updateFirebase()
+            set.setUpdateFirebase(gameUid: game.uid!)
         }
     }
     
@@ -907,6 +909,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let blueRotation = set.blueRotation;
                     increaseRedScore()
                     set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+                    print("added a point from redStatActionReal")
                   
 //                    if game.publicGame{
 //                    set.addPoint(point: point )
@@ -1240,11 +1243,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func setChooserAction(_ sender: UISegmentedControl) {
-        
+        if sender.selectedSegmentIndex < game.sets.count{
         set = game.sets[sender.selectedSegmentIndex]
         setNum = sender.selectedSegmentIndex + 1
        // print(set.redStats)
         updateScreen()
+        }
+        else{
+            sender.selectedSegmentIndex = game.sets.count - 1
+            set = game.sets[sender.selectedSegmentIndex]
+            setNum = sender.selectedSegmentIndex + 1
+            updateScreen()
+            
+        }
         
     }
     
@@ -1342,7 +1353,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             set.redRotation = point.redRotation
             print(point.who)
             if point.who == "red"{
-                
+                print("red who")
                 for (key,value) in set.redStats{
                     if key == point.why{
                         set.redStats[key]! -= 1
@@ -1366,14 +1377,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 }
-                decreaseRedScore()
+                
+                //decrease red score
+                if set.redStats["redScore"]! > 0{
+                set.redStats["redScore"]! -= 1
+                redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
+                }
                 
                 set.redRotationPlusMinus[set.redRotation] -= 1
                 set.blueRotationPlusMinus[set.blueRotation] += 1
                 
             }
             if point.who == "blue"{
-                
+                print("blue who")
                 for (key,value) in set.blueStats{
                     if key == point.why{
                         set.blueStats[key]! -= 1
@@ -1398,7 +1414,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
                 
-                decreaseBlueScore()
+                if set.blueStats["blueScore"]! > 0{
+                set.blueStats["blueScore"]! -= 1
+                blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
+                }
                 set.redRotationPlusMinus[set.redRotation] += 1
                 set.blueRotationPlusMinus[set.blueRotation] -= 1
                 
@@ -1409,8 +1428,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if let guid = game.uid{
                // set.pointHistory.removeLast()
                // game.updateFirebase()
-            set.deletePointFromFirebase(gameUid: guid, euid: point.uid)
-            
+                set.deletePointFromFirebase(gameUid: guid, euid: point.uid){
+                set.setUpdateFirebase(gameUid: guid)
+                }
             }
             else{
             set.pointHistory.removeLast()
@@ -1715,6 +1735,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         bluePassAvgLabel.isHidden = false
         
     }
+    
+  
+    
     
 }
 
