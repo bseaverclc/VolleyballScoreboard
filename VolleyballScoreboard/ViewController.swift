@@ -731,13 +731,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         var errorTitle = "Fail!"
         if AppData.canEdit{
             if game.publicGame{
-        game.updateFirebase()
+               game.updateFirebase()
                 
-                
-                
-                
+                for i in 0 ..< AppData.myGames.count{
+                    if AppData.myGames[i].uid == game.uid{
+                        AppData.myGames[i] = game
+                    }
+                }
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(AppData.myGames) {
+                                   UserDefaults.standard.set(encoded, forKey: "myGames")
+                }
+ 
                 errorTitle = "Success!"
-                errorMessage = "Game has been saved"
+                errorMessage = "Game has been saved "
                 let alert = UIAlertController(title: "Success!", message: "Game has been saved", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
@@ -1422,19 +1429,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 set.blueRotationPlusMinus[set.blueRotation] -= 1
                 
             }
+            
             updatePercents()
             updateScreen()
            
             if let guid = game.uid{
-               // set.pointHistory.removeLast()
-               // game.updateFirebase()
-                set.deletePointFromFirebase(gameUid: guid, euid: point.uid){
+               //set.pointHistory.removeLast()
+               
+               set.deletePointFromFirebase(gameUid: guid, euid: point.uid)
                 set.setUpdateFirebase(gameUid: guid)
-                }
+                //game.updateFirebase()
+                
+                
             }
             else{
             set.pointHistory.removeLast()
             }
+            
+           
             
             
             

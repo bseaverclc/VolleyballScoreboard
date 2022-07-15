@@ -93,6 +93,61 @@ public class Game: Codable{
         
     }
     
+    func updateGame(dict: [String:Any]){
+        if let t = dict["type"] as? Int{
+            type = t
+        }
+        else{
+            type = 0
+        }
+        teams = dict["teams"] as! [String]
+        setWins = dict["setWins"] as! [Int]
+        
+        if let inD = dict["intDate"] as? Int
+        {
+        intDate = inD
+        date = Date(timeIntervalSince1970: TimeInterval(intDate))
+        }
+        else
+        {
+        
+        let formatter1 = DateFormatter()
+        
+        //formatter1.locale = Locale(identifier: "en_US_POSIX")
+        //formatter1.timeZone = .autoupdatingCurrent
+        formatter1.dateFormat = "MM/dd/yy HH:mm aa"
+        let dateString = dict["date"] as! String
+        let timeString = dict["time"] as! String
+        print("\(dateString) \(timeString)")
+        let fullDate = "\(dateString) \(timeString)"
+            
+        if let d = formatter1.date(from: fullDate)
+        {
+        date = d
+            intDate = Int(self.date.timeIntervalSince1970)
+
+
+            let dateFormatter = DateFormatter()
+            //dateFormatter.dateFormat = "MM/D/YY"
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .short
+
+            let convertedDate = dateFormatter.string(from: date)
+            print(convertedDate)
+
+        }
+        else{
+            print("Error Reading date")
+            date = Date()
+            intDate = Int(self.date.timeIntervalSince1970)
+
+        }
+        }
+        
+        
+        
+    }
+    
     func addSet(key: String, dict: [String:Any] ) -> ASet{
         let createdSet = ASet(key: key, dict: dict)
         sets.append(createdSet)
@@ -326,6 +381,7 @@ public class ASet: Codable
         
             
         pointHistory.append(point)
+        print("added a point from addPoint(point: Point) function")
 //        if let ui = uid{
 //        let ref = Database.database().reference().child(ui)
 //        point.uid = ref.childByAutoId().key!
@@ -339,9 +395,11 @@ public class ASet: Codable
     
     func addPoint(key: String, dict: [String: Any]){
         pointHistory.append(Point(key: key, dict: dict))
+        print("added a point from addPoint(key, dict) function")
     }
     
-    func deletePointFromFirebase(gameUid: String, euid: String, action: () -> Void){
+    func deletePointFromFirebase(gameUid: String, euid: String){
+       
         if let uia = uid{
             pointHistory.removeLast()
             print("Trying to remove point \(euid)")
@@ -358,7 +416,7 @@ public class ASet: Codable
     func setUpdateFirebase(gameUid: String){
         
         
-        var ref = Database.database().reference().child("games").child(gameUid)
+        var ref = Database.database().reference().child("games").child(gameUid).child("sets")
             let setDict = ["redStats": redStats,"blueStats": blueStats, "serve": serve, "redRotation": redRotation, "blueRotation": blueRotation, "redRotationPlusMinus": redRotationPlusMinus, "blueRotationPlusMinus": blueRotationPlusMinus, "redAttack": redAttack, "redOne": redOne, "redTwo": redTwo, "redThree": redThree, "blueAttack": blueAttack, "blueOne": blueOne, "blueTwo": blueTwo, "blueThree": blueThree] as [String: Any]
             ref.child(uid!).updateChildValues(setDict)
             //print("updating a set in firebase")
