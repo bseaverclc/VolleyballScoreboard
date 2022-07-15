@@ -18,11 +18,15 @@ class CrazyCell: UITableViewCell
     @IBOutlet weak var redS1Outlet: UILabel!
     @IBOutlet weak var redS2Outlet: UILabel!
     @IBOutlet weak var redS3Outlet: UILabel!
+    @IBOutlet weak var redS4Outlet: UILabel!
+    @IBOutlet weak var redS5Outlet: UILabel!
     
     
     @IBOutlet weak var blueS1Outlet: UILabel!
     @IBOutlet weak var blueS2Outlet: UILabel!
     @IBOutlet weak var blueS3Outlet: UILabel!
+    @IBOutlet weak var blueS4Outlet: UILabel!
+    @IBOutlet weak var blueS5Outlet: UILabel!
     
     
     @IBOutlet weak var dateOutlet: UILabel!
@@ -39,10 +43,18 @@ class CrazyCell: UITableViewCell
         redS1Outlet.text = "\(game.sets[0].redStats["redScore"]!)"
         redS2Outlet.text = "\(game.sets[1].redStats["redScore"]!)"
         redS3Outlet.text = "\(game.sets[2].redStats["redScore"]!)"
+        if game.sets.count > 3{
+        redS4Outlet.text = "\(game.sets[3].redStats["redScore"]!)"
+        redS5Outlet.text = "\(game.sets[4].redStats["redScore"]!)"
+        }
         
         blueS1Outlet.text = "\(game.sets[0].blueStats["blueScore"]!)"
         blueS2Outlet.text = "\(game.sets[1].blueStats["blueScore"]!)"
         blueS3Outlet.text = "\(game.sets[2].blueStats["blueScore"]!)"
+        if game.sets.count > 3{
+        blueS4Outlet.text = "\(game.sets[3].blueStats["blueScore"]!)"
+        blueS5Outlet.text = "\(game.sets[4].blueStats["blueScore"]!)"
+        }
         
         
         let dateFormatter = DateFormatter()
