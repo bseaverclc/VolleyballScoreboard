@@ -113,8 +113,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var swipeOutlets: [UISwipeGestureRecognizer]!
     @IBOutlet var redStatsOutlet: [UIButton]!
+
+    @IBOutlet weak var redAttackErrLabelOutlet: UILabel!
+    
+    @IBOutlet weak var redServeErrLabelOutlet: UILabel!
+    @IBOutlet weak var redOtherErrLabelOutlet: UILabel!
     
     @IBOutlet var blueStatsOutlet: [UIButton]!
+    @IBOutlet weak var blueAttackErrLabelOutlet: UILabel!
+    @IBOutlet weak var blueServeErrLabelOutlet: UILabel!
+    @IBOutlet weak var blueOtherErrLabelOutlet: UILabel!
     
     @IBOutlet weak var setSegmentedControlOutlet: UISegmentedControl!
     
@@ -200,6 +208,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for button in redStatsOutlet{
+
+            button.titleLabel?.adjustsFontForContentSizeCategory = true
+            button.titleLabel?.numberOfLines = 3
+            button.titleLabel?.lineBreakMode = .byTruncatingMiddle
+            
+
+        }
+        
         
         ref = Database.database().reference()
         NotificationCenter.default.addObserver(self, selector: #selector(functionName), name: Notification.Name("notifyScreenChange"), object: nil)
@@ -220,6 +237,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         print("Game Did Appear")
+        for button in redStatsOutlet{
+
+            button.titleLabel?.adjustsFontForContentSizeCategory = true
+            if button.tag >= 3{
+            button.titleLabel?.layer.opacity = 0.0
+            }
+
+        }
+        for button in blueStatsOutlet{
+
+            button.titleLabel?.adjustsFontForContentSizeCategory = true
+            
+
+        }
+        
         if let g = AppData.selectedGame {
             if let gt = g.type{
                 if gt == 0{
@@ -617,18 +649,52 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 redTextFieldOutlet.text = String(game.teams[0])
                 blueTextFieldOutlet.text = String(game.teams[1])
 
-        for outlet in redStatsOutlet{
-            var title = outlet.title(for: .normal)!
+                
+                // updates the labels on the red error buttons
+                         for (key,value) in set.redStats{
+                             if key.contains("Attack Err"){
+                                 redAttackErrLabelOutlet.text = "\(value)"
+                             }
+                             if key.contains("Serve Err"){
+                                 redServeErrLabelOutlet.text = "\(value)"
+                             }
+                             if key.contains("Opponent Err"){
+                                 redOtherErrLabelOutlet.text = "\(value)"
+                             }
+                             
+                         }
+                
+                // updates the red button titles
+                for i in 0 ..< redStatsOutlet.count{
+            var title = redStatsOutlet[i].title(for: .normal)!
             for (key,value) in set.redStats{
                 if title.contains(key){
-                    outlet.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
+                    
+                    redStatsOutlet[i].setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
+                    
                 }
             }
             
      
             
         }
+                
+                // updates the labels on the blue error buttons
+                         for (key,value) in set.blueStats{
+                             if key.contains("Attack Err"){
+                                 blueAttackErrLabelOutlet.text = "\(value)"
+                             }
+                             if key.contains("Serve Err"){
+                                 blueServeErrLabelOutlet.text = "\(value)"
+                             }
+                             if key.contains("Opponent Err"){
+                                 blueOtherErrLabelOutlet.text = "\(value)"
+                             }
+                             
+                         }
         
+                
+                // update blue button titles
         for outlet in blueStatsOutlet{
             var title = outlet.title(for: .normal)!
             for (key,value) in set.blueStats{
@@ -669,25 +735,52 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 redTextFieldOutlet.text = String(game.teams[0])
                 blueTextFieldOutlet.text = String(game.teams[1])
-
-        for outlet in redStatsOutlet{
-            var title = outlet.title(for: .normal)!
-            if title.contains("Opponent Attack Err"){
-                outlet.setTitle("Opponent Attack Err\n0", for: .normal)
-            }
-            for (key,value) in set.redStats{
                 
-                
-                if title.contains(key){
-                    outlet.setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
+       // updates the labels on the red error buttons
+                for (key,value) in set.redStats{
+                    if key.contains("Attack Err"){
+                        redAttackErrLabelOutlet.text = "\(value)"
+                    }
+                    if key.contains("Serve Err"){
+                        redServeErrLabelOutlet.text = "\(value)"
+                    }
+                    if key.contains("Opponent Err"){
+                        redOtherErrLabelOutlet.text = "\(value)"
+                    }
+                    
                 }
                 
+     // updates the titles on the red buttons
+                for i in 0 ..< redStatsOutlet.count{
+            var title = redStatsOutlet[i].title(for: .normal)!
+            for (key,value) in set.redStats{
+                if title.contains(key){
+
+                    redStatsOutlet[i].setTitle("\(key)\n\(set.redStats[key]!)", for: .normal)
+                    
+                }
             }
             
      
             
         }
+                
+                // updates the labels on the blue error buttons
+                         for (key,value) in set.blueStats{
+                             if key.contains("Attack Err"){
+                                 blueAttackErrLabelOutlet.text = "\(value)"
+                             }
+                             if key.contains("Serve Err"){
+                                 blueServeErrLabelOutlet.text = "\(value)"
+                             }
+                             if key.contains("Opponent Err"){
+                                 blueOtherErrLabelOutlet.text = "\(value)"
+                             }
+                             
+                         }
         
+                
+                // updates the titles on the blue buttons
         for outlet in blueStatsOutlet{
             var title = outlet.title(for: .normal)!
             if title.contains("Opponent Attack Err"){
