@@ -496,15 +496,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-Ad-UrI">
                                                                         <rect key="frame" x="0.0" y="0.0" width="51" height="55"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kEG-BR-gUf">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kEG-BR-gUf">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="55"/>
                                                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                                                 <gestureRecognizers/>
-                                                                                <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="plain" title="1">
-                                                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </buttonConfiguration>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                <state key="normal" title="1">
+                                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
                                                                                 <connections>
                                                                                     <action selector="redOneAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uZj-NT-IPQ"/>
                                                                                     <outletCollection property="gestureRecognizers" destination="FNy-AZ-12t" appends="YES" id="6tw-vs-ohm"/>
@@ -531,15 +531,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RfS-p8-IwL">
                                                                         <rect key="frame" x="53" y="0.0" width="51.5" height="55"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fdN-qf-Pky">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fdN-qf-Pky">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="51.5" height="55"/>
                                                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                                                 <gestureRecognizers/>
-                                                                                <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="plain" title="2">
-                                                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </buttonConfiguration>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                <state key="normal" title="2">
+                                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
                                                                                 <connections>
                                                                                     <action selector="redTwoAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1zl-oC-OOP"/>
                                                                                     <outletCollection property="gestureRecognizers" destination="2FB-BF-E7z" appends="YES" id="Oi2-yp-u9B"/>
@@ -566,15 +566,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-hS-D8S">
                                                                         <rect key="frame" x="106.5" y="0.0" width="51" height="55"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="rXG-vI-6tD">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="rXG-vI-6tD">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="55"/>
                                                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                                                 <gestureRecognizers/>
-                                                                                <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="plain" title="3">
-                                                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </buttonConfiguration>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                <state key="normal" title="3">
+                                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
                                                                                 <connections>
                                                                                     <action selector="redThreeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KIE-Uo-zFC"/>
                                                                                     <outletCollection property="gestureRecognizers" destination="NxJ-Sk-ama" appends="YES" id="epo-hO-TjR"/>
@@ -1001,15 +1001,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cm7-RH-dSx">
                                                                         <rect key="frame" x="0.0" y="0.0" width="51" height="55"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vYE-i1-2Tj">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vYE-i1-2Tj">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="55"/>
                                                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                                                 <gestureRecognizers/>
-                                                                                <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="plain" title="1">
-                                                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </buttonConfiguration>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                <state key="normal" title="1">
+                                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
                                                                                 <connections>
                                                                                     <action selector="blueOneAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vrp-jg-5GK"/>
                                                                                     <outletCollection property="gestureRecognizers" destination="LXx-3y-drc" appends="YES" id="sEZ-Xh-ubq"/>
@@ -1036,15 +1036,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYD-gb-Ws2">
                                                                         <rect key="frame" x="53" y="0.0" width="51.5" height="55"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="OS3-mF-r3h">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="OS3-mF-r3h">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="51.5" height="55"/>
                                                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                                                 <gestureRecognizers/>
-                                                                                <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="plain" title="2">
-                                                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </buttonConfiguration>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                <state key="normal" title="2">
+                                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
                                                                                 <connections>
                                                                                     <action selector="blueTwoAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GTd-mM-01l"/>
                                                                                     <outletCollection property="gestureRecognizers" destination="bqx-lK-53x" appends="YES" id="WsI-z3-7Zj"/>
@@ -1071,15 +1071,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NmA-fv-fgJ">
                                                                         <rect key="frame" x="106.5" y="0.0" width="51" height="55"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fVd-AG-0k5">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fVd-AG-0k5">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="55"/>
                                                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                                                 <gestureRecognizers/>
-                                                                                <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="plain" title="3">
-                                                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </buttonConfiguration>
+                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                <state key="normal" title="3">
+                                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
                                                                                 <connections>
                                                                                     <action selector="blueThreeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Vh-rU-x0L"/>
                                                                                     <outletCollection property="gestureRecognizers" destination="yRT-gC-uQZ" appends="YES" id="WHA-Lm-wQE"/>
@@ -1133,7 +1133,8 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="76.5" height="50"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Undo Point">
+                                                <buttonConfiguration key="configuration" style="plain" title="Undo Point" titleAlignment="center">
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption2"/>
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -1144,8 +1145,11 @@
                                                 <rect key="frame" x="81.5" y="0.0" width="76" height="50"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="&lt;- Switch -&gt;">
-                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                <buttonConfiguration key="configuration" style="plain" titleAlignment="center">
+                                                    <string key="title">   &lt;-
+Switch
+   -&gt;</string>
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption2"/>
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -1156,7 +1160,10 @@
                                                 <rect key="frame" x="162.5" y="0.0" width="76.5" height="50"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Game Stats">
+                                                <buttonConfiguration key="configuration" style="plain" titleAlignment="center">
+                                                    <string key="title">Game
+ Stats</string>
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption2"/>
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -1167,7 +1174,9 @@
                                                 <rect key="frame" x="244" y="0.0" width="76" height="50"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Point History">
+                                                <buttonConfiguration key="configuration" style="plain" title="Point History" titleAlignment="center">
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -1206,7 +1215,7 @@
                         <outlet property="blueHitPercentLabel" destination="NBc-YE-fhX" id="mX4-Pj-iig"/>
                         <outlet property="blueHitTextLabel" destination="Um1-R5-3YZ" id="xsu-wE-YJu"/>
                         <outlet property="blueOneLabel" destination="Gs0-SS-59V" id="vSL-V0-0bx"/>
-                        <outlet property="blueOtherErrLabelOutlet" destination="R9x-c9-cuF" id="neU-ZN-9gw"/>
+                        <outlet property="blueOtherErrLabelOutlet" destination="R9x-c9-cuF" id="6SK-7M-r4F"/>
                         <outlet property="blueOutlet" destination="Tb1-Hx-Wwq" id="VCX-rE-ss5"/>
                         <outlet property="bluePassAvgLabel" destination="fyl-bR-2K6" id="dEN-Vw-mIO"/>
                         <outlet property="bluePassTextLabel" destination="XN1-sy-T9n" id="g5V-Ux-k99"/>
@@ -2365,7 +2374,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27-25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mr-HI-lil">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27-25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mr-HI-lil">
                                                             <rect key="frame" x="132" y="0.0" width="57.5" height="53"/>
                                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
