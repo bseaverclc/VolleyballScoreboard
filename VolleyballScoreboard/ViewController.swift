@@ -65,7 +65,10 @@ class AppData{
     static var blueColor = UIColor.systemBlue
 }
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+   
+    @IBOutlet weak var redTableView: UITableView!
+    
     
    
     @IBOutlet weak var redServeReceiveConstraints: NSLayoutConstraint!
@@ -145,6 +148,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var first = true
     var setNum = 1
     
+    var switched = false
+    
     
     
  
@@ -207,6 +212,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        redTableView.delegate = self
+        redTableView.dataSource = self
         
         for button in redStatsOutlet{
 
@@ -320,8 +327,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             blueTextFieldOutlet.isEnabled = false
         }
       
-       
-       
+        
+        redTableView.reloadData()
+        scrollToBottom()
+        
         
         
     }
@@ -380,13 +389,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func switchAction(_ sender: UIButton) {
-        if let first = statsHorizontalStackView.subviews.first, let last = statsHorizontalStackView.subviews.last {
-            statsHorizontalStackView.subviews.forEach { $0.removeFromSuperview() }
-            statsHorizontalStackView.insertArrangedSubview(last, at: 0)
-            statsHorizontalStackView.insertArrangedSubview(first, at: 1)
-            statsHorizontalStackView.setNeedsLayout()
-            statsHorizontalStackView.layoutIfNeeded()
-          }
+ 
+        if switched{
+            switched = false
+            var first = statsHorizontalStackView.subviews[0]
+            var last = statsHorizontalStackView.subviews[1]
+                print("switching sides back")
+            
+                statsHorizontalStackView.removeArrangedSubview(first)
+                statsHorizontalStackView.removeArrangedSubview(last)
+                statsHorizontalStackView.addArrangedSubview(first)
+                statsHorizontalStackView.addArrangedSubview(last)
+                //statsHorizontalStackView.setNeedsLayout()
+                //statsHorizontalStackView.layoutIfNeeded()
+        }
+        else{
+            switched = true
+            var first = statsHorizontalStackView.subviews[0]
+            var last = statsHorizontalStackView.subviews[1]
+                print("switching sides")
+            
+                statsHorizontalStackView.removeArrangedSubview(first)
+                statsHorizontalStackView.removeArrangedSubview(last)
+                statsHorizontalStackView.addArrangedSubview(last)
+                statsHorizontalStackView.addArrangedSubview(first)
+                //statsHorizontalStackView.setNeedsLayout()
+                //statsHorizontalStackView.layoutIfNeeded()
+        }
+        redTableView.reloadData()
+        scrollToBottom()
     }
     
     func createGame(){
@@ -715,7 +746,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 blueThreeLabel.text = "\(set.blueThree)"
                 
                updatePercents()
-                
+                redTableView.reloadData()
+                scrollToBottom()
                 
                 
             }
@@ -808,6 +840,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 
       updatePercents()
+                redTableView.reloadData()
+                scrollToBottom()
 //        if game.publicGame{
 //        game.updateFirebase()
 //        }
@@ -1815,11 +1849,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func fullStats(){
         
-        setMultiplier(constraint: &redServeReceiveLabelConstraints, multiplier: 0.10)
-        setMultiplier(constraint: &redServeReceiveConstraints, multiplier: 0.40)
+        setMultiplier(constraint: &redServeReceiveLabelConstraints, multiplier: 0.09)
+        setMultiplier(constraint: &redServeReceiveConstraints, multiplier: 0.37)
         
-        setMultiplier(constraint: &blueServeReceiveLabelConstraints, multiplier: 0.10)
-        setMultiplier(constraint: &blueServeReceiveStackConstraints, multiplier: 0.40)
+        setMultiplier(constraint: &blueServeReceiveLabelConstraints, multiplier: 0.09)
+        setMultiplier(constraint: &blueServeReceiveStackConstraints, multiplier: 0.37)
         view.layoutIfNeeded()
        
         redOneLabel.isHidden = false
@@ -1842,6 +1876,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
   
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let s = set{
+           return set.pointHistory.count
+        }
+        else{
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! HistoryCell
+        cell.pointArrangement(switched: switched)
+        cell.configure2(point: set.pointHistory[indexPath.row])
+        
+        
+        return cell
+    }
+    
+    func scrollToBottom(){
+        if let s = set{
+        if(s.pointHistory.count != 0)
+            
+        {
+        let indexPath = IndexPath(item: s.pointHistory.count - 1, section: 0)
+        redTableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.bottom, animated: true)
+        }
+        }
+    }
+    
     
     
 }
