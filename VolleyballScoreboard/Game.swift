@@ -208,6 +208,21 @@ public class Game: Codable{
         
     }
     
+    func updateGameInfoFirebase(){
+        let formatter1 = DateFormatter()
+        formatter1.dateStyle = .short
+        let dateString = formatter1.string(from: date)
+        
+        formatter1.timeStyle = .short
+        formatter1.dateStyle = .none
+        let timeString = formatter1.string(from: date)
+        
+        var ref = Database.database().reference().child("games").child(uid!)
+        let dict = ["type" : self.type ?? 0,  "teams": self.teams, "setWins":self.setWins, "date": dateString, "time": timeString, "intDate": intDate] as [String : Any]
+        
+        ref.updateChildValues(dict)
+    }
+    
     func updateFirebase()
     {
         let formatter1 = DateFormatter()
@@ -377,16 +392,21 @@ public class ASet: Codable
       
     }
     
-    func addPoint(point: Point){
+    func addPoint(point: Point, gameUid: String){
         
             
         pointHistory.append(point)
         print("added a point from addPoint(point: Point) function")
-//        if let ui = uid{
-//        let ref = Database.database().reference().child(ui)
-//        point.uid = ref.childByAutoId().key!
-//            print("added point with key \(point.uid)")
-//        }
+        if let ui = uid{
+            let ref = Database.database().reference().child("games").child(gameUid).child("sets").child(ui).child("pointHistory")
+        point.uid = ref.childByAutoId().key!
+            let pointDict = ["serve": point.serve, "redRotation": point.redRotation, "blueRotation": point.blueRotation, "who": point.who, "why": point.why, "score": point.score] as [String: Any]
+            ref.child(point.uid).updateChildValues(pointDict)
+            print("added point with key \(point.uid)")
+        }
+        else{
+            print("Error trying to add point to firebase, no uid?")
+        }
         
             //updateFirebase()
         
@@ -409,8 +429,15 @@ public class ASet: Codable
             
         }
         else{
-            print("Error Deleting Event! Event not in Firebase")
+            print("Error Deleting Point! Point not in Firebase")
         }
+    }
+    
+    func setUpdateSetInfoFirebase(gameUid: String){
+        var ref = Database.database().reference().child("games").child(gameUid).child("sets")
+            let setDict = ["redStats": redStats,"blueStats": blueStats, "serve": serve, "redRotation": redRotation, "blueRotation": blueRotation, "redRotationPlusMinus": redRotationPlusMinus, "blueRotationPlusMinus": blueRotationPlusMinus, "redAttack": redAttack, "redOne": redOne, "redTwo": redTwo, "redThree": redThree, "blueAttack": blueAttack, "blueOne": blueOne, "blueTwo": blueTwo, "blueThree": blueThree] as [String: Any]
+            ref.child(uid!).updateChildValues(setDict)
+            //print("updating a set in firebase")
     }
     
     func setUpdateFirebase(gameUid: String){

@@ -47,6 +47,10 @@ class CrazyCell: UITableViewCell
         redS4Outlet.text = "\(game.sets[3].redStats["redScore"]!)"
         redS5Outlet.text = "\(game.sets[4].redStats["redScore"]!)"
         }
+        else{
+            redS4Outlet.text = "0"
+            redS5Outlet.text = "0"
+        }
         
         blueS1Outlet.text = "\(game.sets[0].blueStats["blueScore"]!)"
         blueS2Outlet.text = "\(game.sets[1].blueStats["blueScore"]!)"
@@ -54,6 +58,10 @@ class CrazyCell: UITableViewCell
         if game.sets.count > 3{
         blueS4Outlet.text = "\(game.sets[3].blueStats["blueScore"]!)"
         blueS5Outlet.text = "\(game.sets[4].blueStats["blueScore"]!)"
+        }
+        else{
+            blueS4Outlet.text = "0"
+            blueS5Outlet.text = "0"
         }
         
         

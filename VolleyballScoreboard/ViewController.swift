@@ -366,7 +366,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         game.teams[0] = redTextFieldOutlet.text!
         game.teams[1] = blueTextFieldOutlet.text!
         if game.publicGame{
-        game.updateFirebase()
+        game.updateGameInfoFirebase()
         }
         print("text field should return")
         return true
@@ -382,7 +382,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             game.teams[0] = redTextFieldOutlet.text!
             game.teams[1] = blueTextFieldOutlet.text!
             if game.publicGame{
-            game.updateFirebase()
+            game.updateGameInfoFirebase()
             }
                 print("got out of textfield")
             }
@@ -510,7 +510,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             self.game.type = 1
             self.simpleStats()
             if self.game.publicGame{
-                self.game.updateFirebase()
+                self.game.updateGameInfoFirebase()
             }
             
         }))
@@ -519,7 +519,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             self.game.type = 0
             self.fullStats()
             if self.game.publicGame{
-                self.game.updateFirebase()
+                self.game.updateGameInfoFirebase()
             }
         }))
         present(alert2, animated: true) {
@@ -904,7 +904,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             let redRotation = set.redRotation;
             let blueRotation = set.blueRotation;
            // increaseRedScore()
-        set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+        set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid!)
 //            if game.publicGame{
 //            set.addPoint(point: point )
 //            }
@@ -926,7 +926,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             
             updatePercents()
         if game.publicGame{
-            set.setUpdateFirebase(gameUid: game.uid!)
+            if let g = game.uid{
+            set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
     }
     
@@ -953,7 +955,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             let redRotation = set.redRotation;
             let blueRotation = set.blueRotation;
           //increaseBlueScore()
-            set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+        set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid!)
             
             set.blueRotationPlusMinus[set.blueRotation] += 1
             set.redRotationPlusMinus[set.redRotation] -= 1
@@ -968,8 +970,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             
             updatePercents()
         if game.publicGame{
-        game.updateFirebase()
+            if let g = game.uid{
+            set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
+
     }
     
     
@@ -995,9 +1000,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         if AppData.canEdit{
         decreaseRedScore()
         }
-        if game.publicGame{
-        game.updateFirebase()
-        }
+       
         
         
     }
@@ -1006,9 +1009,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         if AppData.canEdit{
        decreaseBlueScore()
         }
-        if game.publicGame{
-        game.updateFirebase()
-        }
+       
         
     }
     
@@ -1042,7 +1043,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
                     increaseRedScore()
-                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid!)
                     print("added a point from redStatActionReal")
                   
 //                    if game.publicGame{
@@ -1058,10 +1059,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         updatePercents()
         updateScreen()
             
-            if game.publicGame{
-            game.updateFirebase()
-
+        if game.publicGame{
+            if let g = game.uid{
+            set.setUpdateSetInfoFirebase(gameUid: g)
             }
+        }
+
     }
     
     @IBAction func redStatAction(_ sender: UIButton) {
@@ -1119,7 +1122,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
                     increaseBlueScore()
-                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"))
+                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid!)
                     
                   
                 }
@@ -1128,9 +1131,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         updatePercents()
         updateScreen()
           
-          if game.publicGame{
-          game.updateFirebase()
-          }
+        if game.publicGame{
+            if let g = game.uid{
+            set.setUpdateSetInfoFirebase(gameUid: g)
+            }
+        }
+
     }
     
     
@@ -1358,9 +1364,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         set.redStats["redScore"]! -= 1
         redOutlet.setTitle("\(set.redStats["redScore"]!)", for: .normal)
             updatePercents()
-        if game.publicGame{
-        game.updateFirebase()
-        }
+            if game.publicGame{
+                if let g = game.uid{
+                set.setUpdateSetInfoFirebase(gameUid: g)
+                }
+            }
+
         }
     }
     
@@ -1369,9 +1378,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         set.blueStats["blueScore"]! -= 1
         blueOutlet.setTitle("\(set.blueStats["blueScore"]!)", for: .normal)
             updatePercents()
-        if game.publicGame{
-        game.updateFirebase()
-        }
+            if game.publicGame{
+                if let g = game.uid{
+                set.setUpdateSetInfoFirebase(gameUid: g)
+                }
+            }
+
         }
     }
     
@@ -1564,7 +1576,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                //set.pointHistory.removeLast()
                
                set.deletePointFromFirebase(gameUid: guid, euid: point.uid)
-                set.setUpdateFirebase(gameUid: guid)
+                set.setUpdateSetInfoFirebase(gameUid: guid)
                 //game.updateFirebase()
                 
                 
@@ -1572,6 +1584,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             else{
             set.pointHistory.removeLast()
             }
+            
+            updateScreen()
             
            
             
@@ -1591,8 +1605,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         redAttackOutlet.setTitle("Attack\n    \(set.redAttack)", for: .normal)
         updatePercents()
         
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1605,8 +1621,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         highlightButton(button: sender)
         blueAttackOutlet.setTitle("Attack\n    \(set.blueAttack)", for: .normal)
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1620,8 +1638,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             redAttackOutlet.setTitle("Attack\n    \(set.redAttack)", for: .normal)
             updatePercents()
             if game.publicGame{
-                game.updateFirebase()
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
             }
+        }
         }
         }
     }
@@ -1634,8 +1654,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             blueAttackOutlet.setTitle("Attack\n    \(set.blueAttack)", for: .normal)
             updatePercents()
             if game.publicGame{
-                game.updateFirebase()
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
             }
+        }
         }
         }
     }
@@ -1647,8 +1669,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         highlightButton(button: sender)
         redOneLabel.text = "\(set.redOne)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1659,8 +1683,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         highlightButton(button: sender)
         redTwoLabel.text = "\(set.redTwo)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1671,8 +1697,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         highlightButton(button: sender)
         redThreeLabel.text = "\(set.redThree)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1683,8 +1711,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         highlightButton(button: sender)
         blueOneLabel.text = "\(set.blueOne)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1695,8 +1725,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         highlightButton(button: sender)
         blueTwoLabel.text = "\(set.blueTwo)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1707,8 +1739,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         highlightButton(button: sender)
         blueThreeLabel.text = "\(set.blueThree)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1718,8 +1752,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         set.redOne = set.redOne - 1
         redOneLabel.text = "\(set.redOne)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1729,8 +1765,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         set.redTwo = set.redTwo - 1
         redTwoLabel.text = "\(set.redTwo)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1741,8 +1779,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         set.redThree = set.redThree - 1
         redThreeLabel.text = "\(set.redThree)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1752,8 +1792,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         set.blueOne = set.blueOne - 1
         blueOneLabel.text = "\(set.blueOne)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1763,8 +1805,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         set.blueTwo = set.blueTwo - 1
         blueTwoLabel.text = "\(set.blueTwo)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
@@ -1774,8 +1818,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         set.blueThree = set.blueThree - 1
         blueThreeLabel.text = "\(set.blueThree)"
         updatePercents()
-        if game.publicGame{
-            game.updateFirebase()
+            if game.publicGame{
+                if let g = game.uid{
+                    set.setUpdateSetInfoFirebase(gameUid: g)
+            }
         }
         }
     }
