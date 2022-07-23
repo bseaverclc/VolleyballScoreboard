@@ -922,6 +922,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
 //            else{
 //                set.pointHistory.append(point)
 //            }
+        
+        redTableView.reloadData()
+        scrollToBottom()
             
             set.redRotationPlusMinus[set.redRotation] += 1
             set.blueRotationPlusMinus[set.blueRotation] -= 1
@@ -968,6 +971,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
           //increaseBlueScore()
         set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid ?? "")
             
+        redTableView.reloadData()
+        scrollToBottom()
+        
             set.blueRotationPlusMinus[set.blueRotation] += 1
             set.redRotationPlusMinus[set.redRotation] -= 1
             if set.serve != "blue"
