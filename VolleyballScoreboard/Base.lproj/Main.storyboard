@@ -2044,13 +2044,14 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QfA-7F-Sfa">
-                                        <rect key="frame" x="160" y="0.0" width="150" height="31"/>
+                                        <rect key="frame" x="160" y="9" width="150" height="13.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="hP3-Dl-pDr">
-                                                <rect key="frame" x="0.0" y="0.0" width="72.5" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="72.5" height="13.5"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Search">
-                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="containsAction:" destination="S5t-Nu-1o6" eventType="touchUpInside" id="MeU-lB-kkX"/>
@@ -2058,10 +2059,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="zum-1I-cVX">
-                                                <rect key="frame" x="77.5" y="0.0" width="72.5" height="31"/>
+                                                <rect key="frame" x="77.5" y="0.0" width="72.5" height="13.5"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Reset">
-                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="clearButtonAction:" destination="S5t-Nu-1o6" eventType="touchUpInside" id="HAO-1S-WhP"/>
@@ -2316,23 +2318,25 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mQL-Q5-h1d">
-                                        <rect key="frame" x="160" y="0.0" width="150" height="31"/>
+                                        <rect key="frame" x="160" y="9" width="150" height="13.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="jjx-qI-lNe">
-                                                <rect key="frame" x="0.0" y="0.0" width="72.5" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="72.5" height="13.5"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Search">
-                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="containsSearchAction:" destination="p0k-cU-Sbq" eventType="touchUpInside" id="EVj-y3-daw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="S0A-wH-oaP">
-                                                <rect key="frame" x="77.5" y="0.0" width="72.5" height="31"/>
+                                                <rect key="frame" x="77.5" y="0.0" width="72.5" height="13.5"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Reset">
-                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="clearButtonAction:" destination="p0k-cU-Sbq" eventType="touchUpInside" id="ID5-kv-ITC"/>
