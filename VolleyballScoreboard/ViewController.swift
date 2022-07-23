@@ -212,6 +212,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        
+        
+        
+        
         redTableView.delegate = self
         redTableView.dataSource = self
         
@@ -225,7 +230,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
         
         
-        ref = Database.database().reference()
+       
         NotificationCenter.default.addObserver(self, selector: #selector(functionName), name: Notification.Name("notifyScreenChange"), object: nil)
         //getGamesFromFirebase()
         //gameChangedInFirebase()
@@ -269,16 +274,20 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 }
             }
             if g.publicGame{
-                print("public game")
+ 
+                print("public games \(AppData.allGames.count)")
+                
                 var alive = false
-                for appGame in AppData.allGames{
-                    if appGame.uid == g.uid{
+                for i in 0 ..< AppData.allGames.count{
+                
+                    if AppData.allGames[i].uid == g.uid{
                         print("found the game")
                         alive = true
-                        game = appGame
-                        AppData.selectedGame = game
+                        AppData.allGames[i] = g
+                        game = g
+                        //AppData.selectedGame = game
                         set = game.sets[0]
-                        print(set.redStats["redScore"]!)
+                        //print(set.redStats["redScore"]!)
                         setNum = 1
                         setSegmentedControlOutlet.selectedSegmentIndex = 0
                         DispatchQueue.main.async {
@@ -287,10 +296,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                     }
                 }
                 if !alive{
-                    var alert = UIAlertController(title: "Error", message: "Game has been deleted online.  Please delete from My Games", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { alert in
+                    var alert = UIAlertController(title: "Error", message: "Can't connect to public game.\nCheck internet connection and try again.\n(Game may have been deleted from public games)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { alert in
                         self.newGame()
                     }))
+                    
                     present(alert, animated: true, completion: nil)
                 }
             }
@@ -485,9 +495,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             AppData.canEdit = true
             AppData.myGames.append(self.game)
         }))
-        alert.addAction(UIAlertAction(title: "View Public Games", style: .destructive, handler: { a in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { a in
             let vc = self.tabBarController!
-                vc.selectedIndex = 2
+                vc.selectedIndex = 3
         }))
         present(alert, animated: true) {
             
@@ -840,6 +850,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 
                 
       updatePercents()
+                // updating points table view
                 redTableView.reloadData()
                 scrollToBottom()
 //        if game.publicGame{
@@ -904,7 +915,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             let redRotation = set.redRotation;
             let blueRotation = set.blueRotation;
            // increaseRedScore()
-        set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid!)
+        set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid ?? "")
 //            if game.publicGame{
 //            set.addPoint(point: point )
 //            }
@@ -955,7 +966,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             let redRotation = set.redRotation;
             let blueRotation = set.blueRotation;
           //increaseBlueScore()
-        set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid!)
+        set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: "", score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid ?? "")
             
             set.blueRotationPlusMinus[set.blueRotation] += 1
             set.redRotationPlusMinus[set.redRotation] -= 1
@@ -1043,7 +1054,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
                     increaseRedScore()
-                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid!)
+                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "red", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid ?? "")
                     print("added a point from redStatActionReal")
                   
 //                    if game.publicGame{
@@ -1122,7 +1133,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                     let redRotation = set.redRotation;
                     let blueRotation = set.blueRotation;
                     increaseBlueScore()
-                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid!)
+                    set.addPoint(point: Point(serve: serve, redRotation: redRotation, blueRotation: blueRotation, who: "blue", why: key, score: "\(set.redStats["redScore"]!)-\(set.blueStats["blueScore"]!)"), gameUid: game.uid ?? "")
                     
                   
                 }
@@ -1954,4 +1965,5 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     
 }
+
 

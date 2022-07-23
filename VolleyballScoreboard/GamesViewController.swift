@@ -107,6 +107,7 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { a in
                 
                 AppData.allGames[indexPath.row].deleteFromFirebase()
+                
                 AppData.allGames.remove(at: indexPath.row)
 
                 

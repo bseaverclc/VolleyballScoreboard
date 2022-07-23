@@ -81,7 +81,7 @@ class CrazyCell: UITableViewCell
         let convertedTime = TimeFormatter.string(from: game.date)
         
         timeOutlet.text = convertedTime
-        highlightWinner(game: game)
+       // highlightWinner(game: game)
         
     }
     
